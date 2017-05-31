@@ -13,3 +13,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: pact-foundation/pact-ruby-standalone
+    tags: true
