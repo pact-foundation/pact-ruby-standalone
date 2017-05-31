@@ -30,3 +30,4 @@ reports
 build
 
 vendor/bundle/
+pact

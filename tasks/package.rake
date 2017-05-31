@@ -1,7 +1,7 @@
 # For Bundler.with_clean_env
 require 'bundler/setup'
 
-PACKAGE_NAME = "pact-ruby-standalone"
+PACKAGE_NAME = "pact"
 VERSION = "0.0.1-1"
 TRAVELING_RUBY_VERSION = "20150715-2.2.2"
 
@@ -27,7 +27,7 @@ namespace :package do
   end
 
   desc "Package pact-ruby-standalone for Windows x86"
-  task :win32 => [:bundle_install, "packaging/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz"] do
+  task :win32 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz"] do
     create_package(TRAVELING_RUBY_VERSION, "win32", :windows)
   end
 
@@ -43,6 +43,7 @@ namespace :package do
     # sh "cp lib/pact/mock_service/version.rb build/tmp/lib/pact/mock_service/version.rb"
     Bundler.with_clean_env do
       sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
+      generate_readme
     end
     sh "rm -rf build/tmp"
     sh "rm -f build/vendor/*/*/cache/*"
@@ -61,16 +62,18 @@ file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz" do
   download_runtime(TRAVELING_RUBY_VERSION, "osx")
 end
 
-file "packaging/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz" do
+file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz" do
   download_runtime(TRAVELING_RUBY_VERSION, "win32")
 end
 
 def create_package(version, target, os_type = :unix)
-  package_dir = "#{PACKAGE_NAME}-#{VERSION}-#{target}"
+  package_dir = "#{PACKAGE_NAME}"
+  package_name = "#{PACKAGE_NAME}-#{VERSION}-#{target}"
   sh "rm -rf #{package_dir}"
   sh "mkdir #{package_dir}"
   sh "mkdir -p #{package_dir}/lib/app"
   sh "mkdir -p #{package_dir}/bin"
+  sh "cp build/README.md #{package_dir}"
   sh "cp packaging/pact-mock-service.rb #{package_dir}/lib/app/pact-mock-service.rb"
   sh "cp packaging/pact-provider-verifier.rb #{package_dir}/lib/app/pact-provider-verifier.rb"
   # sh "cp -pR lib #{package_dir}/lib/app"
@@ -93,12 +96,20 @@ def create_package(version, target, os_type = :unix)
     sh "mkdir -p pkg"
 
     if os_type == :unix
-      sh "tar -czf pkg/#{package_dir}.tar.gz #{package_dir}"
+      sh "tar -czf pkg/#{package_name}.tar.gz #{package_dir}"
     else
-      sh "zip -9rq pkg/#{package_dir}.zip #{package_dir}"
+      sh "zip -9rq pkg/#{package_name}.zip #{package_dir}"
     end
 
     sh "rm -rf #{package_dir}"
+  end
+end
+
+def generate_readme
+  template = File.absolute_path("packaging/README.md.template")
+  script = File.absolute_path("packaging/generate_readme_contents.rb")
+  Bundler.with_clean_env do
+    sh "cd build/tmp && env VERSION=#{VERSION} bundle exec ruby #{script} #{template} > ../README.md"
   end
 end
 

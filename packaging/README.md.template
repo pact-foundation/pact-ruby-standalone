@@ -1,0 +1,21 @@
+# Pact standalone executables
+
+This package contains the Ruby implementations of the Pact Mock Service and Pact Provider Verifier, packaged with Travelling Ruby so that they can be run from the command line without a Ruby installation.
+
+## Usage
+
+* Once the package has been extracted:
+
+    $ cd pact/bin
+    $ ./pact-mock-service --help start # will display the options for the mock service
+    $ ./pact-provider-verifier --help verify # will display the options for the verifier
+
+## Package contents
+
+This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables package contains:
+
+  * pact gem <%= Pact::VERSION %>
+  * pact-mock_service gem <%= Pact::MockService::VERSION %>
+  * pact-support gem <%= Pact::Support::VERSION %>
+  * pact-provider-verifier gem <%= Pact::ProviderVerifier::VERSION %>
+  * pact-provider-proxy gem <%= Pact::Provider::Proxy::VERSION %>
