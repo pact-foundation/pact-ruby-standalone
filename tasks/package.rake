@@ -2,7 +2,7 @@
 require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
-VERSION = "0.0.1"
+VERSION = "1.0.0"
 TRAVELING_RUBY_VERSION = "20150715-2.2.2"
 
 desc "Package pact-ruby-standalone for OSX, Linux x86 and Linux x86_64"
