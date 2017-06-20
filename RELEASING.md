@@ -8,7 +8,7 @@
 
 3. Add files to git
 
-    $ git add task/package.rake
+    $ git add tasks/package.rake
 
 4. Commit
 
