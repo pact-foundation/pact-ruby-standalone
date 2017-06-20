@@ -3,7 +3,8 @@ rvm:
 - 2.2.0
 env:
   global:
-    secure: UtxkLs57dG2SBdYDSCx7EjqIpflduQQ+iZ5HE6b7FsF/eSZ4Gw4jBO0D71h471t1SLEgAXN42Tp+NDh1VPs+iqE+gWY78El0TbBC4WJFO6FzJmcNWu5a/gS/IsCGcvem6GHjY0tRuAhMhSyWxAm7LTInFCsecKJthUg+z5KbI2ra4JZJRFgLNQd8L6p4bKDrji+t9BvuRWXEumWiVbnr4nxzXVlpprIuRlIipf6sPiol8jaqKhpgf7HZD3IX9X8Y9wPaW37nTJrwdSgliMUV6lr3gkBisvw5an+1d7yMRr2lGwySLyGeYPZxoABpjk7fMsydl/9Q2kQDO1dzMmbqiw0AiabVz7e8iuq1JtwaIfnCzGvCygluSCz7hxs40QwPy9xc+NieyLldUPU50izulvCUVNORLXRqFy4uYBYsKx5/iY+kk8LoM2Qr40Cl885ZdtSmGz2zfPSC8i+eWUsv9cH7B2ubCNw6arG5O/UsNxsl2w79EbJR5Wz7tZkvXWJLmwzzg2Zw30tp8AGw6jK1ti5PwskLBvewW/1iLl4JfYsJiJ1VTBTydNKIze3mFg/N00VHPTYNkRRG0WUKHVJ8amGOiqWzQKolCzakc9iAG6slqvBy0B/Jjn3FQkZghPlHHG6rlMMsX6ZtvNWNQKQ4e7xeLr4wpXXHF2qt4LokuAQ=
+  - secure: UtxkLs57dG2SBdYDSCx7EjqIpflduQQ+iZ5HE6b7FsF/eSZ4Gw4jBO0D71h471t1SLEgAXN42Tp+NDh1VPs+iqE+gWY78El0TbBC4WJFO6FzJmcNWu5a/gS/IsCGcvem6GHjY0tRuAhMhSyWxAm7LTInFCsecKJthUg+z5KbI2ra4JZJRFgLNQd8L6p4bKDrji+t9BvuRWXEumWiVbnr4nxzXVlpprIuRlIipf6sPiol8jaqKhpgf7HZD3IX9X8Y9wPaW37nTJrwdSgliMUV6lr3gkBisvw5an+1d7yMRr2lGwySLyGeYPZxoABpjk7fMsydl/9Q2kQDO1dzMmbqiw0AiabVz7e8iuq1JtwaIfnCzGvCygluSCz7hxs40QwPy9xc+NieyLldUPU50izulvCUVNORLXRqFy4uYBYsKx5/iY+kk8LoM2Qr40Cl885ZdtSmGz2zfPSC8i+eWUsv9cH7B2ubCNw6arG5O/UsNxsl2w79EbJR5Wz7tZkvXWJLmwzzg2Zw30tp8AGw6jK1ti5PwskLBvewW/1iLl4JfYsJiJ1VTBTydNKIze3mFg/N00VHPTYNkRRG0WUKHVJ8amGOiqWzQKolCzakc9iAG6slqvBy0B/Jjn3FQkZghPlHHG6rlMMsX6ZtvNWNQKQ4e7xeLr4wpXXHF2qt4LokuAQ=
+  - secure: G5tVHn+MyCUt8pz7DLqWNhbAW4uufFFLodfpzMgV6ge9gY01tgD7RB7VUCCJBb/w/fJm9LNdvJ1tpi4z2R4q5irBOKVFvzJOJW+JM1gMWrD+BCsLAbshDvlc3LQCacE9df8btoAUQ+Oja9W/pAdzxRl3Kck2hZ7c84tCodSmkdTv12wovzfm5aj6DuB1z/vt5z7f5vHPLR6aKI+Q/eL2N29t1kEgOYw22ClSixhnc8Vuhdw3dI99x31USb0rCz+I3AFHH4wtX9sp5RalL78JGT5Af0zf4EzO+zkiN0Oe2wwK9T9DfaVrlltvulmfQtkjkhpw4/dpqGy49sdEbv0P/T+l+im8TAQVI1pzzk95hSUXKNfkUIjH/W/tCtwq97dfsuwvRwfiW6l3S4Varwx+YIolUPp2+5x56TfkrXu7G3Dcdj7X7GNvPlIfgWjO9Up/+Unrk7Ihijp4ODy6jdRE8CLDcfUjz00zA8SJS3jZbATr7VmADIAo3TrutQWafYzZqBV7Zfovbk6wnxjfRFOQMtMm7VN9s+osl/6PQ23929uwGveKZgHzFlnD24j51ozhHoRlL8pQEuPp/LVcnLmleziN3ErEbT9e/YVlqnhdiLynr6U4H68XmXtzs83nxPjwt7wuJkSmWgiGl+85AS/yH5AX//hqy1NgS76ItN1ZmMg=
 script:
 - bundle install
 - bundle exec rake package
@@ -18,4 +19,6 @@ deploy:
     repo: pact-foundation/pact-ruby-standalone
     tags: true
 after_deploy:
-- "curl -X POST -H \"Authorization: Bearer ${APPVEYOR_ACCESS_TOKEN}\" -H \"Content-Type: application/json\" -d@support/pact-ruby-standalone-windows-test.json https://ci.appveyor.com/api/builds"
+- bundle exec rake upload_release_notes
+- 'curl -X POST -H "Authorization: Bearer ${APPVEYOR_ACCESS_TOKEN}" -H "Content-Type:
+  application/json" -d@support/pact-ruby-standalone-windows-test.json https://ci.appveyor.com/api/builds'

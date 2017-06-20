@@ -1,1 +1,1 @@
-load 'tasks/package.rake'
+Dir.glob('./tasks/**/*.rake').each { |task| load task }
