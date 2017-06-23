@@ -43,7 +43,7 @@ GEM
       rack (= 1.6.4)
       rake (~> 10.4, >= 10.4.2)
       rspec (~> 3.5)
-    pact-support (1.1.0)
+    pact-support (1.1.2)
       awesome_print (~> 1.1)
       find_a_port (~> 1.0.1)
       json
