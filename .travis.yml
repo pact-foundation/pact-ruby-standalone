@@ -19,6 +19,7 @@ deploy:
     repo: pact-foundation/pact-ruby-standalone
     tags: true
 after_deploy:
-- bundle exec rake upload_release_notes
+- bundle exec rake generate_release_notes[$TRAVIS_TAG]
+- bundle exec rake upload_release_notes[$TRAVIS_REPO_SLUG,$TRAVIS_TAG]
 - 'curl -X POST -H "Authorization: Bearer ${APPVEYOR_ACCESS_TOKEN}" -H "Content-Type:
   application/json" -d@support/pact-ruby-standalone-windows-test.json https://ci.appveyor.com/api/builds'
