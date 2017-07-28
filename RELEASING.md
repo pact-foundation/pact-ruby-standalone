@@ -12,7 +12,7 @@
 
 4. Commit
 
-    $ git commit -m "Releasing version $(cat VERSION)"
+    $ git commit -m "Releasing version $(cat VERSION)" && git push
 
 5. Tag and push
 

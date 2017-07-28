@@ -3,7 +3,7 @@ RELEASE_NOTES_PATH = "build/RELEASE_NOTES.md"
 
 desc 'Tag for release'
 task :tag_for_release do | t, args |
-  command = "git tag -a v#{VERSION} -m \"Releasing version #{VERSION}\" && git push origin --tags"
+  command = "git tag -a v#{VERSION} -m \"Releasing version #{VERSION}\" && git push origin v#{VERSION}"
   puts command
   puts `#{command}`
 end
