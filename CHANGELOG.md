@@ -2,6 +2,9 @@ Do this to generate your change history
 
   git log --pretty=format:'  * %h - %s (%an, %ad)'
 
+## 1.2.0 (3 Aug 2017)
+* f02ee8a - chore(gems): Updated pact-provider-proxy to 2.2.0 (Beth Skurrie, Thu Aug 3 14:47:21 2017 +1000)
+
 ## 1.1.2 (1 Aug 2017)
 * 8c3ca90 - chore(gems): Updated pact-support gem to 1.1.5 (Beth Skurrie, Tue Aug 1 10:43:07 2017 +1000)
 
