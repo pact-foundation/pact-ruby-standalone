@@ -162,16 +162,16 @@ def remove_unnecessary_files package_dir
   sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/*/rdoc*"
 
   # Uncommonly used encodings
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/cp949*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/euc_*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/shift_jis*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/koi8_*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/emacs*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/gb*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/big5*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/cp949*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/euc_*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/shift_jis*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/koi8_*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/emacs*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/gb*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/big5*"
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/windows*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_16*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_32*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_16*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_32*"
 end
 
 def generate_readme
