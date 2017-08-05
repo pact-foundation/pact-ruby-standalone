@@ -2,6 +2,10 @@ Do this to generate your change history
 
   git log --pretty=format:'  * %h - %s (%an, %ad)'
 
+## 1.2.2 (5 Aug 2017)
+* 427ed71 - chore(reduce package size): Remove supposedly unnecessary native extension sources and compilation objects. Last time we tried this, something broke on windows, but now we have the pact-ruby-standalone-windows-test to help identify the problem. (Beth Skurrie, Sat Aug 5 17:31:23 2017 +1000)
+* d6809a4 - chore(reduce package size): Remove unnecessary encoding files (Beth Skurrie, Sat Aug 5 17:30:17 2017 +1000)
+
 ## 1.2.1 (5 Aug 2017)
 * dc35c77 - chore(reduce package size): Remove unnecessary files from package (Beth Skurrie, Sat Aug 5 17:00:41 2017 +1000)
 
