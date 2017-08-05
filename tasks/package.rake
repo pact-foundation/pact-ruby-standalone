@@ -92,6 +92,9 @@ def create_package(version, target, os_type = :unix)
   sh "cp packaging/Gemfile packaging/Gemfile.lock #{package_dir}/lib/vendor/"
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
   sh "cp packaging/bundler-config #{package_dir}/lib/vendor/.bundle/config"
+
+  remove_unnecessary_files package_dir
+
   if !ENV['DIR_ONLY']
     sh "mkdir -p pkg"
 
@@ -103,6 +106,60 @@ def create_package(version, target, os_type = :unix)
 
     sh "rm -rf #{package_dir}"
   end
+end
+
+def remove_unnecessary_files package_dir
+  ## Reduce distribution - https://github.com/phusion/traveling-ruby/blob/master/REDUCING_PACKAGE_SIZE.md
+  # Remove tests
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/test"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/tests"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/spec"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/features"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/benchmark"
+
+  # # Remove documentation"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/README*"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/CHANGE*"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/Change*"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/COPYING*"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/LICENSE*"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/MIT-LICENSE*"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/TODO"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/*.txt"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/*.md"
+  sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/*.rdoc"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/doc"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/docs"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/example"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/examples"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/sample"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/doc-api"
+  sh "find #{package_dir}/lib/vendor/ruby -name '*.md' | xargs rm -f"
+
+  # # Remove misc unnecessary files"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/.gitignore"
+  sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/.travis.yml"
+  #
+  # # Remove leftover native extension sources and compilation objects"
+  # Something in here is required for windows :(
+  # sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/ext/Makefile"
+  # sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/ext/*/Makefile"
+  # sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/ext/*/tmp"
+  # sh "find #{package_dir}/lib/vendor/ruby -name '*.c' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby -name '*.cpp' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby -name '*.h' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby -name '*.rl' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby -name 'extconf.rb' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby/*/gems -name '*.o' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby/*/gems -name '*.so' | xargs rm -f"
+  # sh "find #{package_dir}/lib/vendor/ruby/*/gems -name '*.bundle' | xargs rm -f"
+  #
+  # # Remove Java files. They're only used for JRuby support"
+  sh "find #{package_dir}/lib/vendor/ruby -name '*.java' | xargs rm -f"
+  sh "find #{package_dir}/lib/vendor/ruby -name '*.class' | xargs rm -f"
+  #
+  # # Ruby Docs
+  sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/*/rdoc*"
 end
 
 def generate_readme
