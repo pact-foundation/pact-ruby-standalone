@@ -3,6 +3,7 @@ GEM
   specs:
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    conventional-changelog (1.2.2)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     multipart-post (2.0.0)
@@ -18,8 +19,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  conventional-changelog
   octokit
   rake
 
 BUNDLED WITH
-   1.14.6
+   1.15.3

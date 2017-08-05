@@ -4,7 +4,7 @@
 
 2. Update the `CHANGELOG.md` using:
 
-    $ git log --pretty=format:'  * %h - %s (%an, %ad)'
+    $ bundle exec generate_changelog
 
 3. Add files to git
 
@@ -12,7 +12,7 @@
 
 4. Commit
 
-    $ git commit -m "Releasing version $(cat VERSION)" && git push
+    $ git commit -m "chore(release): version $(cat VERSION)" && git push
 
 5. Tag and push
 
