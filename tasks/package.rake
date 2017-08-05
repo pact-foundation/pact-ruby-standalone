@@ -169,7 +169,7 @@ def remove_unnecessary_files package_dir
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/emacs*"
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/gb*"
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/big5*"
-  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/windows*"
+  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/windows*"
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_16*"
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_32*"
 end
