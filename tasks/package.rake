@@ -117,7 +117,7 @@ def remove_unnecessary_files package_dir
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/features"
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/benchmark"
 
-  # # Remove documentation"
+  # Remove documentation"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/README*"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/CHANGE*"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/Change*"
@@ -136,12 +136,11 @@ def remove_unnecessary_files package_dir
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/doc-api"
   sh "find #{package_dir}/lib/vendor/ruby -name '*.md' | xargs rm -f"
 
-  # # Remove misc unnecessary files"
+  # Remove misc unnecessary files"
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/.gitignore"
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/.travis.yml"
-  #
-  # # Remove leftover native extension sources and compilation objects"
-  # Something in here is required for windows :(
+
+  # Remove leftover native extension sources and compilation objects"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/ext/Makefile"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/ext/*/Makefile"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/ext/*/tmp"
@@ -154,21 +153,21 @@ def remove_unnecessary_files package_dir
   sh "find #{package_dir}/lib/vendor/ruby/*/gems -name '*.so' | xargs rm -f"
   sh "find #{package_dir}/lib/vendor/ruby/*/gems -name '*.bundle' | xargs rm -f"
 
-  # # Remove Java files. They're only used for JRuby support"
+  # Remove Java files. They're only used for JRuby support"
   sh "find #{package_dir}/lib/vendor/ruby -name '*.java' | xargs rm -f"
   sh "find #{package_dir}/lib/vendor/ruby -name '*.class' | xargs rm -f"
-  #
-  # # Ruby Docs
+
+  # Ruby Docs
   sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/*/rdoc*"
 
   # Uncommonly used encodings
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/cp949*"
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/euc_*"
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/shift_jis*"
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/koi8_*"
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/emacs*"
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/gb*"
-  # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/big5*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/cp949*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/euc_*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/shift_jis*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/koi8_*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/emacs*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/gb*"
+  sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/big5*"
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/windows*"
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_16*"
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_32*"
