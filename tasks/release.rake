@@ -1,5 +1,6 @@
 RELEASE_NOTES_TEMPLATE_PATH = "packaging/RELEASE_NOTES.md.template"
 RELEASE_NOTES_PATH = "build/RELEASE_NOTES.md"
+README_PATH = "build/README.md"
 
 desc 'Tag for release'
 task :tag_for_release do | t, args |
@@ -13,10 +14,14 @@ task :generate_release_notes, [:tag] do | t, args |
   require 'fileutils'
   FileUtils.mkdir_p File.dirname(RELEASE_NOTES_PATH)
   tag = args[:tag]
+  readme_content = File.read(README_PATH)
   release_notes_template = File.read(RELEASE_NOTES_TEMPLATE_PATH)
   release_notes_content = release_notes_template.gsub("<TAG_NAME>", tag)
   release_notes_content = release_notes_content.gsub("<PACKAGE_VERSION>", VERSION)
-  File.open(RELEASE_NOTES_PATH, "w") { |file| file << release_notes_content }
+  File.open(RELEASE_NOTES_PATH, "w") do |file|
+    file << readme_content
+    file << release_notes_content
+  end
 end
 
 desc 'Upload release notes'

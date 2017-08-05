@@ -1,6 +1,7 @@
-Standalone release of the Pact Ruby implementation.
 
-To install and run on OSX:
+## Installation
+
+### OSX
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v<TAG_NAME>/pact-<PACKAGE_VERSION>-osx.tar.gz
@@ -10,7 +11,7 @@ cd pact/bin
 ./pact-provider-verifier --help verify
 ```
 
-To install and run on Linux 64 bit:
+### Linux 64 bit
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
@@ -20,7 +21,7 @@ cd pact/bin
 ./pact-provider-verifier --help verify
 ```
 
-To install and run on Linux 32 bit:
+### Linux 32 bit
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86.tar.gz
@@ -30,7 +31,7 @@ cd pact/bin
 ./pact-provider-verifier --help verify
 ```
 
-To install and run on Windows:
+### Windows
 
 Download package, unzip, then run:
 
