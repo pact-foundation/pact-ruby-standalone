@@ -1,10 +1,9 @@
-<a name="v1.3.0"></a>
+<a name="v1.3.1"></a>
 ### v1.3.0 (2017-08-08)
-
-#### Chores
+#### Features
 
 * **gems**
-  * Update pact-provider-verifier to 1.3.0	 ([07d4674](/../../commit/07d4674))
+  * Update pact-provider-verifier to 1.3.1	 ([36cb12a](/../../commit/36cb12a))
 
 <a name="v1.2.2"></a>
 ## 1.2.2 (5 Aug 2017)

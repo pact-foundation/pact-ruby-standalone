@@ -1,5 +1,14 @@
 # Releasing
 
+## Update dependencies
+
+    cd packaging
+    bundle update
+    git add Gemfile.lock
+    git commit -m "feat(gems): Updated ... to ..."
+
+## Release
+
 1. Increment the version in the `VERSION` file according to semantic versioning rules.
 
 2. Update the `CHANGELOG.md` using:
