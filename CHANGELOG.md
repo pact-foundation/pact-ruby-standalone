@@ -1,7 +1,12 @@
-Do this to generate your change history
+<a name="v1.3.0"></a>
+### v1.3.0 (2017-08-08)
 
-  git log --pretty=format:'  * %h - %s (%an, %ad)'
+#### Chores
 
+* **gems**
+  * Update pact-provider-verifier to 1.3.0	 ([07d4674](/../../commit/07d4674))
+
+<a name="v1.2.2"></a>
 ## 1.2.2 (5 Aug 2017)
 * 427ed71 - chore(reduce package size): Remove supposedly unnecessary native extension sources and compilation objects. Last time we tried this, something broke on windows, but now we have the pact-ruby-standalone-windows-test to help identify the problem. (Beth Skurrie, Sat Aug 5 17:31:23 2017 +1000)
 * d6809a4 - chore(reduce package size): Remove unnecessary encoding files (Beth Skurrie, Sat Aug 5 17:30:17 2017 +1000)
