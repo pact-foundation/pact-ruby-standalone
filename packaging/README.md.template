@@ -10,7 +10,6 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
   * pact-mock_service gem <%= Pact::MockService::VERSION %>
   * pact-support gem <%= Pact::Support::VERSION %>
   * pact-provider-verifier gem <%= Pact::ProviderVerifier::VERSION %>
-  * pact-provider-proxy gem <%= Pact::Provider::Proxy::VERSION %>
 
 ## Usage
 
