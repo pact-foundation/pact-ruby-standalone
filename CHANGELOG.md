@@ -1,3 +1,11 @@
+<a name="v1.4.1"></a>
+### v1.4.1 (2017-08-25)
+
+#### Features
+
+* **gems**
+  * update pact-support to 1.1.6	 ([17f0b3e](/../../commit/17f0b3e))
+
 <a name="v1.4.0"></a>
 ### v1.4.0 (2017-08-11)
 

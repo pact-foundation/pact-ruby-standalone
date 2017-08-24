@@ -5,7 +5,7 @@
     cd packaging
     bundle update
     git add Gemfile.lock
-    git commit -m "feat(gems): Updated ... to ..."
+    git commit -m "feat(gems): update ... to ..."
 
 ## Release
 
@@ -13,7 +13,7 @@
 
 2. Update the `CHANGELOG.md` using:
 
-    $ bundle exec generate_changelog
+    $ bundle exec rake generate_changelog
 
 3. Add files to git
 
