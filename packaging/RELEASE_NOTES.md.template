@@ -38,5 +38,5 @@ Download package, unzip, then run:
 ```
 $ cd pact
 $ .\bin\pact-mock-service.bat --help start
-$ .\bin\pact-provider-verifier.bar --help verify
+$ .\bin\pact-provider-verifier.bat --help verify
 ```
