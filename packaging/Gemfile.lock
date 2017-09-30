@@ -8,7 +8,10 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     find_a_port (1.0.1)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
     json (2.1.0)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
     pact (1.15.0)
       json (> 1.8.5)
@@ -48,6 +51,10 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
+    pact_broker-client (1.5.0)
+      httparty
+      json
+      term-ansicolor
     rack (2.0.3)
     rack-proxy (0.6.2)
       rack
@@ -83,6 +90,7 @@ PLATFORMS
 DEPENDENCIES
   pact-mock_service
   pact-provider-verifier
+  pact_broker-client
 
 BUNDLED WITH
    1.15.3
