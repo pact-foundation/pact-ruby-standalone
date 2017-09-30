@@ -1,3 +1,11 @@
+<a name="v1.6.0"></a>
+### v1.6.0 (2017-09-30)
+
+#### Features
+
+* **gems**
+  * update pact-mock_service to 2.2.0	 ([bab09c8](/../../commit/bab09c8))
+
 <a name="v1.5.0"></a>
 ### v1.5.0 (2017-09-30)
 
