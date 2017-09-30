@@ -1,6 +1,6 @@
 # Pact standalone executables
 
-This package contains the Ruby implementations of the Pact Mock Service and Pact Provider Verifier, packaged with Travelling Ruby so that they can be run from the command line without a Ruby installation.
+This package contains the Ruby implementations of the Pact Mock Service, Pact Provider Verifier and Pact Broker Client, packaged with Travelling Ruby so that they can be run from the command line without a Ruby installation.
 
 ## Package contents
 
