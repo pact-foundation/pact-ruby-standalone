@@ -1,3 +1,11 @@
+<a name="v1.5.0"></a>
+### v1.5.0 (2017-09-30)
+
+#### Features
+
+* **pact publish**
+  * add pact-publish cli	 ([9f760a3](/../../commit/9f760a3))
+
 <a name="v1.4.4"></a>
 ### v1.4.4 (2017-08-27)
 
