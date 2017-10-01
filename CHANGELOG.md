@@ -1,3 +1,14 @@
+<a name="v1.7.0"></a>
+### v1.7.0 (2017-10-01)
+
+#### Features
+
+* **readme**
+  * add detailed usage notes generated from each tool	 ([97a60f9](/../../commit/97a60f9))
+
+* **gems**
+  * update pact-provider-verifier to 1.5.0 and pact_broker-client to 1.6.0	 ([3f5b1a2](/../../commit/3f5b1a2))
+
 <a name="v1.6.0"></a>
 ### v1.6.0 (2017-09-30)
 
