@@ -14,11 +14,20 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 
 ## Usage
 
-* Once the package has been extracted:
+### pact-mock-service
 
 ```
-cd pact/bin
-./pact-mock-service --help start # will display the options for the mock service
-./pact-provider-verifier --help verify # will display the options for the verifier
-./pact-publish --help # will display the options for publishing
+<%= pact_mock_service_usage %>
+```
+
+### pact-provider-verifier
+
+```
+<%= pact_provider_verifier_usage %>
+```
+
+### pact-publish
+
+```
+<%= pact_publish_usage %>
 ```
