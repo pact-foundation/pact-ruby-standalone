@@ -1,3 +1,10 @@
+<a name="v1.7.1"></a>
+### v1.7.1 (2017-10-02)
+
+#### Bug Fixes
+
+* correct pact-provider-verifier require	 ([2510b54](/../../commit/2510b54))
+
 <a name="v1.7.0"></a>
 ### v1.7.0 (2017-10-01)
 
