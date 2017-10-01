@@ -1,2 +1,2 @@
-require 'pact/provider_verifier/cli'
-Pact::ProviderVerifier::CLI.start
+require 'pact/provider_verifier/cli/verify'
+Pact::ProviderVerifier::CLI::Verify.start
