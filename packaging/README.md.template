@@ -20,6 +20,13 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 <%= pact_mock_service_usage %>
 ```
 
+### pact-stub-service
+
+```
+<%= pact_stub_service_usage %>
+```
+
+
 ### pact-provider-verifier
 
 ```
