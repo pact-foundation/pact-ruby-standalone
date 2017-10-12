@@ -1,3 +1,13 @@
+<a name="v1.9.0"></a>
+### v1.9.0 (2017-10-13)
+
+#### Features
+
+* add pact-stub-service to standalone package	 ([b5a65f0](/../../commit/b5a65f0))
+
+* **gems**
+  * update pact-mock_service to 2.4.0	 ([03cf5a8](/../../commit/03cf5a8))
+
 <a name="v1.8.0"></a>
 ### v1.8.0 (2017-10-04)
 
