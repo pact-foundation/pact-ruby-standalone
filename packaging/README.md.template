@@ -33,7 +33,7 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 <%= pact_provider_verifier_usage %>
 ```
 
-### pact-publish
+### pact-broker
 
 ```
 <%= pact_publish_usage %>

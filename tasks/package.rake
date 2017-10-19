@@ -78,6 +78,7 @@ def create_package(version, target, os_type = :unix)
   sh "cp packaging/pact-stub-service.rb #{package_dir}/lib/app/pact-stub-service.rb"
   sh "cp packaging/pact-provider-verifier.rb #{package_dir}/lib/app/pact-provider-verifier.rb"
   sh "cp packaging/pact-publish.rb #{package_dir}/lib/app/pact-publish.rb"
+  sh "cp packaging/pact-broker.rb #{package_dir}/lib/app/pact-broker.rb"
   # sh "cp -pR lib #{package_dir}/lib/app"
   sh "mkdir #{package_dir}/lib/ruby"
   sh "tar -xzf build/traveling-ruby-#{version}-#{target}.tar.gz -C #{package_dir}/lib/ruby"
@@ -87,11 +88,13 @@ def create_package(version, target, os_type = :unix)
     sh "cp packaging/pact-stub-service.sh #{package_dir}/bin/pact-stub-service"
     sh "cp packaging/pact-provider-verifier.sh #{package_dir}/bin/pact-provider-verifier"
     sh "cp packaging/pact-publish.sh #{package_dir}/bin/pact-publish"
+    sh "cp packaging/pact-broker.sh #{package_dir}/bin/pact-broker"
   else
     sh "cp packaging/pact-mock-service.bat #{package_dir}/bin/pact-mock-service.bat"
     sh "cp packaging/pact-stub-service.bat #{package_dir}/bin/pact-stub-service.bat"
     sh "cp packaging/pact-provider-verifier.bat #{package_dir}/bin/pact-provider-verifier.bat"
     sh "cp packaging/pact-publish.bat #{package_dir}/bin/pact-publish.bat"
+    sh "cp packaging/pact-broker.bat #{package_dir}/bin/pact-broker.bat"
   end
 
   sh "cp -pR build/vendor #{package_dir}/lib/"

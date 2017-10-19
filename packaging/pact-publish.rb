@@ -1,2 +1,2 @@
-require 'pact_broker/client/cli/publish'
-PactBroker::Client::CLI::Publish.start
+puts "ERROR: The `pact-publish` command has been moved to `pact-broker publish`. We apologise for any inconvenience caused."
+exit(1)
