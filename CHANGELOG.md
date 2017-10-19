@@ -1,3 +1,15 @@
+<a name="v1.11.0"></a>
+### v1.11.0 (2017-10-19)
+
+#### Features
+
+* **gems**
+  * upgrade pact_broker-client to 1.8.0	 ([f4eb23a](/../../commit/f4eb23a))
+
+#### BREAKING CHANGES
+
+* Moved `pact-publish` to `pact-broker publish` ([f4eb23a](/../../commit/f4eb23a))
+
 <a name="v1.10.0"></a>
 ### v1.10.0 (2017-10-19)
 
