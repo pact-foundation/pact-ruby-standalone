@@ -1,3 +1,11 @@
+<a name="v1.10.0"></a>
+### v1.10.0 (2017-10-19)
+
+#### Features
+
+* **gems**
+  * update pact_broker-client to 1.7.0 and pact-provider-verifier to 1.7.0	 ([40bb5c1](/../../commit/40bb5c1))
+
 <a name="v1.9.1"></a>
 ### v1.9.1 (2017-10-18)
 
