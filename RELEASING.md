@@ -7,6 +7,10 @@
     git add Gemfile.lock
     git commit -m "feat(gems): update ... to ..."
 
+    Or (untested)
+
+    bundle exec rake package:update
+
 ## Release
 
 1. Increment the version in the `VERSION` file according to semantic versioning rules.
