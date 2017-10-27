@@ -1,3 +1,11 @@
+<a name="v1.12.0"></a>
+### v1.12.0 (2017-10-27)
+
+#### Features
+
+* **gems**
+  * update pact to 1.17.0, pact-provider-verifier to 1.8.0, pact-support to 1.2.2	 ([9b052ec](/../../commit/9b052ec))
+
 <a name="v1.11.0"></a>
 ### v1.11.0 (2017-10-19)
 
