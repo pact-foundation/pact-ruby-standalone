@@ -17,8 +17,8 @@ module PactRubyStandalone
   end
 
   def commit(message)
-    puts `git add .`
-    puts `git commit -m "#{message}"`
+    "git add .".tap { |it| puts it }.tap { |it| system it }
+    "git commit -m \"#{message}\"".tap { |it| puts it }.tap { |it| system it }
   end
 
   def commit_message(output)
@@ -27,6 +27,7 @@ module PactRubyStandalone
       .select{|l|l =~ /pact.*\(was\s/}
       .collect(&:split)
       .collect{|w| "#{w[1]} #{w[2]}"}
+      .uniq
       .join(", ")
 
     if pact_updates.size > 0
