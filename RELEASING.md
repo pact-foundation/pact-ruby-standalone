@@ -2,13 +2,6 @@
 
 ## Update dependencies
 
-    cd packaging
-    bundle update
-    git add Gemfile.lock
-    git commit -m "feat(gems): update ... to ..."
-
-    Or (untested)
-
     bundle exec rake package:update
 
 ## Release
