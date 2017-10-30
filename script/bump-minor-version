@@ -1,7 +1,0 @@
-#!/usr/bin/env ruby
-require 'semver'
-
-v = SemVer.parse(File.read('VERSION'))
-v.minor += 1
-v.patch = 0
-File.open('VERSION', "w") { |file| file << v.format("%M.%m.%p") }
