@@ -14,26 +14,29 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 
 ## Usage
 
+<a name="pact-mock-service"></a>
 ### pact-mock-service
 
 ```
 <%= pact_mock_service_usage %>
 ```
 
+<a name="pact-stub-service"></a>
 ### pact-stub-service
 
 ```
 <%= pact_stub_service_usage %>
 ```
 
-
+<a name="pact-provider-verifier"></a>
 ### pact-provider-verifier
 
 ```
 <%= pact_provider_verifier_usage %>
 ```
 
-### pact-broker
+<a name="pact-broker"></a>
+### pact-broker client
 
 ```
 <%= pact_publish_usage %>
