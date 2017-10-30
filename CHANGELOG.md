@@ -1,3 +1,13 @@
+<a name="v1.15.0"></a>
+### v1.15.0 (2017-10-31)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client 1.10.0, pact 1.19.0	 ([e3eb8d6](/../../commit/e3eb8d6))
+
+
 <a name="v1.14.0"></a>
 ### v1.14.0 (2017-10-30)
 
