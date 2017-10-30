@@ -14,6 +14,7 @@ GEM
     sawyer (0.8.1)
       addressable (>= 2.3.5, < 2.6)
       faraday (~> 0.8, < 1.0)
+    semver2 (3.4.2)
 
 PLATFORMS
   ruby
@@ -22,6 +23,7 @@ DEPENDENCIES
   conventional-changelog
   octokit
   rake
+  semver2
 
 BUNDLED WITH
-   1.15.3
+   1.15.4
