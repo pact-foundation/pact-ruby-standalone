@@ -14,7 +14,7 @@ GEM
     json (2.1.0)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    pact (1.19.0)
+    pact (1.19.1)
       json (> 1.8.5)
       pact-mock_service (~> 2.0)
       pact-support (~> 1.2, >= 1.2.4)
@@ -51,7 +51,7 @@ GEM
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
       thor
-    pact_broker-client (1.10.0)
+    pact_broker-client (1.11.0)
       httparty
       json
       table_print (~> 1.5)
