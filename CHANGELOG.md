@@ -1,3 +1,10 @@
+<a name="v1.17.1"></a>
+### v1.17.1 (2017-11-07)
+
+#### Bug Fixes
+
+* issue with linux removing quotes from arguments  ([a387e23](/../../commit/a387e23))
+
 <a name="v1.17.0"></a>
 ### v1.17.0 (2017-11-06)
 
