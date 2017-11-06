@@ -23,4 +23,4 @@ unset BUNDLE_IGNORE_CONFIG
 unset RUBYGEMS_GEMDEPS # See https://github.com/pact-foundation/pact-mock-service-npm/issues/16
 
 # Run the actual app using the bundled Ruby interpreter, with Bundler activated.
-exec "$LIBDIR/ruby/bin/ruby" -rbundler/setup -rreadline -I$LIBDIR/app/lib "$LIBDIR/app/pact-provider-verifier.rb" $@
+exec "$LIBDIR/ruby/bin/ruby" -rbundler/setup -rreadline -I$LIBDIR/app/lib "$LIBDIR/app/pact-provider-verifier.rb" "$@"
