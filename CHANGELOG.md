@@ -1,3 +1,13 @@
+<a name="v1.17.0"></a>
+### v1.17.0 (2017-11-06)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client 1.12.0	 ([ed103ff](/../../commit/ed103ff))
+
+
 <a name="v1.16.0"></a>
 ### v1.16.0 (2017-11-01)
 
