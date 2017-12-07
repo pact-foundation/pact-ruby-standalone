@@ -1,3 +1,13 @@
+<a name="v1.21.0"></a>
+### v1.21.0 (2017-12-07)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client 1.13.1, pact-mock_service 2.6.2, pact 1.19.2, pact-provider-verifier 1.11.0	 ([b4c855d](/../../commit/b4c855d))
+
+
 <a name="v1.20.0"></a>
 ### v1.20.0 (2017-11-09)
 
