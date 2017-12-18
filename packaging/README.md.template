@@ -35,7 +35,7 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 <%= pact_provider_verifier_usage %>
 ```
 
-<a name="pact-broker"></a>
+<a name="pact-broker-client"></a>
 ### pact-broker client
 
 ```
