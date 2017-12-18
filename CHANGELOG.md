@@ -1,3 +1,13 @@
+<a name="v1.22.1"></a>
+### v1.22.1 (2017-12-18)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 2.6.3	 ([406e2f3](/../../commit/406e2f3))
+
+
 <a name="v1.22.0"></a>
 ### v1.22.0 (2017-12-10)
 
