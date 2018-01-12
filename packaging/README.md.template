@@ -38,6 +38,17 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 <a name="pact-broker-client"></a>
 ### pact-broker client
 
+<a name="pact-broker-client-publish"></a>
+#### publish
+
 ```
 <%= pact_publish_usage %>
 ```
+
+<a name="pact-broker-client-can-i-deploy"></a>
+#### can-i-deploy
+
+```
+<%= pact_broker_can_i_deploy %>
+```
+

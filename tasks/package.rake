@@ -48,6 +48,15 @@ namespace :package do
     sh "rm -rf build/tmp"
     sh "rm -f build/vendor/*/*/cache/*"
   end
+
+  task :generate_readme do
+    Bundler.with_clean_env do
+      sh "mkdir -p build/tmp"
+      sh "cp packaging/Gemfile packaging/Gemfile.lock build/tmp/"
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
+      generate_readme
+    end
+  end
 end
 
 file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86.tar.gz" do
