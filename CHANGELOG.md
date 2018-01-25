@@ -1,3 +1,20 @@
+<a name="v1.23.0"></a>
+### v1.23.0 (2018-01-25)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client 1.14.0	 ([8d88df8](/../../commit/8d88df8))
+
+* add can-i-deploy usage to README	 ([99bf770](/../../commit/99bf770))
+
+
+#### Bug Fixes
+
+* quote $LIBDIR in shell scripts so that spaces are handled correctly	 ([c591d36](/../../commit/c591d36))
+
+
 <a name="v1.22.1"></a>
 ### v1.22.1 (2017-12-18)
 
