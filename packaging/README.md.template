@@ -49,6 +49,14 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
 #### can-i-deploy
 
 ```
-<%= pact_broker_can_i_deploy %>
+<%= pact_broker_can_i_deploy_usage %>
 ```
 
+<a name="pact"></a>
+### pact
+
+<a name="pact-docs"></a>
+#### docs
+```
+<%= pact_docs_usage %>
+```
