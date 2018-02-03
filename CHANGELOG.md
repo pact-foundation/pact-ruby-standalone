@@ -1,3 +1,16 @@
+<a name="v1.25.0"></a>
+### v1.25.0 (2018-02-03)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([60f075e](/../../commit/60f075e))
+
+* remove extraneous .rb in help text	 ([1080344](/../../commit/1080344))
+* add pact docs to standalone package	 ([9ed1d30](/../../commit/9ed1d30))
+
+
 <a name="v1.24.0"></a>
 ### v1.24.0 (2018-01-25)
 
