@@ -1,3 +1,13 @@
+<a name="v1.27.0"></a>
+### v1.27.0 (2018-02-08)
+
+
+#### Features
+
+* **pact-broker cli**
+  * allow custom certificates to be used by setting SSL_CERT_FILE and SSL_CERT_DIR	 ([08e5420](/../../commit/08e5420))
+
+
 <a name="v1.26.0"></a>
 ### v1.26.0 (2018-02-05)
 
