@@ -1,3 +1,16 @@
+<a name="v1.28.0"></a>
+### v1.28.0 (2018-02-08)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([2ed8cff](/../../commit/2ed8cff))
+
+* **pact-provider-verifier cli**
+  * allow custom certificates to be used by setting SSL_CERT_FILE and SSL_CERT_DIR	 ([5cbcce1](/../../commit/5cbcce1))
+
+
 <a name="v1.27.0"></a>
 ### v1.27.0 (2018-02-08)
 
