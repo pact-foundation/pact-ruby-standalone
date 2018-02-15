@@ -1,3 +1,13 @@
+<a name="v1.29.0"></a>
+### v1.29.0 (2018-02-16)
+
+
+#### Bug Fixes
+
+* ensure RUBYGEMS_GEMDEPS is unset for all scripts	 ([d1f3656](/../../commit/d1f3656))
+* set BUNDLE_FROZEN=1 to stop bundler attempting to modify Gemfile.lock	 ([67c216e](/../../commit/67c216e))
+
+
 <a name="v1.28.0"></a>
 ### v1.28.0 (2018-02-08)
 
