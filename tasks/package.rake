@@ -46,7 +46,7 @@ namespace :package do
       generate_readme
     end
     sh "rm -rf build/tmp"
-    sh "rm -f build/vendor/*/*/cache/*"
+    sh "rm -rf build/vendor/*/*/cache/*"
   end
 
   task :generate_readme do
