@@ -20,8 +20,8 @@ LIBDIR="`cd \"$DIR\" && cd ../lib && pwd`"
 # Tell Bundler where the Gemfile and gems are.
 export BUNDLE_GEMFILE="$LIBDIR/vendor/Gemfile"
 unset BUNDLE_IGNORE_CONFIG
+unset RUBYGEMS_GEMDEPS
 export BUNDLE_FROZEN=1
-unset RUBYGEMS_GEMDEPS # See https://github.com/pact-foundation/pact-mock-service-npm/issues/16
 
 # Run the actual app using the bundled Ruby interpreter, with Bundler activated.
 exec "$LIBDIR/ruby/bin/ruby" -rbundler/setup -rreadline -I "$LIBDIR/app/lib" "$LIBDIR/app/pact-provider-verifier.rb" "$@"
