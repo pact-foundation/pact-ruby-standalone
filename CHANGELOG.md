@@ -1,3 +1,13 @@
+<a name="v1.29.1"></a>
+### v1.29.1 (2018-02-16)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.2.5	 ([d89dfec](/../../commit/d89dfec))
+
+
 <a name="v1.29.0"></a>
 ### v1.29.0 (2018-02-16)
 
