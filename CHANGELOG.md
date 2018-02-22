@@ -1,3 +1,13 @@
+<a name="v1.29.2"></a>
+### v1.29.2 (2018-02-22)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 2.6.4	 ([7ababbe](/../../commit/7ababbe))
+
+
 <a name="v1.29.1"></a>
 ### v1.29.1 (2018-02-16)
 
