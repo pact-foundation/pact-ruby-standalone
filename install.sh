@@ -1,10 +1,28 @@
 #!/bin/bash
+#
+# Usage:
+#   $ curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
+# or
+#   $ wget -q https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh -O- | bash
+#
+
 set -e
-os="`uname`"
-case $os in
+uname_output=$(uname)
+case $uname_output in
   'Linux')
-    # TODO detect bits
-    os='linux-x86_64'
+    linux_uname_output=$(uname -i)
+    case $linux_uname_output in
+      'x86_64')
+        os='linux-x86_64'
+        ;;
+      'i686')
+        os='linux-x86'
+        ;;
+      *)
+        echo "Sorry, you'll need to install the pact-ruby-standalone manually."
+        exit 1
+        ;;
+    esac
     ;;
   'Darwin')
     os='osx'
