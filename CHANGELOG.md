@@ -1,3 +1,17 @@
+<a name="v1.30.0"></a>
+### v1.30.0 (2018-03-19)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.3.0, pact 1.21.0	 ([fd18941](/../../commit/fd18941))
+
+* set PACT_EXECUTING_LANGUAGE to 'unknown' when not set by wrapper language	 ([5f1aa62](/../../commit/5f1aa62))
+* add linux support to install.sh - beware! Not yet tested.	 ([92f10d7](/../../commit/92f10d7))
+* create basic install script	 ([7b48fbe](/../../commit/7b48fbe))
+
+
 <a name="v1.29.2"></a>
 ### v1.29.2 (2018-02-22)
 
