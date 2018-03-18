@@ -23,5 +23,9 @@ unset BUNDLE_IGNORE_CONFIG
 unset RUBYGEMS_GEMDEPS
 export BUNDLE_FROZEN=1
 
+# This removes ruby specific language from the output and ensures
+# the output can be parsed cleanly by wrapper languages
+[ -z "${PACT_EXECUTING_LANGUAGE}" ] && PACT_EXECUTING_LANGUAGE=unknown
+
 # Run the actual app using the bundled Ruby interpreter, with Bundler activated.
 exec "$LIBDIR/ruby/bin/ruby" -rbundler/setup -rreadline -I "$LIBDIR/app/lib" "$LIBDIR/app/pact-provider-verifier.rb" "$@"
