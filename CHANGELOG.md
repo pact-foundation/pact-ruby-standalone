@@ -1,3 +1,13 @@
+<a name="v1.30.1"></a>
+### v1.30.1 (2018-03-19)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.3.1	 ([5f9a7d7](/../../commit/5f9a7d7))
+
+
 <a name="v1.30.0"></a>
 ### v1.30.0 (2018-03-19)
 
