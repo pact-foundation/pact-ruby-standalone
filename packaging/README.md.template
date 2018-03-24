@@ -11,6 +11,8 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
   * pact-support gem <%= Pact::Support::VERSION %>
   * pact-provider-verifier gem <%= Pact::ProviderVerifier::VERSION %>
   * pact_broker-client gem <%= PactBroker::Client::VERSION %>
+  * pact-message gem <%= Pact::Message::VERSION %>
+
 
 ## Usage
 
@@ -63,4 +65,10 @@ To connect to a Pact Broker that uses custom SSL cerificates, set the environmen
 #### docs
 ```
 <%= pact_docs_usage %>
+```
+
+### pact-message
+
+```
+<%= pact_message_usage %>
 ```
