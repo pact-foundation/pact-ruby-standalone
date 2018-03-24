@@ -1,3 +1,20 @@
+# This removes ruby specific language from the output and ensures
+# the output can be parsed cleanly by wrapper languages
+ENV['PACT_EXECUTING_LANGUAGE'] ||= 'unknown'
+
+# Travelling Ruby sets its own CA cert bundle in lib/ruby/bin/ruby_environment
+# and creates backup environment variables for the original SSL_CERT values.
+# Restore the original values here *if they are present* so that we can connect to
+# a broker with a custom SSL certificate.
+
+if ENV['ORIG_SSL_CERT_DIR'] && ENV['ORIG_SSL_CERT_DIR'] != ''
+  ENV['SSL_CERT_DIR'] = ENV['ORIG_SSL_CERT_DIR']
+end
+
+if ENV['ORIG_SSL_CERT_FILE'] && ENV['ORIG_SSL_CERT_FILE'] != ''
+  ENV['SSL_CERT_FILE'] = ENV['ORIG_SSL_CERT_FILE']
+end
+
 require 'pact/provider_verifier/cli/verify'
 
 class Thor
@@ -12,17 +29,5 @@ class Thor
   end
 end
 
-# Travelling Ruby sets its own CA cert bundle in lib/ruby/bin/ruby_environment
-# and creates backup environment variables for the original SSL_CERT values.
-# Restore the original values here *if they are present* so that we can connect to
-# a broker with a custom SSL certificate.
-
-if ENV['ORIG_SSL_CERT_DIR'] && ENV['ORIG_SSL_CERT_DIR'] != ''
-  ENV['SSL_CERT_DIR'] = ENV['ORIG_SSL_CERT_DIR']
-end
-
-if ENV['ORIG_SSL_CERT_FILE'] && ENV['ORIG_SSL_CERT_FILE'] != ''
-  ENV['SSL_CERT_FILE'] = ENV['ORIG_SSL_CERT_FILE']
-end
 
 Pact::ProviderVerifier::CLI::Verify.start
