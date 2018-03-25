@@ -24,4 +24,4 @@ unset RUBYGEMS_GEMDEPS
 export BUNDLE_FROZEN=1
 
 # Run the actual app using the bundled Ruby interpreter, with Bundler activated.
-exec "$LIBDIR/ruby/bin/ruby" -rbundler/setup -rreadline -I "$LIBDIR/app/lib" "$LIBDIR/app/pact-provider-verifier.rb" "$@"
+exec "$LIBDIR/ruby/bin/ruby" -E UTF-8 -rbundler/setup -rreadline -I "$LIBDIR/app/lib" "$LIBDIR/app/pact-provider-verifier.rb" "$@"
