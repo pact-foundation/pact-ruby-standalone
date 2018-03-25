@@ -4,6 +4,8 @@
 
 #### Features
 
+* set default external encoding to UTF-8   ([f3db394](/../../commit/f3db394))
+
 * **gems**
   * update to pact-message 0.2.1	 ([f3db394](/../../commit/f3db394))
 
