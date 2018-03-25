@@ -24,4 +24,4 @@ unset RUBYGEMS_GEMDEPS
 export BUNDLE_FROZEN=1
 
 # Run the actual app using the bundled Ruby interpreter, with Bundler activated.
-exec "$LIBDIR/ruby/bin/ruby" -rreadline -rbundler/setup -I "$LIBDIR/app/lib" "$LIBDIR/app/pact-message.rb" "$@"
+exec "$LIBDIR/ruby/bin/ruby" -E UTF-8 -rreadline -rbundler/setup -I "$LIBDIR/app/lib" "$LIBDIR/app/pact-message.rb" "$@"
