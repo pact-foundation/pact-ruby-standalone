@@ -1,3 +1,13 @@
+<a name="v1.33.1"></a>
+### v1.33.1 (2018-03-26)
+
+
+#### Features
+
+* **gems**
+  * update to pact-message 0.2.1	 ([f3db394](/../../commit/f3db394))
+
+
 <a name="v1.33.0"></a>
 ### v1.33.0 (2018-03-25)
 
