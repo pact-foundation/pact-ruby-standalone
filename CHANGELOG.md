@@ -1,3 +1,16 @@
+<a name="v1.33.0"></a>
+### v1.33.0 (2018-03-25)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([7199ab5](/../../commit/7199ab5))
+
+* **pact-message**
+  * add pact-message binary to release	 ([1feec03](/../../commit/1feec03))
+
+
 <a name="v1.32.0"></a>
 ### v1.32.0 (2018-03-24)
 
