@@ -1,3 +1,13 @@
+<a name="v1.35.0"></a>
+### v1.35.0 (2018-04-03)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.6.0, pact-message 0.4.0	 ([734954e](/../../commit/734954e))
+
+
 <a name="v1.34.0"></a>
 ### v1.34.0 (2018-04-03)
 
