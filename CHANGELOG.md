@@ -1,3 +1,15 @@
+<a name="v1.34.0"></a>
+### v1.34.0 (2018-04-03)
+
+
+#### Features
+
+* **gems**
+  * update to pact-message 0.3.0	 ([c52bcc1](/../../commit/c52bcc1))
+
+* set default external encoding to UTF-8, update to pact-message 0.2.1	 ([926e87e](/../../commit/926e87e))
+
+
 <a name="v1.33.1"></a>
 ### v1.33.1 (2018-03-26)
 
