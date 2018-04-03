@@ -24,9 +24,9 @@ GEM
       term-ansicolor (~> 1.0)
       thor
       webrick
-    pact-message (0.3.0)
+    pact-message (0.4.0)
       pact-mock_service (~> 2.6)
-      pact-support (~> 1.5)
+      pact-support (~> 1.6)
       thor (~> 0.20)
     pact-mock_service (2.6.4)
       filelock (~> 1.1)
@@ -49,7 +49,7 @@ GEM
       rake (~> 10.4, >= 10.4.2)
       rspec (~> 3.5)
       rspec_junit_formatter (~> 0.3)
-    pact-support (1.5.2)
+    pact-support (1.6.0)
       awesome_print (~> 1.1)
       find_a_port (~> 1.0.1)
       json
