@@ -1,3 +1,13 @@
+<a name="v1.36.0"></a>
+### v1.36.0 (2018-04-05)
+
+
+#### Features
+
+* **gems**
+  * update to pact-message 0.4.1, pact-provider-verifier 1.13.0	 ([61b7031](/../../commit/61b7031))
+
+
 <a name="v1.35.0"></a>
 ### v1.35.0 (2018-04-03)
 
