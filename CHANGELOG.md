@@ -1,3 +1,13 @@
+<a name="v1.38.0"></a>
+### v1.38.0 (2018-04-16)
+
+
+#### Features
+
+* **gems**
+  * update to pact 1.23.0, pact-provider-verifier 1.14.0	 ([ab5b50e](/../../commit/ab5b50e))
+
+
 <a name="v1.37.0"></a>
 ### v1.37.0 (2018-04-11)
 
