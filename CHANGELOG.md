@@ -1,3 +1,13 @@
+<a name="v1.39.0"></a>
+### v1.39.0 (2018-05-07)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 2.7.0, pact 1.24.0, pact-message 0.4.3	 ([58d35f8](/../../commit/58d35f8))
+
+
 <a name="v1.38.0"></a>
 ### v1.38.0 (2018-04-16)
 
