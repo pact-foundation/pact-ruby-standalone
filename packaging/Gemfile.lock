@@ -24,7 +24,7 @@ GEM
       term-ansicolor (~> 1.0)
       thor
       webrick
-    pact-message (0.4.3)
+    pact-message (0.4.4)
       pact-mock_service (~> 2.6)
       pact-support (~> 1.6)
       thor (~> 0.20)
