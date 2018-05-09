@@ -1,3 +1,13 @@
+<a name="v1.43.1"></a>
+### v1.43.1 (2018-05-10)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 2.7.1, pact-provider-verifier 1.14.3	 ([7183ef7](/../../commit/7183ef7))
+
+
 <a name="v1.43.0"></a>
 ### v1.43.0 (2018-05-08)
 
