@@ -8,6 +8,11 @@ env:
 script:
 - bundle install
 - bundle exec rake package
+before_deploy:
+# Generate checksums for individual files
+- pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
+# Create single file with all checksums
+- cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
 deploy:
   provider: releases
   api_key:
