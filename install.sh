@@ -10,7 +10,7 @@ set -e
 uname_output=$(uname)
 case $uname_output in
   'Linux')
-    linux_uname_output=$(uname -i)
+    linux_uname_output=$(uname -m)
     case $linux_uname_output in
       'x86_64')
         os='linux-x86_64'
