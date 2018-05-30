@@ -1,3 +1,19 @@
+<a name="v1.44.2"></a>
+### v1.44.2 (2018-05-30)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 2.8.0	 ([99738b1](/../../commit/99738b1))
+
+
+#### Bug Fixes
+
+* **windows-path**
+  * Adding quotes around the '-I' property to work with weird paths	 ([3493854](/../../commit/3493854))
+
+
 <a name="v1.44.1"></a>
 ### v1.44.1 (2018-05-21)
 
