@@ -10,7 +10,7 @@ set RUBYGEMS_GEMDEPS=
 set BUNDLE_FROZEN=1
 
 :: Run the actual app using the bundled Ruby interpreter, with Bundler activated.
-@"%ROOT_PATH%\lib\ruby\bin\ruby.bat" -E UTF-8 -rbundler/setup -I%ROOT_PATH%\lib\app\lib "%ROOT_PATH%\lib\app\pact-publish.rb" %*
+@"%ROOT_PATH%\lib\ruby\bin\ruby.bat" -E UTF-8 -rbundler/setup -I "%ROOT_PATH%\lib\app\lib" "%ROOT_PATH%\lib\app\pact-publish.rb" %*
 
 GOTO :EOF
 
