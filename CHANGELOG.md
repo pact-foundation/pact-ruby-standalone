@@ -1,3 +1,13 @@
+<a name="v1.44.3"></a>
+### v1.44.3 (2018-05-31)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.6.2	 ([3c1c0e4](/../../commit/3c1c0e4))
+
+
 <a name="v1.44.2"></a>
 ### v1.44.2 (2018-05-30)
 
