@@ -14,7 +14,7 @@ GEM
     json (2.1.0)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
-    pact (1.26.0)
+    pact (1.27.0)
       json (> 1.8.5)
       pact-mock_service (~> 2.0)
       pact-support (~> 1.4)
