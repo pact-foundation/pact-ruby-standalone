@@ -1,3 +1,13 @@
+<a name="v1.48.0"></a>
+### v1.48.0 (2018-07-09)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client 1.16.0	 ([eb80535](/../../commit/eb80535))
+
+
 <a name="v1.47.3"></a>
 ### v1.47.3 (2018-07-07)
 
