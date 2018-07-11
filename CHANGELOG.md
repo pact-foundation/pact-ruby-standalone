@@ -1,3 +1,21 @@
+<a name="v1.50.0"></a>
+### v1.50.0 (2018-07-11)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier 1.14.6	 ([32df62d](/../../commit/32df62d))
+  * update to pact-provider-verifier 1.14.4	 ([65370a9](/../../commit/65370a9))
+
+* stop release if no gems have been updated	 ([ade61be](/../../commit/ade61be))
+
+
+#### Bug Fixes
+
+* correct VERSION to it's in sync with the tags	 ([a0c8225](/../../commit/a0c8225))
+
+
 <a name="v1.48.0"></a>
 ### v1.48.0 (2018-07-09)
 
