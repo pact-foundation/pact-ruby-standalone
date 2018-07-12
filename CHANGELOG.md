@@ -1,3 +1,13 @@
+<a name="v1.52.0"></a>
+### v1.52.0 (2018-07-13)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier 1.15.0	 ([bdc1540](/../../commit/bdc1540))
+
+
 <a name="v1.51.0"></a>
 ### v1.51.0 (2018-07-12)
 
