@@ -1,3 +1,14 @@
+<a name="v1.50.1"></a>
+### v1.50.1 (2018-07-12)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.6.3, pact-provider-verifier 1.14.7	 ([c7e2a0a](/../../commit/c7e2a0a))
+  * update to pact-provider-verifier 1.14.6	 ([d095d7c](/../../commit/d095d7c))
+
+
 <a name="v1.50.0"></a>
 ### v1.50.0 (2018-07-11)
 
