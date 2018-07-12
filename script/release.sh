@@ -2,6 +2,8 @@
 
 set -e
 
+git pull origin master
+
 bundle exec rake package:update
 
 if git log -1 | grep "feat(gems)"; then
