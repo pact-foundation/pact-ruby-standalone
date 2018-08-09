@@ -1,3 +1,13 @@
+<a name="v1.54.3"></a>
+### v1.54.3 (2018-08-09)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.7.1, pact-mock_service 2.10.0, pact 1.33.0	 ([87846b1](/../../commit/87846b1))
+
+
 <a name="v1.54.2"></a>
 ### v1.54.2 (2018-08-03)
 
