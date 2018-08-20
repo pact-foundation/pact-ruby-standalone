@@ -4,7 +4,8 @@ set -e
 SOURCE="$0"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
   TARGET="$(readlink "$SOURCE")"
-  if [[ $TARGET == /* ]]; then
+  START="$( echo "$TARGET" | cut -c 1 )"
+  if [ "$START" = "/" ]; then
     SOURCE="$TARGET"
   else
     DIR="$( dirname "$SOURCE" )"
