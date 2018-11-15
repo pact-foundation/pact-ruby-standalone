@@ -2,6 +2,8 @@
 
 set -e
 
+unset X_PACT_DEVELOPMENT
+
 git pull origin master
 
 bundle exec rake package:update
