@@ -1,3 +1,15 @@
+<a name="v1.64.0"></a>
+### v1.64.0 (2019-03-06)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.9.0, pact 1.38.0, pact-provider-verifier 1.22.0, pact_broker-client 1.18.0	 ([ca35dca](/../../commit/ca35dca))
+
+* lock rack-test version to maintain current behaviour for standalone users	 ([2ff6407](/../../commit/2ff6407))
+
+
 <a name="v1.63.0"></a>
 ### v1.63.0 (2018-11-15)
 
