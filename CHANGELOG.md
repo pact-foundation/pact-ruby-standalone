@@ -1,3 +1,13 @@
+<a name="v1.64.1"></a>
+### v1.64.1 (2019-04-26)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.10.1	 ([0afb839](/../../commit/0afb839))
+
+
 <a name="v1.64.0"></a>
 ### v1.64.0 (2019-03-06)
 
