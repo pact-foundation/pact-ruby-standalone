@@ -1,3 +1,13 @@
+<a name="v1.65.1"></a>
+### v1.65.1 (2019-05-22)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 3.1.0, pact 1.40.0, pact-message 0.6.0, pact-provider-verifier 1.23.1	 ([b100f99](/../../commit/b100f99))
+
+
 <a name="v1.65.0"></a>
 ### v1.65.0 (2019-05-21)
 
