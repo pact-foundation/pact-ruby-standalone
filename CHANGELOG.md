@@ -1,3 +1,13 @@
+<a name="v1.67.0"></a>
+### v1.67.0 (2019-06-08)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.10.3, pact-mock_service 3.1.1	 ([6f828d6](/../../commit/6f828d6))
+
+
 <a name="v1.66.0"></a>
 ### v1.66.0 (2019-05-22)
 
