@@ -1,3 +1,13 @@
+<a name="v1.68.0"></a>
+### v1.68.0 (2019-06-18)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.11.0	 ([fb1c7b8](/../../commit/fb1c7b8))
+
+
 <a name="v1.67.0"></a>
 ### v1.67.0 (2019-06-08)
 
