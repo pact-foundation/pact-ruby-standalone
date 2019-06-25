@@ -1,3 +1,13 @@
+<a name="v1.69.0"></a>
+### v1.69.0 (2019-06-25)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client 1.19.0	 ([3cfd3f0](/../../commit/3cfd3f0))
+
+
 <a name="v1.68.0"></a>
 ### v1.68.0 (2019-06-18)
 
