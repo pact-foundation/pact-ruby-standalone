@@ -1,3 +1,18 @@
+<a name="v1.70.1"></a>
+### v1.70.1 (2019-08-30)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([d061efc](/../../commit/d061efc))
+
+
+#### Bug Fixes
+
+* typo in bundler require	 ([85deddc](/../../commit/85deddc))
+
+
 <a name="v1.70.0"></a>
 ### v1.70.0 (2019-08-27)
 
