@@ -1,3 +1,13 @@
+<a name="v1.71.0"></a>
+### v1.71.0 (2019-11-09)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.12.0, pact-mock_service 3.2.0, pact 1.42.2, pact-provider-verifier 1.25.0	 ([a87f82c](/../../commit/a87f82c))
+
+
 <a name="v1.70.1"></a>
 ### v1.70.1 (2019-08-30)
 
