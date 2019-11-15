@@ -1,3 +1,13 @@
+<a name="v1.72.1"></a>
+### v1.72.1 (2019-11-15)
+
+
+#### Features
+
+* **gems**
+  * update to pact 1.42.3, pact-provider-verifier 1.25.2	 ([e05ea57](/../../commit/e05ea57))
+
+
 <a name="v1.72.0"></a>
 ### v1.72.0 (2019-11-10)
 
