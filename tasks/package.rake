@@ -169,6 +169,11 @@ def remove_unnecessary_files package_dir
   # Ruby Docs
   sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/*/rdoc*"
 
+  # Website files
+  sh "find #{package_dir}/lib/vendor/ruby -name '*.html' | xargs rm -f"
+  sh "find #{package_dir}/lib/vendor/ruby -name '*.css' | xargs rm -f"
+  sh "find #{package_dir}/lib/vendor/ruby -name '*.svg' | xargs rm -f"
+
   # Uncommonly used encodings
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/cp949*"
   sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/euc_*"
