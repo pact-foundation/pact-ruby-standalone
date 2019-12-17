@@ -1,3 +1,16 @@
+<a name="v1.73.0"></a>
+### v1.73.0 (2019-12-17)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([27f0c54](/../../commit/27f0c54))
+
+* update rack-test to 1.1.0	 ([7dc341b](/../../commit/7dc341b))
+* remove html, css and svg files from package	 ([6bf6805](/../../commit/6bf6805))
+
+
 <a name="v1.72.2"></a>
 ### v1.72.2 (2019-11-15)
 
