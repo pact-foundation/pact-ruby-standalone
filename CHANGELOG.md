@@ -1,3 +1,13 @@
+<a name="v1.74.0"></a>
+### v1.74.0 (2020-01-11)
+
+
+#### Features
+
+* **gems**
+  * update to pact 1.43.0, pact-provider-verifier 1.26.0	 ([4ba7c14](/../../commit/4ba7c14))
+
+
 <a name="v1.73.0"></a>
 ### v1.73.0 (2019-12-17)
 
