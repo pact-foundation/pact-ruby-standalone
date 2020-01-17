@@ -1,3 +1,13 @@
+<a name="v1.75.0"></a>
+### v1.75.0 (2020-01-17)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 3.4.0, pact 1.44.0, pact-provider-verifier 1.27.1, pact_broker-client 1.22.3	 ([e54aaef](/../../commit/e54aaef))
+
+
 <a name="v1.74.0"></a>
 ### v1.74.0 (2020-01-11)
 
