@@ -1,3 +1,13 @@
+<a name="v1.76.0"></a>
+### v1.76.0 (2020-01-17)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 3.5.0	 ([9a1b0c1](/../../commit/9a1b0c1))
+
+
 <a name="v1.75.0"></a>
 ### v1.75.0 (2020-01-17)
 
