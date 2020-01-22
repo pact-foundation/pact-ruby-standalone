@@ -3,16 +3,12 @@ module PactRubyStandalone
   extend self
 
   def update
-    Dir.chdir('packaging') do
-      Bundler.with_clean_env do
-        output = `bundle update 2>&1`
-        $stdout.puts output
-        if $? == 0
-          commit(commit_message(output))
-        else
-          $stderr.puts "Error updating bundle"
-        end
-      end
+    output = `./script/update.sh`
+    $stdout.puts output
+    if $? == 0
+      commit(commit_message(output))
+    else
+      $stderr.puts "Error updating bundle"
     end
   end
 
