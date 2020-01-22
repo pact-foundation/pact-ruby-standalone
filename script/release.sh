@@ -14,6 +14,7 @@ if git log -1 | grep "feat(gems)"; then
   git add VERSION CHANGELOG.md
   git commit -m "chore(release): version $(cat VERSION)" && git push origin master
   bundle exec rake tag_for_release
+  echo "Releasing from https://travis-ci.org/pact-foundation/pact-ruby-standalone"
 else
   echo "No gems updated, not releasing"
 fi
