@@ -1,3 +1,13 @@
+<a name="v1.78.0"></a>
+### v1.78.0 (2020-02-10)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.13.0, pact 1.47.0	 ([ce7151e](/../../commit/ce7151e))
+
+
 <a name="v1.77.0"></a>
 ### v1.77.0 (2020-01-22)
 
