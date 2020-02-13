@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
+IMAGE=pact_ruby_standalone_bundle_base
+
 function docker_build_bundle_base() {
-  docker build . -f Dockerfile-bundle-base -t pact_ruby_standalone_bundle_base
+  docker build . -f Dockerfile-bundle-base -t ${IMAGE}
 }
 
 function bundle_update_on_docker() {
-  docker run --rm -v ${PWD}/tmp:/tmp/bundle_update pact_ruby_standalone_bundle_base:latest sh -c "bundle update && cp Gemfile.lock /tmp/bundle_update"
+  docker run --rm -v ${PWD}/tmp:/tmp/gemfile ${IMAGE}:latest sh -c "bundle update && cp Gemfile.lock /tmp/gemfile"
   mv tmp/Gemfile.lock packaging/
 }
