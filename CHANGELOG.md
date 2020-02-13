@@ -1,3 +1,13 @@
+<a name="v1.79.0"></a>
+### v1.79.0 (2020-02-14)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.14.0, pact 1.48.0, pact-message 0.7.0, pact_broker-client 1.24.0	 ([f1260c2](/../../commit/f1260c2))
+
+
 <a name="v1.78.0"></a>
 ### v1.78.0 (2020-02-10)
 
