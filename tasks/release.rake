@@ -9,13 +9,6 @@ task :generate_changelog do
   ConventionalChangelog::Generator.new.generate! version: "v#{version}"
 end
 
-desc 'Tag for release'
-task :tag_for_release do | t, args |
-  command = "git tag -a v#{VERSION} -m \"chore(release): version #{VERSION}\" && git push origin v#{VERSION}"
-  puts command
-  puts `#{command}`
-end
-
 desc 'Generate release notes'
 task :generate_release_notes, [:tag] do | t, args |
   require 'fileutils'

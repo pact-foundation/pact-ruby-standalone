@@ -2,10 +2,10 @@
 
 source script/docker-functions
 
+git pull
 git checkout packaging/Gemfile.lock
-rm -rf tmp
-docker_build_bundle_base
-output=$(bundle_update_on_docker)
+docker-build-bundle-base
+output=$(bundle-update)
 echo "${output}"
 updated_pact_gems=$(echo "${output}" | grep "pact" | grep "(was " | cut -d " " -f 2 -f 3 | uniq | ruby -e 'puts ARGF.read.split("\n").join(", ")')
 
@@ -18,3 +18,5 @@ else
 fi
 
 git commit -m "${commit_message}"
+
+docker-build-bundle-base
