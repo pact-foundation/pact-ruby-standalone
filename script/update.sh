@@ -2,7 +2,7 @@
 
 source script/docker-functions
 
-git pull
+git pull origin master
 git checkout packaging/Gemfile.lock
 docker-build-bundle-base
 output=$(bundle-update)

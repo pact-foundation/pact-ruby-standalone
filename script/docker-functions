@@ -1,13 +1,22 @@
 #!/usr/bin/env bash
 
 IMAGE=pact-ruby-standalone-bundle-base
+RELEASE_IMAGE=pact-ruby-standalone-release-base
 
 function docker-build-bundle-base() {
   docker build . -f Dockerfile-bundle-base -t ${IMAGE}
 }
 
+function docker-build-release-base() {
+  docker build . -f Dockerfile-release-base -t ${RELEASE_IMAGE}
+}
+
 function on-docker() {
   docker run --rm -v ${PWD}:/app $IMAGE:latest sh -c "$@"
+}
+
+function on-release-docker() {
+  docker run --rm -v ${PWD}:/app $RELEASE_IMAGE:latest sh -c "$@"
 }
 
 function bundle-update() {
@@ -17,9 +26,9 @@ function bundle-update() {
 }
 
 function bump-version() {
-  on-docker "bundle exec bump ${1:-minor} --no-commit"
+  on-release-docker "bundle exec bump ${1:-minor} --no-commit"
 }
 
 function generate-changelog() {
-  on-docker "bundle exec rake generate_changelog"
+  on-release-docker "bundle exec rake generate_changelog"
 }

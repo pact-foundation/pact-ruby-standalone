@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
 set -e
+source script/docker-functions
 
-git pull
+docker-build-release-base
+git pull origin master
 bump-version $1
 generate-changelog
 git add VERSION CHANGELOG.md
