@@ -1,3 +1,13 @@
+<a name="v1.81.0"></a>
+### v1.81.0 (2020-02-27)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.14.1, pact-provider-verifier 1.30.0	 ([99f4827](/../../commit/99f4827))
+
+
 <a name="v1.80.0"></a>
 ### v1.80.0 (2020-02-18)
 
