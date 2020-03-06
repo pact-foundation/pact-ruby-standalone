@@ -34,7 +34,7 @@ case $uname_output in
 esac
 
 response=$(curl -s -v https://github.com/pact-foundation/pact-ruby-standalone/releases/latest 2>&1)
-tag=$(echo "$response" | grep -o "Location: .*" | sed -e 's/[[:space:]]*$//' | grep -o "Location: .*" | grep -o '[^/]*$')
+tag=$(echo "$response" | grep -o "location: .*" | sed -e 's/[[:space:]]*$//' | grep -o "location: .*" | grep -o '[^/]*$')
 version=${tag#v}
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/${tag}/pact-${version}-${os}.tar.gz
 tar xzf pact-${version}-${os}.tar.gz
