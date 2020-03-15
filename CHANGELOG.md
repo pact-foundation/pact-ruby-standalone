@@ -1,3 +1,18 @@
+<a name="v1.82.0"></a>
+### v1.82.0 (2020-03-15)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 3.6.0	 ([3e83385](/../../commit/3e83385))
+
+
+#### Bug Fixes
+
+* GH returns lowercase location header	 ([8826ec0](/../../commit/8826ec0))
+
+
 <a name="v1.81.0"></a>
 ### v1.81.0 (2020-02-27)
 
