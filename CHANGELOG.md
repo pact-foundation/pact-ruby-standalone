@@ -1,3 +1,13 @@
+<a name="v1.82.2"></a>
+### v1.82.2 (2020-04-06)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.14.3, pact_broker-client 1.25.1	 ([71578b4](/../../commit/71578b4))
+
+
 <a name="v1.82.1"></a>
 ### v1.82.1 (2020-03-21)
 
