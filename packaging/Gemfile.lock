@@ -51,12 +51,12 @@ GEM
       rake (~> 10.4, >= 10.4.2)
       rspec (~> 3.5)
       rspec_junit_formatter (~> 0.3)
-    pact-support (1.14.1)
+    pact-support (1.14.3)
       awesome_print (~> 1.1)
       randexp (~> 0.1.7)
       rspec (>= 2.14)
       term-ansicolor (~> 1.0)
-    pact_broker-client (1.25.0)
+    pact_broker-client (1.25.1)
       httparty
       json
       rake
