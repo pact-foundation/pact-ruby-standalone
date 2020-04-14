@@ -7,6 +7,7 @@ CALL :RESOLVE "%RUNNING_PATH%\.." ROOT_PATH
 set "BUNDLE_GEMFILE=%ROOT_PATH%\lib\vendor\Gemfile"
 set BUNDLE_IGNORE_CONFIG=
 set RUBYGEMS_GEMDEPS=
+set BUNDLE_APP_CONFIG=
 set BUNDLE_FROZEN=1
 
 :: Run the actual app using the bundled Ruby interpreter, with Bundler activated.
