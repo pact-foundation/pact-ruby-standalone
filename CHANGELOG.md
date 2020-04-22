@@ -1,3 +1,18 @@
+<a name="v1.83.0"></a>
+### v1.83.0 (2020-04-22)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service 3.6.1, pact 1.49.3, pact-provider-verifier 1.30.1, pact_broker-client 1.26.0	 ([902b480](/../../commit/902b480))
+
+
+#### Bug Fixes
+
+* unset BUNDLE_APP_CONFIG to prevent Ruby contamination	 ([43ba935](/../../commit/43ba935))
+
+
 <a name="v1.82.3"></a>
 ### v1.82.3 (2020-04-08)
 
