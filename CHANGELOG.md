@@ -1,3 +1,13 @@
+<a name="v1.84.0"></a>
+### v1.84.0 (2020-05-02)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.15.0	 ([bf091cd](/../../commit/bf091cd))
+
+
 <a name="v1.83.0"></a>
 ### v1.83.0 (2020-04-22)
 
