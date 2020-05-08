@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 #
 # Usage:
 #   $ curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
@@ -6,25 +6,14 @@
 #   $ wget -q https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh -O- | bash
 #
 
-set -e
-uname_output=$(uname)
-case $uname_output in
-  'Linux')
-    linux_uname_output=$(uname -m)
-    case $linux_uname_output in
-      'x86_64')
-        os='linux-x86_64'
-        ;;
-      'i686')
-        os='linux-x86'
-        ;;
-      *)
-        echo "Sorry, you'll need to install the pact-ruby-standalone manually."
-        exit 1
-        ;;
-    esac
+case $(uname -sm) in
+  'Linux x86')
+    os='linux-x86'
     ;;
-  'Darwin')
+  'Linux x86_64')
+    os='linux-x86_64'
+    ;;
+  'Darwin x86' | 'Darwin x86_64')
     os='osx'
     ;;
   *)
@@ -33,9 +22,10 @@ case $uname_output in
     ;;
 esac
 
-response=$(curl -s -v https://github.com/pact-foundation/pact-ruby-standalone/releases/latest 2>&1)
-tag=$(echo "$response" | grep -o "location: .*" | sed -e 's/[[:space:]]*$//' | grep -o "location: .*" | grep -o '[^/]*$')
-version=${tag#v}
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/${tag}/pact-${version}-${os}.tar.gz
-tar xzf pact-${version}-${os}.tar.gz
-rm pact-${version}-${os}.tar.gz
+tag=$(basename $(curl -fs -o/dev/null -w %{redirect_url} https://github.com/pact-foundation/pact-ruby-standalone/releases/latest))
+filename="pact-${tag#v}-${os}.tar.gz"
+
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/${tag}/${filename}
+tar xzf ${filename}
+rm ${filename}
+
