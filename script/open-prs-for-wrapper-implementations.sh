@@ -16,3 +16,8 @@ if [ -e ../pact-python/script/create-pr-to-update-pact-ruby-standalone.sh ]; the
   pushd ../pact-python
   script/create-pr-to-update-pact-ruby-standalone.sh $VERSION
 fi
+
+if [ -e ../pact-php/script/create-pr-to-update-pact-ruby-standalone.sh ]; then
+  pushd ../pact-php
+  script/create-pr-to-update-pact-ruby-standalone.sh $VERSION
+fi
