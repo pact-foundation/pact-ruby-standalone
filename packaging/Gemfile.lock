@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     awesome_print (1.8.0)
-    diff-lcs (1.4.1)
+    diff-lcs (1.4.2)
     faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
@@ -18,7 +18,7 @@ GEM
     mime-types-data (3.2020.0512)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    pact (1.50.1)
+    pact (1.51.0)
       pact-mock_service (~> 3.0, >= 3.3.1)
       pact-support (~> 1.9)
       rack-test (>= 0.6.3, < 2.0.0)
