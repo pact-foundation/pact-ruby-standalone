@@ -16,59 +16,28 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.2.10
-    - run: |
+
+    - name: Set up environment
+      run: |
         git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
         git config --global user.name "${GITHUB_ACTOR}"
+        bundler -v
         bundle install
-    # - run: gem uninstall bundler; gem install bundler -v 1.17.3
-    - run: bundler -v
+
     - name: Update Gemfile
       run: script/update-in-github-workflow.sh
       env:
         RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
         RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
+
     - name: Prepare release
       run: script/prepare-release-in-github-workflow.sh
 
-    - uses: meeDamian/github-release@2.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        name: pact-${{ env.VERSION }}
-        body: ${{ env.RELEASE_BODY }}
-        tag: ${{ env.TAG }}
-        files: ${{ env.FILES }}
-        gzip: false
-
-    # - run: bundle install
-
-    # - run: gem install ${{ github.event.client_payload.name }} -v ${{ github.event.client_payload.version }}
-    #   if:  != '' && github.event.client_payload.version != ''
-
-    # - run: bundle update
-
-    # - name: Detect changes
-    #   run: |
-    #     if [ -z "$(git diff pact_broker/Gemfile.lock)" ] ; then
-    #       echo "No gems updated"
-    #       exit 1
-    #     else
-    #       echo "Gems updated, continuing with release"
-    #     fi
-
-    # - run: |
-    #     bundle exec bump minor --no-commit
-    #     bundle exec rake generate_changelog
-    #     VERSION=$(cat VERSION)
-    #     git add VERSION CHANGELOG.md
-    #     git commit -m "chore(release): version ${VERSION}
-    #     [ci-skip]"
-    #     git push origin master
-    #     TAG="v${VERSION}"
-    #     git tag -a ${TAG} -m "chore(release): version ${VERSION}"
-    #     git push origin ${TAG}
-
-    # - name: Package
-    #   run: |
-    #     bundle exec rake package
-    #     pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
-    #     cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
+    - name: Create release
+      uses: ncipollo/release-action@v1
+        with:
+          name: pact-${{ env.VERSION }}
+          tag: ${{ env.TAG }}
+          artifacts: pkg/*
+          bodyFile: build/RELEASE_NOTES.md
+          token: ${{ secrets.GITHUB_TOKEN }}

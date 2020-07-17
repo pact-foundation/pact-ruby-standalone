@@ -15,10 +15,7 @@ bundle exec rake package
 pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
 cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
 
-echo "::set-env name=FILES::$(find pkg -maxdepth 1 -mindepth 1 | paste -sd " " -)"
-
 bundle exec rake generate_release_notes[$tag]
-echo "::set-env name=RELEASE_BODY::$(cat build/RELEASE_NOTES.md)"
 
 git add VERSION CHANGELOG.md
 git commit -m "chore(release): version ${version}
