@@ -17,8 +17,8 @@ jobs:
       with:
         ruby-version: 2.2.10
     - run: |
-      git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-      git config --global user.name "${GITHUB_ACTOR}"
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global user.name "${GITHUB_ACTOR}"
     # - run: gem uninstall bundler; gem install bundler -v 1.17.3
     - run: bundler -v
     - run: script/update-and-release-from-github-workflow.sh
