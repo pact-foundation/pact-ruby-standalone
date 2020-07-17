@@ -36,7 +36,7 @@ task :upload_release_notes, [:repository_slug, :tag] do |t, args |
   end
   Octokit.middleware = stack
 
-  access_token = ENV.fetch('GITHUB_ACCESS_TOKEN')
+  access_token = ENV['GITHUB_ACCESS_TOKEN'] || ENV.fetch('GITHUB_TOKEN')
   repository_slug = args[:repository_slug]
   tag = args[:tag]
   release_name = "#{PACKAGE_NAME}-#{VERSION}"
