@@ -22,10 +22,20 @@ jobs:
         bundle install
     # - run: gem uninstall bundler; gem install bundler -v 1.17.3
     - run: bundler -v
-    - run: script/update-and-release-from-github-workflow.sh
+    - name: Update Gemfile
+      run: script/update-in-github-workflow.sh
       env:
         RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
         RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
+    - name: Prepare release
+      run: script/prepare-release-in-github-workflow.sh
+
+    - uses: meeDamian/github-release@2.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ env.TAG }}
+        files: ${{ env.FILES }}
+        gzip: false
 
     # - run: bundle install
 
