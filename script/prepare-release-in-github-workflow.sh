@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+set -Eeuo pipefail
 
-bundle exec bump patch --no-commit
+bundle exec bump ${INCREMENT:-patch} --no-commit
 bundle exec rake generate_changelog
 version=$(cat VERSION)
 tag="v${version}"

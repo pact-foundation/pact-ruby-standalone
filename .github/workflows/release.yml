@@ -33,6 +33,8 @@ jobs:
     - name: Prepare release
       id: prepare
       run: script/prepare-release-in-github-workflow.sh
+      env:
+        INCREMENT: ${{ github.event.client_payload.increment }}
 
     - name: Create release
       uses: ncipollo/release-action@v1
