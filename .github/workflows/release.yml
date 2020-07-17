@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  repository_dispatch:
+    types:
+      - gem-released
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.2.2
+    - run: bundle install
+    - run: gem install ${{ github.event.client_payload.name }} -v ${{ github.event.client_payload.version }}
+      if: github.event.client_payload != '' && github.event.client_payload.version != ''
+    - run: bundle update
+    - name: Package
+      run: |
+        bundle exec rake package
+        pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
+        cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
