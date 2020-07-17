@@ -13,9 +13,6 @@ jobs:
       with:
         fetch-depth: 0
 
-    - run: dig github.com
-    - run: dig api.rubygems.org
-
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.2.10
@@ -34,13 +31,14 @@ jobs:
         RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
 
     - name: Prepare release
+      id: prepare
       run: script/prepare-release-in-github-workflow.sh
 
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        name: pact-${{ env.VERSION }}
-        tag: ${{ env.TAG }}
+        name: pact-${{ steps.prepare.outputs.version }}
+        tag: ${{ steps.prepare.outputs.tag }}
         artifacts: pkg/*
         bodyFile: build/RELEASE_NOTES.md
         token: ${{ secrets.GITHUB_TOKEN }}
