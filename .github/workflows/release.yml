@@ -13,6 +13,7 @@ jobs:
       with:
         fetch-depth: 0
 
+    - run: dig github.com
     - run: dig api.rubygems.org
 
     - uses: ruby/setup-ruby@v1
