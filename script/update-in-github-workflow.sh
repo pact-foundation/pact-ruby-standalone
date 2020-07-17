@@ -5,9 +5,9 @@ set -Eeuo pipefail
 cd packaging
 
 if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
-  gem install $RELEASED_GEM_NAME -v $RELEASED_GEM_VERSION
+  gem install --install-dir vendor $RELEASED_GEM_NAME -v $RELEASED_GEM_VERSION
 fi
-bundle install
+bundle install --path vendor
 output=$(bundle update)
 echo "${output}"
 
