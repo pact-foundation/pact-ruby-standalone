@@ -3,4 +3,4 @@
 set -e
 
 script/update-in-github-workflow.sh
-#script/release.sh
+script/prepare-release-in-github-workflow.sh
