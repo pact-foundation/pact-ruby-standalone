@@ -1,14 +1,3 @@
-<a name="v1.87.0"></a>
-### v1.87.0 (2020-07-17)
-
-
-#### Features
-
-* **gems**
-  * update to pact-support 1.15.1, pact-provider-verifier 1.32.0	 ([23d9b39](/../../commit/23d9b39))
-  * update to pact 1.51.0	 ([2cd378c](/../../commit/2cd378c))
-
-
 <a name="v1.86.0"></a>
 ### v1.86.0 (2020-06-24)
 
