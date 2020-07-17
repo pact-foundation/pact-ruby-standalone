@@ -6,8 +6,12 @@ bundle exec bump patch --no-commit
 bundle exec rake generate_changelog
 version=$(cat VERSION)
 tag="v${version}"
+
+bundle exec rake generate_release_notes[$tag]
+
 echo "::set-env name=VERSION::${version}"
 echo "::set-env name=TAG::${tag}"
+echo "::set-env name=RELEASE_BODY::$(cat build/RELEASE_NOTES.md)"
 
 bundle exec rake package
 pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;

@@ -34,7 +34,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         name: pact-${{ env.VERSION }}
-        body: ""
+        body: ${{ env.RELEASE_BODY }}
         tag: ${{ env.TAG }}
         files: ${{ env.FILES }}
         gzip: false
