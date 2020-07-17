@@ -20,4 +20,5 @@ git add VERSION CHANGELOG.md
 git commit -m "chore(release): version ${version}
 [ci-skip]"
 git push origin master
-git tag -a ${tag} -m "chore(release): version ${version}" && git push origin ${TAG}
+git tag -a ${tag} -m "chore(release): version ${version}"
+git push origin ${tag}
