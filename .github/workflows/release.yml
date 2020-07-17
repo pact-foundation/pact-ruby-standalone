@@ -12,13 +12,18 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.2.10
+
     - run: bundle install
+
     - run: gem install ${{ github.event.client_payload.name }} -v ${{ github.event.client_payload.version }}
-      if: github.event.client_payload != '' && github.event.client_payload.version != ''
+      if: github.event.client_payload.name != '' && github.event.client_payload.version != ''
+
     - run: bundle update
+
     - name: Package
       run: |
         bundle exec rake package
