@@ -1,3 +1,13 @@
+<a name="v1.87.2"></a>
+### v1.87.2 (2020-07-17)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support 1.15.1, pact-provider-verifier 1.32.0	 ([8acdb79](/../../commit/8acdb79))
+
+
 <a name="v1.87.1"></a>
 ### v1.87.1 (2020-07-17)
 
