@@ -18,6 +18,7 @@ jobs:
         ruby-version: 2.2.10
     # - run: gem uninstall bundler; gem install bundler -v 1.17.3
     - run: bundler -v
+    - run: gem uninstall rake
     - run: script/update-and-release-from-github-workflow.sh
       env:
         RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
