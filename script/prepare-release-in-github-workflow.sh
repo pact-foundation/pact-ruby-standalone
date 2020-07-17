@@ -14,7 +14,7 @@ pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; d
 cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
 
 
-echo "::set-env name=FILES::$(ls -1 pkg | paste -sd " " -)"
+echo "::set-env name=FILES::$(find pkg -maxdepth 1 -mindepth 1 | paste -sd " " -)"
 
 git add VERSION CHANGELOG.md
 git commit -m "chore(release): version ${version}
