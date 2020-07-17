@@ -5,7 +5,7 @@ set -e
 bundle exec bump minor --no-commit
 bundle exec rake generate_changelog
 version=$(cat VERSION)
-tag="v${VERSION}"
+tag="v${version}"
 echo "::set-env name=VERSION::${version}"
 echo "::set-env name=TAG::${tag}"
 
