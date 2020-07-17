@@ -35,9 +35,9 @@ jobs:
 
     - name: Create release
       uses: ncipollo/release-action@v1
-        with:
-          name: pact-${{ env.VERSION }}
-          tag: ${{ env.TAG }}
-          artifacts: pkg/*
-          bodyFile: build/RELEASE_NOTES.md
-          token: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: pact-${{ env.VERSION }}
+        tag: ${{ env.TAG }}
+        artifacts: pkg/*
+        bodyFile: build/RELEASE_NOTES.md
+        token: ${{ secrets.GITHUB_TOKEN }}
