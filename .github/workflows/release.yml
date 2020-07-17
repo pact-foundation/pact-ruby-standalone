@@ -16,16 +16,41 @@ jobs:
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: 2.2.10
+    - run: script/update-and-release-from-github-workflow.sh
+      env:
+        RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
+        RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
 
-    - run: bundle install
+    # - run: bundle install
 
-    - run: gem install ${{ github.event.client_payload.name }} -v ${{ github.event.client_payload.version }}
-      if: github.event.client_payload.name != '' && github.event.client_payload.version != ''
+    # - run: gem install ${{ github.event.client_payload.name }} -v ${{ github.event.client_payload.version }}
+    #   if:  != '' && github.event.client_payload.version != ''
 
-    - run: bundle update
+    # - run: bundle update
 
-    - name: Package
-      run: |
-        bundle exec rake package
-        pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
-        cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
+    # - name: Detect changes
+    #   run: |
+    #     if [ -z "$(git diff pact_broker/Gemfile.lock)" ] ; then
+    #       echo "No gems updated"
+    #       exit 1
+    #     else
+    #       echo "Gems updated, continuing with release"
+    #     fi
+
+    # - run: |
+    #     bundle exec bump minor --no-commit
+    #     bundle exec rake generate_changelog
+    #     VERSION=$(cat VERSION)
+    #     git add VERSION CHANGELOG.md
+    #     git commit -m "chore(release): version ${VERSION}
+    #     [ci-skip]"
+    #     git push origin master
+    #     TAG="v${VERSION}"
+    #     git tag -a ${TAG} -m "chore(release): version ${VERSION}"
+    #     git push origin ${TAG}
+
+    # - name: Package
+    #   run: |
+    #     bundle exec rake package
+    #     pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
+    #     cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
