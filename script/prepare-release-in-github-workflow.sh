@@ -2,7 +2,7 @@
 
 set -e
 
-bundle exec bump minor --no-commit
+bundle exec bump patch --no-commit
 bundle exec rake generate_changelog
 version=$(cat VERSION)
 tag="v${version}"
