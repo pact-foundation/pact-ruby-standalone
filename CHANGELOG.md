@@ -1,3 +1,13 @@
+<a name="v1.87.5"></a>
+### v1.87.5 (2020-07-19)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier 1.32.1, pact_broker-client 1.28.2	 ([95b0e70](/../../commit/95b0e70))
+
+
 <a name="v1.87.4"></a>
 ### v1.87.4 (2020-07-17)
 
