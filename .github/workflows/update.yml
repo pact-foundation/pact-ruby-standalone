@@ -1,9 +1,10 @@
-name: Release
+name: Update
 
 on:
   repository_dispatch:
     types:
-      - release-triggered
+      - gem-released
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,17 +25,14 @@ jobs:
         bundler -v
         bundle install
 
-    - name: Prepare release
-      id: prepare
-      run: script/prepare-release-in-github-workflow.sh
+    - name: Update Gemfile
+      run: script/update-in-github-workflow.sh
       env:
-        INCREMENT: ${{ github.event.client_payload.increment }}
+        RELEASED_GEM_NAME: ${{ github.event.client_payload.name }}
+        RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
 
-    - name: Create release
-      uses: ncipollo/release-action@v1
+    - name: Trigger release
+      uses: peter-evans/repository-dispatch@v1
       with:
-        name: pact-${{ steps.prepare.outputs.version }}
-        tag: ${{ steps.prepare.outputs.tag }}
-        artifacts: pkg/*
-        bodyFile: build/RELEASE_NOTES.md
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GHTOKENFORPBDOCKERRELEASE }}
+        event-type: release-triggered

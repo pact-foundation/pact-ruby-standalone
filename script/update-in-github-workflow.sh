@@ -28,3 +28,4 @@ fi
 
 git add Gemfile.lock
 git commit -m "${commit_message}"
+git push
