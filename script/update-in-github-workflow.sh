@@ -2,6 +2,8 @@
 
 set -Eeuo pipefail
 
+set -x
+
 cd packaging
 
 if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
