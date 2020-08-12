@@ -1,4 +1,4 @@
-FROM ruby:2.2.4-alpine
+FROM ruby:2.2.10-alpine
 
 # Installation path
 ENV HOME=/app
