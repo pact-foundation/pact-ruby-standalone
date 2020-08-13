@@ -99,7 +99,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  pact (= 1.51.1)
+  pact
   pact-message
   pact-mock_service
   pact-provider-verifier
