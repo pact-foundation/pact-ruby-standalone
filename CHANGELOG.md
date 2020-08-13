@@ -1,3 +1,16 @@
+<a name="v1.88.3"></a>
+### v1.88.3 (2020-08-13)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([ad0fc4f](/../../commit/ad0fc4f))
+  * update non-pact gems	 ([116791a](/../../commit/116791a))
+  * update non-pact gems	 ([d0b91dc](/../../commit/d0b91dc))
+  * update to pact 1.51.1	 ([b8abb8b](/../../commit/b8abb8b))
+
+
 <a name="v1.88.2"></a>
 ### v1.88.2 (2020-08-11)
 
