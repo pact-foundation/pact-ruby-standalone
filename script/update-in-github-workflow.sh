@@ -7,15 +7,18 @@ set -x
 cd packaging
 
 if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
-  echo "Installing $RELEASED_GEM_NAME version $RELEASED_GEM_VERSION"
-  gem install --install-dir vendor $RELEASED_GEM_NAME -v $RELEASED_GEM_VERSION
+  echo "Updating $RELEASED_GEM_NAME version to $RELEASED_GEM_VERSION in Gemfile"
+  find_pattern="gem \"${RELEASED_GEM_NAME}\".*"
+  replacement_value="gem \"${RELEASED_GEM_NAME}\", \"${RELEASED_GEM_VERSION}\""
+  cat Gemfile | sed -e "s/${find_pattern}/${replacement_value}/" > Gemfile.tmp
+  mv Gemfile.tmp Gemfile
 fi
 
 bundle install --path vendor
 output=$(bundle update)
 echo "${output}"
 
-if [ -z "$(git diff Gemfile.lock)" ]; then
+if [ -z "$(git diff Gemfile Gemfile.lock)" ]; then
   echo "No gems updated. Exiting."
   exit 1
 fi
@@ -28,6 +31,6 @@ else
   commit_message="feat(gems): update non-pact gems"
 fi
 
-git add Gemfile.lock
+git add Gemfile Gemfile.lock
 git commit -m "${commit_message}"
 git push
