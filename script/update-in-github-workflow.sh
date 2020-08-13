@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -Eeuo pipefail
+set -Eeuo
 
 set -x
 
@@ -23,7 +23,7 @@ if [ -z "$(git diff Gemfile Gemfile.lock)" ]; then
   exit 1
 fi
 
-updated_pact_gems=$(echo "${output}" | grep "pact" | grep "(was " | cut -d " " -f 2,3 | uniq | ruby -e 'puts ARGF.read.split("\n").join(", ")') || true
+updated_pact_gems=$(git diff Gemfile.lock | grep '^+    [a-zA-Z]' | grep pact | grep '(' | sed -e "s/+ *//" | paste -sd "," - | sed -e 's/,/, /g') || true
 
 if [ -n "${updated_pact_gems}" ]; then
   commit_message="feat(gems): update to ${updated_pact_gems}"
