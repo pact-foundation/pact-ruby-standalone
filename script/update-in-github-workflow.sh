@@ -6,6 +6,8 @@ set -x
 
 cd packaging
 
+bundle install --path vendor
+
 if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
   echo "Updating $RELEASED_GEM_NAME version to $RELEASED_GEM_VERSION in Gemfile"
   find_pattern="gem \"${RELEASED_GEM_NAME}\".*"
@@ -14,9 +16,7 @@ if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
   mv Gemfile.tmp Gemfile
 fi
 
-bundle install --path vendor
-output=$(bundle update)
-echo "${output}"
+bundle update
 
 if [ -z "$(git diff Gemfile Gemfile.lock)" ]; then
   echo "No gems updated. Exiting."
