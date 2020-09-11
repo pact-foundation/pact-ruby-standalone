@@ -1,3 +1,13 @@
+<a name="v1.88.5"></a>
+### v1.88.5 (2020-09-11)
+
+
+#### Features
+
+* **gems**
+  * update to pact (1.53.0)	 ([ffd0da7](/../../commit/ffd0da7))
+
+
 <a name="v1.88.4"></a>
 ### v1.88.4 (2020-09-10)
 
