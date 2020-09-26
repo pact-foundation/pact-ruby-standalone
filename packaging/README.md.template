@@ -2,6 +2,8 @@
 
 This package contains the Ruby implementations of the Pact Mock Service, Pact Provider Verifier and Pact Broker Client, packaged with Travelling Ruby so that they can be run from the command line without a Ruby installation.
 
+To connect to a Pact Broker that uses custom SSL cerificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.
+
 ## Package contents
 
 This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables package contains:
