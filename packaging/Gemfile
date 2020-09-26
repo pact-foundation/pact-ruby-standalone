@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "pact", "1.55.0"
+gem "pact", "1.55.1"
 gem "pact-message"
 gem "pact-mock_service"
 gem "pact-provider-verifier"
