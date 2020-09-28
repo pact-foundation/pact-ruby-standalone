@@ -1,3 +1,13 @@
+<a name="v1.88.10"></a>
+### v1.88.10 (2020-09-28)
+
+
+#### Features
+
+* **gems**
+  * update to pact-message (0.8.0)	 ([bf226d7](/../../commit/bf226d7))
+
+
 <a name="v1.88.9"></a>
 ### v1.88.9 (2020-09-26)
 
