@@ -1,3 +1,13 @@
+<a name="v1.88.16"></a>
+### v1.88.16 (2020-10-26)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client (1.32.0)	 ([3af7214](/../../commit/3af7214))
+
+
 <a name="v1.88.15"></a>
 ### v1.88.15 (2020-10-22)
 
