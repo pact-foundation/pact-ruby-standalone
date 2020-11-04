@@ -7,9 +7,7 @@ bundle exec rake generate_changelog
 version=$(cat VERSION)
 tag="v${version}"
 
-echo "::set-env name=VERSION::${version}"
 echo "::set-output name=version::${version}"
-echo "::set-env name=TAG::${tag}"
 echo "::set-output name=tag::${tag}"
 
 bundle exec rake package
