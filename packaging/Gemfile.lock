@@ -50,11 +50,10 @@ GEM
       rack-reverse-proxy
       rspec (~> 3.5)
       rspec_junit_formatter (~> 0.3)
-    pact-support (1.15.5)
+    pact-support (1.16.0)
       awesome_print (~> 1.1)
       diff-lcs (~> 1.4)
       randexp (~> 0.1.7)
-      rspec (>= 2.14)
       term-ansicolor (~> 1.0)
     pact_broker-client (1.32.0)
       httparty (~> 0.18)
