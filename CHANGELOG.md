@@ -1,3 +1,14 @@
+<a name="v1.88.18"></a>
+### v1.88.18 (2020-11-04)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support (1.16.0)	 ([540539d](/../../commit/540539d))
+  * update to pact-support (1.15.5)	 ([b49c382](/../../commit/b49c382))
+
+
 <a name="v1.88.17"></a>
 ### v1.88.17 (2020-11-04)
 
