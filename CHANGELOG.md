@@ -1,3 +1,13 @@
+<a name="v1.88.25"></a>
+### v1.88.25 (2020-11-13)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service (3.7.0), pact-support (1.16.4)	 ([5ec309c](/../../commit/5ec309c))
+
+
 <a name="v1.88.24"></a>
 ### v1.88.24 (2020-11-10)
 
