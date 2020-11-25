@@ -18,7 +18,7 @@ GEM
     mime-types-data (3.2020.1104)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    pact (1.55.6)
+    pact (1.55.7)
       pact-mock_service (~> 3.0, >= 3.3.1)
       pact-support (~> 1.15)
       rack-test (>= 0.6.3, < 2.0.0)
@@ -99,7 +99,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  pact (= 1.55.6)
+  pact (= 1.55.7)
   pact-message (= 0.9.0)
   pact-mock_service (= 3.7.0)
   pact-provider-verifier
