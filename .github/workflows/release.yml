@@ -5,7 +5,7 @@ on:
     types:
       - release-triggered
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -38,3 +38,25 @@ jobs:
         artifacts: pkg/*
         bodyFile: build/RELEASE_NOTES.md
         token: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      version: ${{ steps.prepare.outputs.version }}
+      increment: ${{ github.event.client_payload.increment }}
+
+  notify-released:
+    needs: release
+    strategy:
+      matrix:
+        repository: [pact-foundation/pact-node]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify ${{ matrix.repository }} of gem release
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GHTOKENNOTIFYPBRELEASED }}
+          repository: ${{ matrix.repository }}
+          event-type: pact-ruby-standalone-released
+          client-payload: |
+              {
+                "version": "${{ needs.release.outputs.version }}",
+                "increment": "${{ needs.release.outputs.increment }}"
+              }
