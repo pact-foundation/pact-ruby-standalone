@@ -40,7 +40,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       version: ${{ steps.prepare.outputs.version }}
-      increment: ${{ github.event.client_payload.increment }}
+      increment: ${{ steps.prepare.outputs.increment }}
 
   notify-released:
     needs: release

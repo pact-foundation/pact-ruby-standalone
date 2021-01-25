@@ -2,13 +2,16 @@
 
 set -Eeuo pipefail
 
-bundle exec bump ${INCREMENT:-patch} --no-commit
+INCREMENT="${INCREMENT:-patch}"
+
+bundle exec bump $INCREMENT --no-commit
 bundle exec rake generate_changelog
 version=$(cat VERSION)
 tag="v${version}"
 
 echo "::set-output name=version::${version}"
 echo "::set-output name=tag::${tag}"
+echo "::set-output name=increment::${INCREMENT}"
 
 bundle exec rake package
 pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
