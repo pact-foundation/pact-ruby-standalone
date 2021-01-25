@@ -52,7 +52,7 @@ jobs:
       - name: Notify ${{ matrix.repository }} of gem release
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.GHTOKENNOTIFYPBRELEASED }}
+          token: ${{ secrets.GHTOKENFORRELEASEDISPATCH }}
           repository: ${{ matrix.repository }}
           event-type: pact-ruby-standalone-released
           client-payload: |
