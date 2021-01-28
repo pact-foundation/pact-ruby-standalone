@@ -1,3 +1,13 @@
+<a name="v1.88.35"></a>
+### v1.88.35 (2021-01-28)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support (1.16.7)	 ([76ace0b](/../../commit/76ace0b))
+
+
 <a name="v1.88.34"></a>
 ### v1.88.34 (2021-01-28)
 
