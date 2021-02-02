@@ -1,9 +1,9 @@
-name: Test
+name: Build
 
 on: [push, pull_request]
 
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
