@@ -1,3 +1,18 @@
+<a name="v1.88.38"></a>
+### v1.88.38 (2021-02-25)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service (3.8.0)	 ([77bd1bb](/../../commit/77bd1bb))
+
+
+#### Bug Fixes
+
+* packaging/Gemfile.lock to reduce vulnerabilities (#62)	 ([9b2a780](/../../commit/9b2a780))
+
+
 <a name="v1.88.37"></a>
 ### v1.88.37 (2021-02-01)
 
