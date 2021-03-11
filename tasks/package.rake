@@ -34,7 +34,7 @@ namespace :package do
   desc "Install gems to local directory"
   task :bundle_install do
     if RUBY_VERSION !~ /^2\.4\./
-      abort "You can only 'bundle install' using Ruby 2.2, because that's what Traveling Ruby uses."
+      abort "You can only 'bundle install' using Ruby 2.4, because that's what Traveling Ruby uses."
     end
     sh "rm -rf build/tmp"
     sh "mkdir -p build/tmp"
