@@ -3,7 +3,7 @@ require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
-TRAVELING_RUBY_VERSION = "20150715-2.2.2"
+TRAVELING_RUBY_VERSION = "20210206-2.4.10"
 
 desc "Package pact-ruby-standalone for OSX, Linux x86 and Linux x86_64"
 task :package => ['package:linux:x86', 'package:linux:x86_64', 'package:osx', 'package:win32']
@@ -33,7 +33,7 @@ namespace :package do
 
   desc "Install gems to local directory"
   task :bundle_install do
-    if RUBY_VERSION !~ /^2\.2\./
+    if RUBY_VERSION !~ /^2\.4\./
       abort "You can only 'bundle install' using Ruby 2.2, because that's what Traveling Ruby uses."
     end
     sh "rm -rf build/tmp"
