@@ -1,5 +1,11 @@
 require 'pact_broker/client/cli/broker'
 
+if ENV['PACT_BROKER_DISABLE_SSL_VERIFICATION'] == 'true' || ENV['PACT_DISABLE_SSL_VERIFICATION'] == 'true'
+  require 'openssl'
+  OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+  $stderr.puts "WARN: SSL verification has been disabled by a dodgy hack (reassigning the VERIFY_PEER constant to VERIFY_NONE). You acknowledge that you do this at your own risk!"
+end
+
 class Thor
   module Base
     module ClassMethods
