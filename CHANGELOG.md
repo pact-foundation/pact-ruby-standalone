@@ -1,3 +1,12 @@
+<a name="v1.88.48"></a>
+### v1.88.48 (2021-04-09)
+
+
+#### Features
+
+* disable ssl verification using a flag (#66)	 ([4fd9230](/../../commit/4fd9230))
+
+
 <a name="v1.88.47"></a>
 ### v1.88.47 (2021-04-07)
 
