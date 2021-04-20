@@ -1,3 +1,13 @@
+<a name="v1.88.49"></a>
+### v1.88.49 (2021-04-20)
+
+
+#### Features
+
+* **gems**
+  * update to pact-message (0.11.1)	 ([f4fd9d1](/../../commit/f4fd9d1))
+
+
 <a name="v1.88.48"></a>
 ### v1.88.48 (2021-04-09)
 
