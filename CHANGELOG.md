@@ -1,3 +1,14 @@
+<a name="v1.88.52"></a>
+### v1.88.52 (2021-05-24)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client (1.41.0)	 ([66409f2](/../../commit/66409f2))
+  * update to pact-mock_service (3.9.0)	 ([358b8d3](/../../commit/358b8d3))
+
+
 <a name="v1.88.51"></a>
 ### v1.88.51 (2021-04-27)
 
