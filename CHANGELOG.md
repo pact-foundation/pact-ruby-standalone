@@ -1,3 +1,13 @@
+<a name="v1.88.58"></a>
+### v1.88.58 (2021-06-30)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier (1.35.1)	 ([31f4bd7](/../../commit/31f4bd7))
+
+
 <a name="v1.88.57"></a>
 ### v1.88.57 (2021-06-24)
 
