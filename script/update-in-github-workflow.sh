@@ -17,7 +17,7 @@ if [ -n "${RELEASED_GEM_NAME}" ] && [ -n "${RELEASED_GEM_VERSION}" ]; then
 
   set +e
   n=0
-  until [ "$n" -ge 5 ]
+  until [ "$n" -ge 10 ]
   do
      gem install "${RELEASED_GEM_NAME}" -v "${RELEASED_GEM_VERSION}" && break
      n=$((n+1))
