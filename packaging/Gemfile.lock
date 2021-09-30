@@ -4,6 +4,8 @@ GEM
     awesome_print (1.9.2)
     diff-lcs (1.4.4)
     dig_rb (1.0.1)
+    expgen (0.1.1)
+      parslet
     faraday (0.17.4)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.14.0)
@@ -51,9 +53,10 @@ GEM
       rack-reverse-proxy
       rspec (~> 3.5)
       rspec_junit_formatter (~> 0.3)
-    pact-support (1.16.9)
+    pact-support (1.16.10)
       awesome_print (~> 1.9)
       diff-lcs (~> 1.4)
+      expgen (~> 0.1)
       term-ansicolor (~> 1.0)
     pact_broker-client (1.52.0)
       dig_rb (~> 1.0)
@@ -62,6 +65,7 @@ GEM
       table_print (~> 1.5)
       term-ansicolor (~> 1.7)
       thor (>= 0.20, < 2.0)
+    parslet (2.0.0)
     rack (2.1.4)
     rack-proxy (0.7.0)
       rack
