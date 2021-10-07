@@ -88,6 +88,8 @@ def create_package(version, target, os_type = :unix)
   # sh "cp -pR lib #{package_dir}/lib/app"
   sh "mkdir #{package_dir}/lib/ruby"
   sh "tar -xzf build/traveling-ruby-#{version}-#{target}.tar.gz -C #{package_dir}/lib/ruby"
+  # From https://curl.se/docs/caextract.html
+  sh "cp packaging/cacert.pem #{package_dir}/lib/ruby/lib/ca-bundle.crt"
 
   if os_type == :unix
     Dir.chdir('packaging'){ Dir['pact*.sh'] }.each do | name |
