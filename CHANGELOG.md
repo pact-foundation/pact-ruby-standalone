@@ -1,3 +1,18 @@
+<a name="v1.88.77"></a>
+### v1.88.77 (2021-10-08)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client (1.56.0)	 ([8f7f1b7](/../../commit/8f7f1b7))
+
+
+#### Bug Fixes
+
+* update bundled ca certs to fix letsencrypt SSL validation errors	 ([d2f2441](/../../commit/d2f2441))
+
+
 <a name="v1.88.76"></a>
 ### v1.88.76 (2021-10-03)
 
