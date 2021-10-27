@@ -1,3 +1,13 @@
+<a name="v1.88.78"></a>
+### v1.88.78 (2021-10-27)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier (1.36.1)	 ([e4fafbc](/../../commit/e4fafbc))
+
+
 <a name="v1.88.77"></a>
 ### v1.88.77 (2021-10-08)
 
