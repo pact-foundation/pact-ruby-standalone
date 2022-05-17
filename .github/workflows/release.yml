@@ -15,7 +15,7 @@ jobs:
 
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.2.10
+        ruby-version: '2.7'
 
     - name: Set up environment
       run: |
@@ -42,22 +42,3 @@ jobs:
     outputs:
       version: ${{ steps.prepare.outputs.version }}
       increment: ${{ steps.prepare.outputs.increment }}
-
-  notify-released:
-    needs: release
-    strategy:
-      matrix:
-        repository: [pact-foundation/pact-node, pact-foundation/homebrew-pact-ruby-standalone]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Notify ${{ matrix.repository }} of gem release
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.GHTOKENFORRELEASEDISPATCH }}
-          repository: ${{ matrix.repository }}
-          event-type: pact-ruby-standalone-released
-          client-payload: |
-              {
-                "version": "${{ needs.release.outputs.version }}",
-                "increment": "${{ needs.release.outputs.increment }}"
-              }
