@@ -7,9 +7,6 @@
 #
 
 case $(uname -sm) in
-  'Linux x86')
-    os='linux-x86'
-    ;;
   'Linux x86_64')
     os='linux-x86_64'
     ;;

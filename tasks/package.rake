@@ -5,16 +5,11 @@ PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
 TRAVELING_RUBY_VERSION = "20210206-2.4.10"
 
-desc "Package pact-ruby-standalone for OSX, Linux x86 and Linux x86_64"
-task :package => ['package:linux:x86', 'package:linux:x86_64', 'package:osx', 'package:win32']
+desc "Package pact-ruby-standalone for OSX, Linux x86_64 and Win32 x86_64"
+task :package => ['package:linux:x86_64', 'package:osx', 'package:win32']
 
 namespace :package do
   namespace :linux do
-    desc "Package pact-ruby-standalone for Linux x86"
-    task :x86 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86.tar.gz"] do
-      create_package(TRAVELING_RUBY_VERSION, "linux-x86")
-    end
-
     desc "Package pact-ruby-standalone for Linux x86_64"
     task :x86_64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86_64.tar.gz"] do
       create_package(TRAVELING_RUBY_VERSION, "linux-x86_64")
@@ -26,9 +21,9 @@ namespace :package do
     create_package(TRAVELING_RUBY_VERSION, "osx")
   end
 
-  desc "Package pact-ruby-standalone for Windows x86"
-  task :win32 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz"] do
-    create_package(TRAVELING_RUBY_VERSION, "win32", :windows)
+  desc "Package pact-ruby-standalone for Win32 x86_64"
+  task :win32 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32-86_64.tar.gz"] do
+    create_package(TRAVELING_RUBY_VERSION, "x86_64-win32", :windows)
   end
 
   desc "Install gems to local directory"
@@ -59,10 +54,6 @@ namespace :package do
   end
 end
 
-file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86.tar.gz" do
-  download_runtime(TRAVELING_RUBY_VERSION, "linux-x86")
-end
-
 file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86_64.tar.gz" do
   download_runtime(TRAVELING_RUBY_VERSION, "linux-x86_64")
 end
@@ -71,8 +62,8 @@ file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz" do
   download_runtime(TRAVELING_RUBY_VERSION, "osx")
 end
 
-file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32.tar.gz" do
-  download_runtime(TRAVELING_RUBY_VERSION, "win32")
+file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32-86_64.tar.gz" do
+  download_runtime(TRAVELING_RUBY_VERSION, "x86_64-win32")
 end
 
 def create_package(version, target, os_type = :unix)
