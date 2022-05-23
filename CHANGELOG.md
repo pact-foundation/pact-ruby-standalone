@@ -1,3 +1,12 @@
+<a name="v1.88.89"></a>
+### v1.88.89 (2022-05-18)
+
+
+#### Bug Fixes
+
+* call bash directly rather than via /usr/bin/env	 ([b477c8a](/../../commit/b477c8a))
+
+
 <a name="v1.88.88"></a>
 ### v1.88.88 (2022-05-10)
 
