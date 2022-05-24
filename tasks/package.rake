@@ -12,18 +12,18 @@ namespace :package do
   namespace :linux do
     desc "Package pact-ruby-standalone for Linux x86_64"
     task :x86_64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86_64.tar.gz"] do
-      create_package(TRAVELING_RUBY_VERSION, "linux-x86_64")
+      create_package(TRAVELING_RUBY_VERSION, "linux-x86_64", "linux-x86_64", :unix)
     end
   end
 
   desc "Package pact-ruby-standalone for OS X"
   task :osx => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx.tar.gz"] do
-    create_package(TRAVELING_RUBY_VERSION, "osx")
+    create_package(TRAVELING_RUBY_VERSION, "osx", "osx", :unix)
   end
 
   desc "Package pact-ruby-standalone for Win32 x86_64"
   task :win32 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32-86_64.tar.gz"] do
-    create_package(TRAVELING_RUBY_VERSION, "x86_64-win32", :windows)
+    create_package(TRAVELING_RUBY_VERSION, "x86_64-win32", "win32", :windows)
   end
 
   desc "Install gems to local directory"
@@ -66,9 +66,9 @@ file "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-win32-86_64.tar.gz" do
   download_runtime(TRAVELING_RUBY_VERSION, "x86_64-win32")
 end
 
-def create_package(version, target, os_type = :unix)
+def create_package(version, source_target, package_target, os_type)
   package_dir = "#{PACKAGE_NAME}"
-  package_name = "#{PACKAGE_NAME}-#{VERSION}-#{target}"
+  package_name = "#{PACKAGE_NAME}-#{VERSION}-#{package_target}"
   sh "rm -rf #{package_dir}"
   sh "mkdir #{package_dir}"
   sh "mkdir -p #{package_dir}/lib/app"
@@ -78,16 +78,19 @@ def create_package(version, target, os_type = :unix)
 
   # sh "cp -pR lib #{package_dir}/lib/app"
   sh "mkdir #{package_dir}/lib/ruby"
-  sh "tar -xzf build/traveling-ruby-#{version}-#{target}.tar.gz -C #{package_dir}/lib/ruby"
+  sh "tar -xzf build/traveling-ruby-#{version}-#{source_target}.tar.gz -C #{package_dir}/lib/ruby"
   # From https://curl.se/docs/caextract.html
   sh "cp packaging/cacert.pem #{package_dir}/lib/ruby/lib/ca-bundle.crt"
 
-  if os_type == :unix
+  case os_type
+  when :unix
     Dir.chdir('packaging'){ Dir['pact*.sh'] }.each do | name |
       sh "cp packaging/#{name} #{package_dir}/bin/#{name.chomp('.sh')}"
     end
-  else
+  when :windows
     sh "cp packaging/pact*.bat #{package_dir}/bin"
+  else
+    raise "We don't serve their kind (#{os_type}) here!"
   end
 
   sh "cp -pR build/vendor #{package_dir}/lib/"
