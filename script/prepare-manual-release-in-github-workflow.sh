@@ -26,4 +26,4 @@ git commit -m "chore(release): version ${VERSION}
 [ci-skip]"
 git tag -a ${tag} -m "chore(release): version ${VERSION}"
 git push origin ${tag}
-git push origin master
+git push
