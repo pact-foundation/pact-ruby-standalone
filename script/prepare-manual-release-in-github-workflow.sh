@@ -21,8 +21,8 @@ cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
 bundle exec rake generate_release_notes[$tag]
 
 git add VERSION CHANGELOG.md
-git commit -m "chore(release): version ${version}
+git commit -m "chore(release): version ${VERSION}
 [ci-skip]"
-git tag -a ${tag} -m "chore(release): version ${version}"
+git tag -a ${tag} -m "chore(release): version ${VERSION}"
 git push origin ${tag}
 git push origin master
