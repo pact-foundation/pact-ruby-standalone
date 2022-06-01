@@ -17,7 +17,7 @@ on:
           - patch
           - pre
       notify_released:
-        description: 'Test scenario tags'
+        description: 'Notify downstream project of release'
         required: false
         type: boolean
         default: true
