@@ -1,0 +1,83 @@
+name: Manual release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version of the pact-ruby-standalone package to be released'
+        required: true
+        type: string
+      increment:
+        description: 'The increment for this version'
+        required: true
+        type: choice
+        default: minor
+        options:
+          - major
+          - minor
+          - patch
+          - pre
+      notify_released:
+        description: 'Notify downstream project of release'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 2.2.10
+
+    - name: Set up environment
+      run: |
+        git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+        git config --global user.name "${GITHUB_ACTOR}"
+        git config --global push.default current
+        bundler -v
+        bundle install
+
+    - name: Prepare manual release
+      id: prepare
+      run: script/prepare-manual-release-in-github-workflow.sh
+      env:
+        INCREMENT: ${{ github.event.inputs.increment }}
+        VERSION: ${{ github.event.inputs.version }}
+
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        name: pact-${{ steps.prepare.outputs.version }}
+        tag: ${{ steps.prepare.outputs.tag }}
+        artifacts: pkg/*
+        bodyFile: build/RELEASE_NOTES.md
+        token: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      version: ${{ steps.prepare.outputs.version }}
+      increment: ${{ steps.prepare.outputs.increment }}
+
+  notify-released:
+    if: ${{ github.event.inputs.notify_released == 'true' }}
+    needs: release
+    strategy:
+      matrix:
+        repository: [pact-foundation/pact-node, pact-foundation/homebrew-pact-ruby-standalone]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify ${{ matrix.repository }} of gem release
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.GHTOKENFORRELEASEDISPATCH }}
+          repository: ${{ matrix.repository }}
+          event-type: pact-ruby-standalone-released
+          client-payload: |
+              {
+                "version": "${{ needs.release.outputs.version }}",
+                "increment": "${{ needs.release.outputs.increment }}"
+              }
