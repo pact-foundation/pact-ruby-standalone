@@ -61,6 +61,16 @@ To connect to a Pact Broker that uses custom SSL cerificates, set the environmen
 ```
 
 <a name="pact"></a>
+
+<a name="pactflow-client"></a>
+### pactflow client
+
+#### publish-provider-contract
+
+```
+<%= pactflow_publish_provider_contract_usage %>
+```
+
 ### pact
 
 <a name="pact-docs"></a>
