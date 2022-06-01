@@ -6,7 +6,8 @@ set -Eeuo pipefail
 
 set -x
 
-bundle exec bump set $VERSION --no-commit
+# bundle exec bump set $VERSION --no-commit # this is buggy. it puts a 1 on the end of the version number
+echo $VERSION >> VERSION
 bundle exec rake generate_changelog
 tag="v${VERSION}"
 
