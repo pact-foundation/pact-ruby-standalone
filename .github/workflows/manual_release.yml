@@ -11,6 +11,7 @@ on:
         description: 'The increment for this version'
         required: true
         type: choice
+        default: minor
         options:
           - major
           - minor
