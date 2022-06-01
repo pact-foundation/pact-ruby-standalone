@@ -4,6 +4,8 @@
 
 set -Eeuo pipefail
 
+set -x
+
 bundle exec bump set $VERSION --no-commit
 bundle exec rake generate_changelog
 tag="v${VERSION}"
