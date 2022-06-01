@@ -47,8 +47,8 @@ jobs:
       id: prepare
       run: script/prepare-manual-release-in-github-workflow.sh
       env:
-        INCREMENT: ${{ github.event.client_payload.increment }}
-        VERSION: ${{ github.event.client_payload.version }}
+        INCREMENT: ${{ github.event.inputs.increment }}
+        VERSION: ${{ github.event.inputs.version }}
 
     - name: Create release
       uses: ncipollo/release-action@v1
@@ -63,7 +63,7 @@ jobs:
       increment: ${{ steps.prepare.outputs.increment }}
 
   notify-released:
-    if: ${{ github.event.client_payload.notify_released == true }}
+    if: ${{ github.event.inputs.notify_released == 'true' }}
     needs: release
     strategy:
       matrix:
