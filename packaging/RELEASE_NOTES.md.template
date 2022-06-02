@@ -21,16 +21,6 @@ cd pact/bin
 ./pact-provider-verifier --help verify
 ```
 
-### Linux 32 bit
-
-```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86.tar.gz
-tar xzf pact-<PACKAGE_VERSION>-linux-x86.tar.gz
-cd pact/bin
-./pact-mock-service --help start
-./pact-provider-verifier --help verify
-```
-
 ### Windows
 
 Download package, unzip, then run:
