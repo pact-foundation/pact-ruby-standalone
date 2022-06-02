@@ -1,3 +1,14 @@
+<a name="v1.88.91-rc5
+"></a>
+### v1.88.91-rc5
+ (2022-06-02)
+
+
+#### Bug Fixes
+
+* fix require issue by adding x64-mingw32 platform to Gemfile.lock platforms	 ([bf3f8c5](/../../commit/bf3f8c5))
+
+
 <a name="v1.88.90"></a>
 ### v1.88.90 (2022-05-27)
 
