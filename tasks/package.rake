@@ -37,7 +37,7 @@ namespace :package do
     sh "mkdir -p build/tmp/lib/pact/mock_service"
     # sh "cp lib/pact/mock_service/version.rb build/tmp/lib/pact/mock_service/version.rb"
     Bundler.with_clean_env do
-      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform x64-mingw32 && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
       generate_readme
     end
     sh "rm -rf build/tmp"

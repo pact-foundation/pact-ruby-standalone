@@ -101,6 +101,7 @@ GEM
 
 PLATFORMS
   ruby
+  x64-mingw32
 
 DEPENDENCIES
   json (= 2.0.4)
