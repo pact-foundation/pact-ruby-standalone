@@ -1,3 +1,20 @@
+<a name="v1.89.00-rc1
+"></a>
+### v1.89.00-rc1
+ (2022-06-09)
+
+
+#### Features
+
+* add pactflow command (#78)	 ([2ea87bd](/../../commit/2ea87bd))
+* upgrade to travelling ruby 2.4.10 (#75)	 ([39b7d77](/../../commit/39b7d77))
+
+
+#### Bug Fixes
+
+* add x64-mingw32 to platforms list in Gemfile.lock	 ([8337a46](/../../commit/8337a46))
+
+
 <a name="v1.88.90"></a>
 ### v1.88.90 (2022-05-27)
 
