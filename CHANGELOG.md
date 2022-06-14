@@ -1,3 +1,15 @@
+<a name="v1.89.01-rc1
+"></a>
+### v1.89.01-rc1
+ (2022-06-14)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([5543fda](/../../commit/5543fda))
+
+
 <a name="v1.89.00"></a>
 ### v1.89.00 (2022-06-09)
 
