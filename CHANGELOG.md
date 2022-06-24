@@ -1,3 +1,15 @@
+<a name="v1.89.02-rc1
+"></a>
+### v1.89.02-rc1
+ (2022-06-24)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client (1.65.0)	 ([e209b9c](/../../commit/e209b9c))
+
+
 <a name="v1.89.01-rc1"></a>
 ### v1.89.01-rc1
  (2022-06-14)
