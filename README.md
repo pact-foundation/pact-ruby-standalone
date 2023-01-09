@@ -7,7 +7,13 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Installation
 
+### Linux and MacOS
+
     curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
+
+### Windows
+
+Download and extract from the [release page][releases].
 
 ## Usage
 
