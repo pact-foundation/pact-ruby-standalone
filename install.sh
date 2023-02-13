@@ -10,7 +10,7 @@ case $(uname -sm) in
   'Linux x86_64')
     os='linux-x86_64'
     ;;
-  'Darwin x86' | 'Darwin x86_64')
+  'Darwin x86' | 'Darwin x86_64' | 'Darwin arm64')
     os='osx'
     ;;
   *)
