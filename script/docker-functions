@@ -12,16 +12,16 @@ function docker-build-release-base() {
 }
 
 function on-docker() {
-  docker run --rm -v ${PWD}:/app $IMAGE:latest sh -c "$@"
+  docker run --platform=linux/amd64 --rm -v ${PWD}:/app $IMAGE:latest sh -c "$@"
 }
 
 function on-release-docker() {
-  docker run --rm -v ${PWD}:/app $RELEASE_IMAGE:latest sh -c "$@"
+  docker run --platform=linux/amd64 --rm -v ${PWD}:/app $RELEASE_IMAGE:latest sh -c "$@"
 }
 
 function bundle-update() {
   rm -rf tmp
-  docker run --rm -v ${PWD}/tmp:/tmp/gemfile ${IMAGE}:latest sh -c "bundle update && cp Gemfile.lock /tmp/gemfile"
+  docker run --platform=linux/amd64 --rm -v ${PWD}/tmp:/tmp/gemfile ${IMAGE}:latest sh -c "bundle update && cp Gemfile.lock /tmp/gemfile"
   mv tmp/Gemfile.lock packaging/
 }
 

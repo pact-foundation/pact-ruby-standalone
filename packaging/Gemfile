@@ -7,7 +7,7 @@ gem "pact-provider-verifier", "1.36.1"
 gem "pact_broker-client", "1.65.0"
 gem "webrick", "1.6.1" # Later versions require Ruby 2.3
 gem "rack", "~>2.2.6"
-gem "json", "2.0.4"
+gem "json", "2.6.3"
 
 # Locking this until we have given rack-test 3.0 a good shake out in pure Ruby
 gem "rack-test", ">= 0.6.3", "< 2.0.0"

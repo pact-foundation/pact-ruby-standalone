@@ -5,6 +5,8 @@ PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
 TRAVELING_RUBY_VERSION = "20210206-2.4.10"
 PLUGIN_CLI_VERSION = "0.0.1"
+JSON_GEM_VERSION = "2.6.3"
+RUBY_VERSION = "2.4.0"
 
 desc "Package pact-ruby-standalone for OSX, Linux x86_64 and Win32 x86_64"
 task :package => ['package:linux:x86_64', 'package:osx', 'package:win32']
@@ -98,6 +100,7 @@ def create_package(version, source_target, package_target, os_type)
   sh "cp packaging/Gemfile packaging/Gemfile.lock #{package_dir}/lib/vendor/"
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
   sh "cp packaging/bundler-config #{package_dir}/lib/vendor/.bundle/config"
+  sh "cp #{package_dir}/lib/vendor/ruby/#{RUBY_VERSION}/specifications/json-#{JSON_GEM_VERSION}.gemspec #{package_dir}/lib/ruby/lib/ruby/gems/#{RUBY_VERSION}/specifications/default/json-#{JSON_GEM_VERSION}.gemspec"
 
   remove_unnecessary_files package_dir
   install_plugin_cli package_dir, package_target
