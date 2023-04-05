@@ -1,3 +1,12 @@
+<a name="v1.92.0"></a>
+### v1.92.0 (2022-11-23)
+
+
+#### Features
+
+* add the plugin CLI to the package	 ([0be3e5e](/../../commit/0be3e5e))
+
+
 <a name="v1.90.0"></a>
 ### v1.90.0
  (2022-08-16)
