@@ -9,13 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.4.10
+        ruby-version: 3.2.2
 
     - name: Set up environment
       run: |
@@ -32,7 +32,7 @@ jobs:
         RELEASED_GEM_VERSION: ${{ github.event.client_payload.version }}
 
     - name: Trigger release
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v2
       with:
         token: ${{ secrets.GHTOKENFORRELEASEDISPATCH }}
         event-type: release-triggered
