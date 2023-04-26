@@ -1,0 +1,46 @@
+BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
+  arch_check_script:
+    - uname -am
+  install_script: bundle install
+  build_script: bundle exec rake package
+  test_script: |
+      cd pkg
+      ls
+      tar xvf *$BINARY_OS-$BINARY_ARCH.tar.gz
+      ./pact/bin/pact-broker --help
+      ./pact/bin/pact-message --help
+      ./pact/bin/pact-mock-service --help
+      ./pact/bin/pact-plugin-cli --help
+      ./pact/bin/pact-provider-verifier --help
+      ./pact/bin/pact-stub-service --help
+      ./pact/bin/pactflow --help
+
+linux_arm64_task: 
+  arm_container:
+    image: ubuntu:latest
+    architecture: arm64
+  env:
+    BINARY_OS: linux
+    BINARY_ARCH: arm64
+    PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
+  pre_req_script: |
+      apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
+      curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
+      echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+      source ~/.bashrc
+      rbenv install 3.2.2
+      rbenv global 3.2.2
+      ruby --version
+      bundler --version
+  << : *BUILD_TEST_TASK_TEMPLATE
+
+macosx_arm64_task: 
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-ventura-base:latest
+  env:
+    BINARY_OS: osx
+    BINARY_ARCH: arm64
+  pre_req_script: 
+    - brew install ruby
+    - ruby --version
+  << : *BUILD_TEST_TASK_TEMPLATE
