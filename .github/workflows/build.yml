@@ -4,16 +4,105 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v2
-
+    - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.4.10
-
+        ruby-version: 3.2.2
     - name: Set up environment
       run: bundle install
-
     - name: Build
       run: bundle exec rake package
+      shell: bash
+    - name: Upload standalone packages
+      uses: actions/upload-artifact@v3
+      with:
+        name: pkg
+        path: pkg
+    - name: test package
+      if: ${{ runner.os == 'Linux'}}
+      run: |
+        cd pkg
+        tar xvf *linux-x86_64.tar.gz
+        pact --help
+        pact-broker --help
+        pact-broker --help
+        pact-message --help
+        pact-mock-service --help
+        pact-plugin-cli --help
+        pact-provider-verifier --help
+        pact-stub-service --help
+        pactflow --help
+  test:
+    needs: [build]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest","macos-latest","windows-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+    - name: test package
+      if: ${{ runner.os == 'MacOS'}}
+      run: |
+        cd pkg
+        tar xvf *osx-x86_64.tar.gz
+        ./pact/bin/pact
+        ./pact/bin/pact --help
+        ./pact/bin/pact-broker --help
+        ./pact/bin/pact-message --help
+        ./pact/bin/pact-mock-service --help
+        ./pact/bin/pact-plugin-cli --help
+        ./pact/bin/pact-provider-verifier --help
+        ./pact/bin/pact-stub-service --help
+        ./pact/bin/pactflow --help
+    - name: test package
+      if: ${{ runner.os == 'Linux'}}
+      run: |
+        cd pkg
+        tar xvf *linux-x86_64.tar.gz
+        ./pact/bin/pact
+        ./pact/bin/pact --help
+        ./pact/bin/pact-broker --help
+        ./pact/bin/pact-message --help
+        ./pact/bin/pact-mock-service --help
+        ./pact/bin/pact-plugin-cli --help
+        ./pact/bin/pact-provider-verifier --help
+        ./pact/bin/pact-stub-service --help
+        ./pact/bin/pactflow --help
+    - name: test x86_64 package
+      if: ${{ runner.os == 'Windows'}}
+      shell: bash
+      run: |
+        cd pkg
+        tar -xf *windows-x86_64.zip
+        .\pact\bin\pact.bat --help
+        .\pact\bin\pact-broker.bat --help
+        .\pact\bin\pact-message.bat --help
+        .\pact\bin\pact-mock-service.bat --help
+        .\pact\bin\pact-plugin-cli.bat --help
+        .\pact\bin\pact-provider-verifier.bat --help
+        .\pact\bin\pact-stub-service.bat --help
+        .\pact\bin\pactflow.bat --help
+        rm -rf pact
+    - name: test x86 package
+      if: ${{ runner.os == 'Windows'}}
+      shell: bash
+      run: |
+        cd pkg
+        tar -xf *windows-x86.zip
+        .\pact\bin\pact.bat --help
+        .\pact\bin\pact-broker.bat --help
+        .\pact\bin\pact-message.bat --help
+        .\pact\bin\pact-mock-service.bat --help
+        .\pact\bin\pact-plugin-cli.bat --help
+        .\pact\bin\pact-provider-verifier.bat --help
+        .\pact\bin\pact-stub-service.bat --help
+        .\pact\bin\pactflow.bat --help
+        rm -rf pact
