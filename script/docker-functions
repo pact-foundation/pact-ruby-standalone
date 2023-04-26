@@ -2,6 +2,7 @@
 
 IMAGE=pact-ruby-standalone-bundle-base
 RELEASE_IMAGE=pact-ruby-standalone-release-base
+PACKAGE_IMAGE=pact-ruby-standalone-package-base
 
 function docker-build-bundle-base() {
   docker build . -f Dockerfile-bundle-base -t ${IMAGE}
@@ -11,18 +12,27 @@ function docker-build-release-base() {
   docker build . -f Dockerfile-release-base -t ${RELEASE_IMAGE}
 }
 
+function docker-build-package-base() {
+  docker build . -f Dockerfile-package-base -t ${PACKAGE_IMAGE}
+}
+
 function on-docker() {
-  docker run --rm -v ${PWD}:/app $IMAGE:latest sh -c "$@"
+  docker run --platform=linux/amd64 --rm -v ${PWD}:/app $IMAGE:latest sh -c "$@"
 }
 
 function on-release-docker() {
-  docker run --rm -v ${PWD}:/app $RELEASE_IMAGE:latest sh -c "$@"
+  docker run --platform=linux/amd64 --rm -v ${PWD}:/app $RELEASE_IMAGE:latest sh -c "$@"
 }
 
 function bundle-update() {
   rm -rf tmp
-  docker run --rm -v ${PWD}/tmp:/tmp/gemfile ${IMAGE}:latest sh -c "bundle update && cp Gemfile.lock /tmp/gemfile"
+  docker run --platform=linux/amd64 --rm -v ${PWD}/tmp:/tmp/gemfile ${IMAGE}:latest sh -c "bundle update && cp Gemfile.lock /tmp/gemfile"
   mv tmp/Gemfile.lock packaging/
+}
+function pkg_copy() {
+  rm -rf tmp pkg
+  docker run --platform=linux/amd64 --rm -v ${PWD}/tmp:/tmp/pkg ${PACKAGE_IMAGE}:latest sh -c "bundle exec rake package && cp -r pkg /tmp/pkg"
+  mv tmp/pkg pkg/
 }
 
 function bump-version() {
