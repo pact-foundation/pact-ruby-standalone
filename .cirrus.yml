@@ -32,7 +32,7 @@ linux_arm64_task:
   #     apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
   #     ruby --version
   #     bundler --version
-  container:
+  arm_container:
     image: ubuntu:latest
     architecture: arm64  
   install_ruby_from_source_script: |
