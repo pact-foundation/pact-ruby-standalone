@@ -3,6 +3,10 @@ set -eu # This needs to be here for windows bash, which doesn't read the #! line
 
 detected_os=$(uname -sm)
 echo detected_os = $detected_os
+BINARY_OS=${BINARY_OS:-}
+BINARY_ARCH=${BINARY_ARCH:-}
+FILE_EXT=${FILE_EXT:-}
+
 if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then 
     case ${detected_os} in
     'Darwin arm64')
