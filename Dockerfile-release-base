@@ -9,6 +9,6 @@ RUN set -ex && \
   chmod g+w $HOME && \
   apk add --update --no-cache make gcc libc-dev git
 
-RUN gem install bundler -v 2.4.0
+RUN gem install bundler -v "~> 2.4"
 COPY Gemfile Gemfile.lock $HOME/
 RUN bundle install --no-cache
