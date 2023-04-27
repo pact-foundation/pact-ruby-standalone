@@ -18,16 +18,17 @@ jobs:
       run: bundle install
     - name: Build
       run: bundle exec rake package
-      shell: bash
     - name: Show standalone packages
       run: ls pkg
-      shell: bash
     - name: Upload standalone packages
       uses: actions/upload-artifact@v3
       with:
         name: pkg
         path: pkg
   test:
+    defaults:
+      run:
+        shell: bash
     needs: [build]
     strategy:
       fail-fast: false
@@ -37,66 +38,11 @@ jobs:
     steps:
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v3
-    - name: test package
-      if: ${{ runner.os == 'MacOS'}}
-      run: |
-        cd pkg
-        ls
-        tar xvf *osx-x86_64.tar.gz
-        ./pact/bin/pact
-        ./pact/bin/pact --help
-        ./pact/bin/pact-broker --help
-        ./pact/bin/pact-message --help
-        ./pact/bin/pact-mock-service --help
-        ./pact/bin/pact-plugin-cli --help
-        ./pact/bin/pact-provider-verifier --help
-        ./pact/bin/pact-stub-service --help
-        ./pact/bin/pactflow --help
-    - name: test package
-      if: ${{ runner.os == 'Linux'}}
-      run: |
-        cd pkg
-        ls
-        tar xvf *linux-x86_64.tar.gz
-        ./pact/bin/pact
-        ./pact/bin/pact --help
-        ./pact/bin/pact-broker --help
-        ./pact/bin/pact-message --help
-        ./pact/bin/pact-mock-service --help
-        ./pact/bin/pact-plugin-cli --help
-        ./pact/bin/pact-provider-verifier --help
-        ./pact/bin/pact-stub-service --help
-        ./pact/bin/pactflow --help
-    - name: test x86_64 package
-      if: ${{ runner.os == 'Windows'}}
-      shell: bash
-      continue-on-error: true
-      run: |
-        cd pkg
-        ls
-        unzip *windows-x86_64.zip
-        .\\pact\\bin\\pact.bat --help
-        .\\pact\\bin\\pact-broker.bat --help
-        .\\pact\\bin\\pact-message.bat --help
-        .\\pact\\bin\\pact-mock-service.bat --help
-        .\\pact\\bin\\pact-plugin-cli.exe --help
-        .\\pact\\bin\\pact-provider-verifier.bat --help
-        .\\pact\\bin\\pact-stub-service.bat --help
-        .\\pact\\bin\\pactflow.bat --help
-        rm -rf pact
+    - name: test ${{ matrix.os }} package
+      run: ./script/test.sh
     - name: test x86 package
-    # Note there is no pact-plugin-cli for x86, so it isnt included in the bundle
       if: ${{ runner.os == 'Windows'}}
-      shell: bash
-      run: |
-        cd pkg
-        ls
-        unzip *windows-x86.zip
-        .\\pact\\bin\\pact.bat --help
-        .\\pact\\bin\\pact-broker.bat --help
-        .\\pact\\bin\\pact-message.bat --help
-        .\\pact\\bin\\pact-mock-service.bat --help
-        .\\pact\\bin\\pact-provider-verifier.bat --help
-        .\\pact\\bin\\pact-stub-service.bat --help
-        .\\pact\\bin\\pactflow.bat --help
-        rm -rf pact
+      run: ./script/test.sh
+      env: 
+        BINARY_OS: 'windows'
+        BINARY_ARCH: 'x86'

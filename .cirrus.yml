@@ -3,27 +3,39 @@ BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
     - uname -am
   install_script: bundle install
   build_script: bundle exec rake package
-  test_script: |
-      cd pkg
-      ls
-      tar xvf *$BINARY_OS-$BINARY_ARCH.tar.gz
-      ./pact/bin/pact-broker --help
-      ./pact/bin/pact-message --help
-      ./pact/bin/pact-mock-service --help
-      ./pact/bin/pact-plugin-cli --help
-      ./pact/bin/pact-provider-verifier --help
-      ./pact/bin/pact-stub-service --help
-      ./pact/bin/pactflow --help
+  test_script: chmod +x ./script/test.sh && ./script/test.sh
 
 linux_arm64_task: 
-  arm_container:
-    image: ubuntu:latest
-    architecture: arm64
   env:
     BINARY_OS: linux
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
-  pre_req_script: |
+  ## *******************************  
+  ## Fails on Ruby:3.2.2 based image - fine on ubuntu latest, but installing ruby 3.2.2 from source takes a good while (few minutes)
+  ## executing ./pact/bin/pactflow
+  ## /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:524:in `materialize': Could not find pact-1.63.0, pact-message-0.11.1, pact-mock_service-3.11.0, pact-provider-verifier-1.36.1, pact_broker-client-1.66.1, webrick-1.8.1, rack-2.2.7, pact-support-1.19.0, rack-test-2.1.0, rspec-3.12.0, term-ansicolor-1.7.1, thor-1.2)
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:197:in `specs'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:254:in `specs_for'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/runtime.rb:18:in `setup'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler.rb:171:in `setup'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/setup.rb:23:in `block in <top (required)>'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/ui/shell.rb:159:in `with_level'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/ui/shell.rb:111:in `silence'
+  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/setup.rb:23:in `<top (required)>'
+  ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require'
+  ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require' 
+  ## *******************************  
+  # container:
+  #   image: ruby:3.2.2
+  #   architecture: arm64
+  # pre_req_script: |
+  #     apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
+  #     ruby --version
+  #     bundler --version
+  container:
+    image: ubuntu:latest
+    architecture: arm64  
+  install_ruby_from_source_script: |
       apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
       curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
       echo 'eval "$(rbenv init -)"' >> ~/.bashrc
@@ -44,3 +56,4 @@ macosx_arm64_task:
     - brew install ruby
     - ruby --version
   << : *BUILD_TEST_TASK_TEMPLATE
+

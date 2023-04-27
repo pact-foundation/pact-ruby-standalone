@@ -136,7 +136,6 @@ DEPENDENCIES
   pact-provider-verifier (= 1.36.1)
   pact_broker-client (= 1.66.1)
   rack (>= 2.2.6)
-  rack-test (~> 2.1)
   webrick (= 1.8.1)
 
 BUNDLED WITH

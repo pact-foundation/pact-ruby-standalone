@@ -59,7 +59,7 @@ jobs:
         tag: ${{ steps.prepare.outputs.tag }}
         artifacts: pkg/*
         bodyFile: build/RELEASE_NOTES.md
-        # token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
     outputs:
       version: ${{ steps.prepare.outputs.version }}
       increment: ${{ steps.prepare.outputs.increment }}
