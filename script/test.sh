@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/bash -eu
+set -eu # This needs to be here for windows bash, which doesn't read the #! line above
 
 detected_os=$(uname -sm)
 echo detected_os = $detected_os
@@ -37,6 +38,7 @@ fi
 
 
 cd pkg
+rm -rf pact
 ls
 
 if [ "$BINARY_OS" != "windows" ]; then tar xvf *$BINARY_OS-$BINARY_ARCH.tar.gz; else unzip *$BINARY_OS-$BINARY_ARCH.zip; fi
@@ -56,8 +58,8 @@ tools=(
 
 for tool in ${tools[@]}; do
   echo testing $tool
-  if [ "$BINARY_OS" != "windows" ] ; then echo "no file ext needed for $(uname -a)" ; else FILE_EXT=.bat; fi
-  if [ "$BINARY_OS" != "windows" ] && [ "$tool" = "pact-plugin-cli" ]; then echo "no file ext needed for $(uname -a)" ; else FILE_EXT=.exe; fi
+  if [ "$BINARY_OS" != "windows" ] ; then echo "no bat file ext needed for $(uname -a)" ; else FILE_EXT=.bat; fi
+  if [ "$BINARY_ARCH" = "windows" ] && [ "$tool" = "pact-plugin-cli" ] ; then  FILE_EXT=.exe ; elseecho "no exe file ext needed for $(uname -a)"; fi
   echo executing ${PATH_TO_BIN}${tool}${FILE_EXT} 
   if [ "$BINARY_ARCH" = "x86" ] && [ "$tool" = "pact-plugin-cli" ] ; then  echo "skipping for x86" ; else ${PATH_TO_BIN}${tool}${FILE_EXT} --help; fi
 done
