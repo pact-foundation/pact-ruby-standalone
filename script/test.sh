@@ -24,6 +24,10 @@ if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then
         BINARY_OS=windows
         BINARY_ARCH=x86_64
         ;;
+    "Windows"* | "MINGW"*)
+        BINARY_OS=windows
+        BINARY_ARCH=x86
+        ;;
       *)
       echo "Sorry, os not determined"
       exit 1
@@ -35,7 +39,7 @@ fi
 cd pkg
 ls
 
-if [ "$(uname -a)" != "Darwin" ] || [ "$(uname -a)" != "Linux" ] ; then tar xvf *$BINARY_OS-$BINARY_ARCH.tar.gz; else unzip *$BINARY_OS-$BINARY_ARCH.zip; fi
+if [ "$BINARY_OS" != "windows" ]; then tar xvf *$BINARY_OS-$BINARY_ARCH.tar.gz; else unzip *$BINARY_OS-$BINARY_ARCH.zip; fi
 if [ "$BINARY_OS" != "windows" ] ; then PATH_SEPERATOR=/ ; else PATH_SEPERATOR=\\; fi
 PATH_TO_BIN=.${PATH_SEPERATOR}pact${PATH_SEPERATOR}bin${PATH_SEPERATOR}
 
