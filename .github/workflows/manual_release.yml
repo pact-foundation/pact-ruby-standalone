@@ -26,6 +26,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
     - uses: actions/checkout@v3
       with:
@@ -33,7 +35,7 @@ jobs:
 
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.4.10
+        ruby-version: 3.2.2
 
     - name: Set up environment
       run: |

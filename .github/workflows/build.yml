@@ -4,16 +4,46 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.4.10
-
+        ruby-version: 3.2.2
     - name: Set up environment
       run: bundle install
-
     - name: Build
       run: bundle exec rake package
+    - name: Show standalone packages
+      run: ls pkg
+    - name: Upload standalone packages
+      uses: actions/upload-artifact@v3
+      with:
+        name: pkg
+        path: pkg
+  test:
+    defaults:
+      run:
+        shell: bash
+    needs: [build]
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["windows-latest","ubuntu-latest","macos-latest"]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Download all workflow run artifacts
+      uses: actions/download-artifact@v3
+    - name: test ${{ matrix.os }} package
+      run: ./script/test.sh
+    - name: test x86 package
+      if: ${{ runner.os == 'Windows'}}
+      run: ./script/test.sh
+      env: 
+        BINARY_OS: 'windows'
+        BINARY_ARCH: 'x86'

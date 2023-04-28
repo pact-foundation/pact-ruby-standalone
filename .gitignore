@@ -31,3 +31,4 @@ build
 
 vendor/bundle/
 pact
+.DS_Store

@@ -10,8 +10,14 @@ case $(uname -sm) in
   'Linux x86_64')
     os='linux-x86_64'
     ;;
-  'Darwin x86' | 'Darwin x86_64' | 'Darwin arm64')
-    os='osx'
+  'Linux aarch64')
+    os='linux-arm64'
+    ;;
+  'Darwin arm64')
+    os='osx-arm64'
+    ;;
+  'Darwin x86' | 'Darwin x86_64')
+    os='osx-x86_64'
     ;;
   *)
   echo "Sorry, you'll need to install the pact-ruby-standalone manually."
