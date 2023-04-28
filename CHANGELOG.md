@@ -1,3 +1,15 @@
+<a name="v2.0.0"></a>
+### v2.0.0 (2023-04-27)
+
+
+#### Features
+
+* **ci**
+  * test x-plat arm64/x86_64/x64 macOS/Linux/Win	 ([41ab2ac](/../../commit/41ab2ac))
+
+* Ruby 3.2.2 / MacOS+Linux aarch64/arm64 support	 ([bd2530d](/../../commit/bd2530d))
+
+
 <a name="v1.92.0"></a>
 ### v1.92.0 (2022-11-23)
 
