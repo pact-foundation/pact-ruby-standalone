@@ -40,10 +40,10 @@ jobs:
     - name: Download all workflow run artifacts
       uses: actions/download-artifact@v3
     - name: test ${{ matrix.os }} package
-      run: ./script/test.sh
+      run: ./script/unpack-and-test.sh
     - name: test x86 package
       if: ${{ runner.os == 'Windows'}}
-      run: ./script/test.sh
+      run: ./script/unpack-and-test.sh
       env: 
         BINARY_OS: 'windows'
         BINARY_ARCH: 'x86'
