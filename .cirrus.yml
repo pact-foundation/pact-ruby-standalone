@@ -33,7 +33,7 @@ TEST_ALPINE_ARM64_TASK_TEMPLATE: &TEST_ALPINE_ARM64_TASK_TEMPLATE
 
 TEST_TASK_TEMPLATE: &TEST_TASK_TEMPLATE
   <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
-  test_plugin_cli_script: pact-plugin-cli
+  test_plugin_cli_script: pact-plugin-cli --help
 
 DOCKER_ARGS_ARM64_TEMPLATE: &DOCKER_ARGS_ARM64_TEMPLATE
     docker_arguments:

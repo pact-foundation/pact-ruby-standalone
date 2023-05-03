@@ -6,12 +6,8 @@ ARG TARGET_ARCH
 ARG PACT_VERSION
 ARG TARGET_ARCH=${TARGET_ARCH:-arm64}
 ARG PACT_VERSION=${PACT_VERSION:-2.0.0}
-ENV GLIBC_VERSION=2.35-r0
 
-RUN apk --no-cache add gcompat libc6-compat bash libgcc libstdc++ \
-     && wget -O /etc/apk/keys/sgerrand.rsa.pub -q https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub \
-     && wget -q https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VERSION}/glibc-${GLIBC_VERSION}.apk \
-     && apk --no-cache --force-overwrite add glibc-${GLIBC_VERSION}.apk
+RUN apk --no-cache add gcompat libc6-compat bash
 
 RUN wget -q https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v${PACT_VERSION}/pact-${PACT_VERSION}-linux-${TARGET_ARCH}.tar.gz \
      && tar xzf pact-${PACT_VERSION}-linux-${TARGET_ARCH}.tar.gz \
