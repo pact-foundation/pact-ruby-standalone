@@ -18,16 +18,22 @@ STANDALONE_INSTALL_TASK_TEMPLATE: &STANDALONE_INSTALL_TASK_TEMPLATE
     && ls pact/bin/ \
     && ls /usr/local/bin
 
-TEST_TASK_TEMPLATE: &TEST_TASK_TEMPLATE
+## This is a yak shave relating to https://github.com/pact-foundation/pact-ruby-standalone/issues/102
+## pact-plugin-cli is not compatible with current guidance for alpine aarch64 with official arm64v8/alpine 
+## This task is reused in TEST_TASK_TEMPLATE adding in the pact-plugin-cli so its tested for other combos
+TEST_ALPINE_ARM64_TASK_TEMPLATE: &TEST_ALPINE_ARM64_TASK_TEMPLATE
   test_script: | # would rather avoid the commands here, but also want to keep the images clean so they can be easily used by users
       uname -a 
       pact-broker --help
       pact-message --help
       pact-mock-service --help
-      pact-plugin-cli --help
       pact-provider-verifier --help
       pact-stub-service --help
       pactflow --help
+
+TEST_TASK_TEMPLATE: &TEST_TASK_TEMPLATE
+  <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
+  test_plugin_cli_script: pact-plugin-cli
 
 DOCKER_ARGS_ARM64_TEMPLATE: &DOCKER_ARGS_ARM64_TEMPLATE
     docker_arguments:
@@ -133,7 +139,7 @@ alpine_arm64_task:
   arm_container:
     dockerfile: Dockerfile.alpine.arm64
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
+  <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
 ubuntu_arm64_task: 
   arm_container:
     dockerfile: Dockerfile.ubuntu
@@ -144,7 +150,6 @@ debian_arm64_task:
     dockerfile: Dockerfile.debian.slim
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
   <<: *TEST_TASK_TEMPLATE
-
 ## Test published standalone against x64 versions
 alpine_x64_task: 
   container:
