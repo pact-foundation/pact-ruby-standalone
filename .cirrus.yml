@@ -41,8 +41,9 @@ DOCKER_ARGS_X64_TEMPLATE: &DOCKER_ARGS_X64_TEMPLATE
 
 # This task packages up the pact-ruby-standalone for all arches
 # it uses the ruby image to save time
+# BINARY_ env vars are set, so we only test our platform specific pact-ruby-standalone
 builder_linux_x64_task: 
-  env: ## BINARY_ env vars are set, so we only test our platform specific pact-ruby-standalone
+  env:
     BINARY_OS: linux
     BINARY_ARCH: x86_64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
@@ -64,7 +65,7 @@ builder_linux_slim_x64_task:
   << : *BUILD_TEST_TASK_TEMPLATE
 
 builder_linux_arm64_task: 
-  env: ## BINARY_ env vars are set, so we only test our platform specific pact-ruby-standalone
+  env: 
     BINARY_OS: linux
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
@@ -114,7 +115,7 @@ builder_ruby_source_linux_task:
   << : *BUILD_TEST_TASK_TEMPLATE
 
 # This task packages up the pact-ruby-standalone for all arches
-# using macOS and then tests it out
+# using macOS and then tests out the arm64 package
 macosx_arm64_task: 
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
@@ -127,31 +128,33 @@ macosx_arm64_task:
   << : *BUILD_TEST_TASK_TEMPLATE
 
 
+## Test published standalone against arm64 versions
 alpine_arm64_task: 
   arm_container:
     dockerfile: Dockerfile.alpine.arm64
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
-alpine_x64_task: 
-  container:
-    dockerfile: Dockerfile.alpine.x64
-    <<: *DOCKER_ARGS_X64_TEMPLATE
   <<: *TEST_TASK_TEMPLATE
 ubuntu_arm64_task: 
   arm_container:
     dockerfile: Dockerfile.ubuntu
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
   <<: *TEST_TASK_TEMPLATE
+debian_arm64_task: 
+  arm_container:
+    dockerfile: Dockerfile.debian.slim
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
+
+## Test published standalone against x64 versions
+alpine_x64_task: 
+  container:
+    dockerfile: Dockerfile.alpine.x64
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
 ubuntu_x64_task: 
   container:
     dockerfile: Dockerfile.ubuntu
     <<: *DOCKER_ARGS_X64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
-debian_arm64_task: 
-  arm_container:
-  container:
-    dockerfile: Dockerfile.debian.slim
-    <<: *DOCKER_ARGS_ARM64_TEMPLATE
   <<: *TEST_TASK_TEMPLATE
 debian_x64_task: 
   container:
