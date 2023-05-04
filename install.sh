@@ -5,10 +5,10 @@
 # or
 #   $ wget -q https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh -O- | bash
 #
-# Usage: (install fixed version)
-#   $ tag=v1.92.0 curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
+# Usage: (install fixed version) - pass tag=v<tag> eg tag=v1.92.0 or set as an env var
+#   $ curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | tag=v1.92.0 bash
 # or
-#   $ tag=v1.92.0 wget -q https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh -O- | bash
+#   $ wget -q https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh -O- | tag=v1.92.0 bash
 #
 
 if [[ -z $tag ]]; then
