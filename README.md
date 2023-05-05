@@ -1,16 +1,16 @@
 # Pact Ruby Standalone
 
-![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
+![Build](https://github.com/you54f/pact-ruby-standalone/workflows/Build/badge.svg)
 
 Creates a standalone pact command line executable using the ruby pact implementation and Travelling Ruby
 
 ## Installation
 
-See the [releases](https://github.com/pact-foundation/pact-ruby-standalone/releases) page for installation instructions.
+See the [releases](https://github.com/you54f/pact-ruby-standalone/releases) page for installation instructions.
 
 ## Usage
 
-Download the appropriate package for your operating system from the [releases](https://github.com/pact-foundation/pact-ruby-standalone/releases) page and unzip it.
+Download the appropriate package for your operating system from the [releases](https://github.com/you54f/pact-ruby-standalone/releases) page and unzip it.
 
     $ cd pact/bin
     $ ./pact-mock-service --help start

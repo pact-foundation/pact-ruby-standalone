@@ -185,13 +185,13 @@ This is a CI testing table for `pact-ruby-standalone` - You should aim to try an
 
 | OS     | Standalone Version     | Architecture | Tested |
 | -------| ------- | ------------ | --------- |
-| OSX    | v2.0.0     | x86_64       | GitHub Actions            |
-| OSX    | v2.0.0     | aarch64 (arm)| Cirrus CI         |
-| Linux  | v2.0.0  | x86_64       | GitHub Actions          |
-| Linux  | v2.0.0  | aarch64 (arm)| Cirrus-CI       |
-| Windows| v2.0.0 | x86_64       | GitHub Actions        |
-| Windows| v2.0.0 | x86       | Untested        |
-| Windows| v2.0.0 | aarch64 (via x86 emulation) |  Untested       |
+| OSX    | v2.2.0     | x86_64       | GitHub Actions            |
+| OSX    | v2.2.0     | aarch64 (arm)| Cirrus CI         |
+| Linux  | v2.2.0  | x86_64       | GitHub Actions          |
+| Linux  | v2.2.0  | aarch64 (arm)| Cirrus-CI       |
+| Windows| v2.2.0 | x86_64       | GitHub Actions        |
+| Windows| v2.2.0 | x86       | Untested        |
+| Windows| v2.2.0 | aarch64 (via x86 emulation) |  Untested       |
 
 ### Running as the CI system locally
 
@@ -309,7 +309,7 @@ This allows us to reuse our tasks across cirrus-ci, and ideally run the same scr
 
         ```yaml
         env:
-        PACT_VERSION: 2.0.0
+        PACT_VERSION: 2.2.0
 
         TEST_TASK_TEMPLATE: &TEST_TASK_TEMPLATE
         test_script: uname -a && pact-mock-service --help

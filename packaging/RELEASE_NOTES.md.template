@@ -17,7 +17,7 @@
 note: Gets latest version, see individual platform notes for <PACKAGE_VERSION> release, if looking for an older version
 
 ```
-curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/ruby_3.1.2_upgrade/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/you54f/pact-ruby-standalone/ruby_3.1.2_upgrade/install.sh | bash
 ```
 
 then
@@ -31,7 +31,7 @@ cd pact/bin
 ### MacOS x86_64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
+curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -41,7 +41,7 @@ cd pact/bin
 ### MacOS arm64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
+curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -51,7 +51,7 @@ cd pact/bin
 ### Linux x86_64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
+curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -61,7 +61,7 @@ cd pact/bin
 ### Linux aarch64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
+curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
