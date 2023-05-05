@@ -22,6 +22,7 @@ LIBDIR="`cd \"$DIR\" && cd ../lib && pwd`"
 export BUNDLE_GEMFILE="$LIBDIR/vendor/Gemfile"
 unset BUNDLE_IGNORE_CONFIG
 unset RUBYGEMS_GEMDEPS
+unset BUNDLE_APP_CONFIG
 export BUNDLE_FROZEN=1
 
 # Run the actual app using the bundled Ruby interpreter, with Bundler activated.

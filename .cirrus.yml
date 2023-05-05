@@ -1,42 +1,116 @@
+env:
+  PACT_VERSION: 2.0.0
+
+
 BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
   arch_check_script:
     - uname -am
   install_script: bundle install
   build_script: bundle exec rake package
-  test_script: chmod +x ./script/test.sh && ./script/test.sh
+  test_script: chmod +x ./script/unpack-and-test.sh && ./script/unpack-and-test.sh
 
-linux_arm64_task: 
+STANDALONE_INSTALL_TASK_TEMPLATE: &STANDALONE_INSTALL_TASK_TEMPLATE
+  install_script: |
+    wget -q https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v${PACT_VERSION}/pact-${PACT_VERSION}-linux-${TARGET_ARCH}.tar.gz \
+    && tar xzf pact-${PACT_VERSION}-linux-${TARGET_ARCH}.tar.gz \
+    && rm -rf pact-${PACT_VERSION}-linux-${TARGET_ARCH}.tar.gz \
+    && ln -s $PWD/pact/bin/* /usr/local/bin \
+    && ls pact/bin/ \
+    && ls /usr/local/bin
+
+## This is a yak shave relating to https://github.com/pact-foundation/pact-ruby-standalone/issues/102
+## pact-plugin-cli is not compatible with current guidance for alpine aarch64 with official arm64v8/alpine 
+## This task is reused in TEST_TASK_TEMPLATE adding in the pact-plugin-cli so its tested for other combos
+TEST_ALPINE_ARM64_TASK_TEMPLATE: &TEST_ALPINE_ARM64_TASK_TEMPLATE
+  test_script: | # would rather avoid the commands here, but also want to keep the images clean so they can be easily used by users
+      uname -a 
+      pact-broker --help
+      pact-message --help
+      pact-mock-service --help
+      pact-provider-verifier --help
+      pact-stub-service --help
+      pactflow --help
+
+TEST_TASK_TEMPLATE: &TEST_TASK_TEMPLATE
+  <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
+  test_plugin_cli_script: pact-plugin-cli --help
+
+DOCKER_ARGS_ARM64_TEMPLATE: &DOCKER_ARGS_ARM64_TEMPLATE
+    docker_arguments:
+      PACT_VERSION: $PACT_VERSION
+      TARGET_ARCH: arm64
+
+DOCKER_ARGS_X64_TEMPLATE: &DOCKER_ARGS_X64_TEMPLATE
+    docker_arguments:
+      PACT_VERSION: $PACT_VERSION
+      TARGET_ARCH: x86_64
+
+# This task packages up the pact-ruby-standalone for all arches
+# it uses the ruby image to save time
+# BINARY_ env vars are set, so we only test our platform specific pact-ruby-standalone
+builder_linux_x64_task: 
+  env:
+    BINARY_OS: linux
+    BINARY_ARCH: x86_64
+    PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
+  container:
+    image: ruby:3.2.2
+  pre_req_script:
+      apt update --yes && apt install --yes zip
+  << : *BUILD_TEST_TASK_TEMPLATE
+
+builder_linux_slim_x64_task: 
+  env:
+    BINARY_OS: linux
+    BINARY_ARCH: x86_64
+    PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
+  container:
+    image: ruby:3.2.2-slim
+  pre_req_script:
+      apt update --yes && apt install --yes zip curl
+  << : *BUILD_TEST_TASK_TEMPLATE
+
+builder_linux_arm64_task: 
+  env: 
+    BINARY_OS: linux
+    BINARY_ARCH: arm64
+    PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
+  arm_container:
+    image: ruby:3.2.2
+  pre_req_script:
+      apt update --yes && apt install --yes zip
+  << : *BUILD_TEST_TASK_TEMPLATE
+
+builder_linux_slim_arm64_task: 
   env:
     BINARY_OS: linux
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
-  ## *******************************  
-  ## Fails on Ruby:3.1.2 based image - fine on ubuntu latest, but installing ruby 3.1.2 from source takes a good while (few minutes)
-  ## executing ./pact/bin/pactflow
-  ## /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:524:in `materialize': Could not find pact-1.63.0, pact-message-0.11.1, pact-mock_service-3.11.0, pact-provider-verifier-1.36.1, pact_broker-client-1.66.1, webrick-1.8.1, rack-2.2.7, pact-support-1.19.0, rack-test-2.1.0, rspec-3.12.0, term-ansicolor-1.7.1, thor-1.2)
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:197:in `specs'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:254:in `specs_for'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/runtime.rb:18:in `setup'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler.rb:171:in `setup'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/setup.rb:23:in `block in <top (required)>'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/ui/shell.rb:159:in `with_level'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/ui/shell.rb:111:in `silence'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/setup.rb:23:in `<top (required)>'
-  ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require'
-  ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require' 
-  ## *******************************  
-  # container:
-  #   image: ruby:3.1.2
-  #   architecture: arm64
-  # pre_req_script: |
-  #     apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
-  #     ruby --version
-  #     bundler --version
   arm_container:
+    image: ruby:3.2.2-slim
+  pre_req_script:
+      apt update --yes && apt install --yes zip curl
+  << : *BUILD_TEST_TASK_TEMPLATE
+
+# This task packages up the pact-ruby-standalone for all arches
+# it uses the latest ubuntu image to show it building from source
+# it takes ages but helps show all the dependencies
+## Skipped unless commit message "ci(cirrus): test builder_ruby_source_linux"
+## cirrus run "builder_ruby_source_linux" --output github-actions -e CIRRUS_CHANGE_TITLE="ci(cirrus): builder_ruby_source_linux"
+builder_ruby_source_linux_task:
+  only_if: $CIRRUS_CHANGE_TITLE =~ 'ci\(cirrus\):.*builder_ruby_source_linux'
+  env: ## BINARY_ env vars are set, so we only test our platform specific pact-ruby-standalone
+    BINARY_OS: linux
+    BINARY_ARCH: arm64
+    PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
+  container:
     image: ubuntu:latest
-    architecture: arm64  
   install_ruby_from_source_script: |
-      apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
+      apt update --yes && apt install --yes git curl \
+                                            libssl-dev libreadline-dev zlib1g-dev \
+                                            autoconf bison build-essential libyaml-dev \
+                                            libreadline-dev libncurses5-dev libffi-dev \
+                                            libgdbm-dev zip
       curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
       echo 'eval "$(rbenv init -)"' >> ~/.bashrc
       source ~/.bashrc
@@ -46,6 +120,8 @@ linux_arm64_task:
       bundler --version
   << : *BUILD_TEST_TASK_TEMPLATE
 
+# This task packages up the pact-ruby-standalone for all arches
+# using macOS and then tests out the arm64 package
 macosx_arm64_task: 
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
@@ -57,3 +133,45 @@ macosx_arm64_task:
     - ruby --version
   << : *BUILD_TEST_TASK_TEMPLATE
 
+
+## Test published standalone against arm64 versions
+alpine_arm64_task: 
+  arm_container:
+    dockerfile: Dockerfile.alpine.arm64
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
+ubuntu_arm64_task: 
+  arm_container:
+    dockerfile: Dockerfile.ubuntu
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
+debian_arm64_task: 
+  arm_container:
+    dockerfile: Dockerfile.debian.slim
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
+## Test published standalone against x64 versions
+alpine_x64_task: 
+  container:
+    dockerfile: Dockerfile.alpine.x64
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
+ubuntu_x64_task: 
+  container:
+    dockerfile: Dockerfile.ubuntu
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
+debian_x64_task: 
+  container:
+    dockerfile: Dockerfile.debian.slim
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_TASK_TEMPLATE
+
+## The following task will fail, until the PR addressing https://github.com/pact-foundation/pact-ruby-standalone/issues/56 is merged
+## and released. Shown working in the builder_linux_task task
+# ruby_3_2_2_task:
+#   arm_container:
+#     image: ruby:3.2.2
+#     <<: *DOCKER_ARGS_ARM64_TEMPLATE
+#   <<: *STANDALONE_INSTALL_TASK_TEMPLATE
+#   <<: *TEST_TASK_TEMPLATE
