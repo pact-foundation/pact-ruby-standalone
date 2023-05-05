@@ -11,7 +11,7 @@ linux_arm64_task:
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
   ## *******************************  
-  ## Fails on Ruby:3.2.2 based image - fine on ubuntu latest, but installing ruby 3.2.2 from source takes a good while (few minutes)
+  ## Fails on Ruby:3.1.2 based image - fine on ubuntu latest, but installing ruby 3.1.2 from source takes a good while (few minutes)
   ## executing ./pact/bin/pactflow
   ## /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:524:in `materialize': Could not find pact-1.63.0, pact-message-0.11.1, pact-mock_service-3.11.0, pact-provider-verifier-1.36.1, pact_broker-client-1.66.1, webrick-1.8.1, rack-2.2.7, pact-support-1.19.0, rack-test-2.1.0, rspec-3.12.0, term-ansicolor-1.7.1, thor-1.2)
   ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:197:in `specs'
@@ -26,7 +26,7 @@ linux_arm64_task:
   ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require' 
   ## *******************************  
   # container:
-  #   image: ruby:3.2.2
+  #   image: ruby:3.1.2
   #   architecture: arm64
   # pre_req_script: |
   #     apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
@@ -40,8 +40,8 @@ linux_arm64_task:
       curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
       echo 'eval "$(rbenv init -)"' >> ~/.bashrc
       source ~/.bashrc
-      rbenv install 3.2.2
-      rbenv global 3.2.2
+      rbenv install 3.1.2
+      rbenv global 3.1.2
       ruby --version
       bundler --version
   << : *BUILD_TEST_TASK_TEMPLATE

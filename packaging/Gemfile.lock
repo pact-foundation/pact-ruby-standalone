@@ -36,7 +36,7 @@ GEM
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    json (2.6.3)
+    json (2.6.1)
     mini_mime (1.1.2)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
@@ -121,15 +121,12 @@ GEM
     webrick (1.8.1)
 
 PLATFORMS
-  aarch64-linux
-  arm64-darwin-20
-  arm64-darwin-21
   arm64-darwin-22
   ruby
   x64-mingw32
 
 DEPENDENCIES
-  json (= 2.6.3)
+  json (= 2.6.1)
   pact (= 1.63.0)
   pact-message (= 0.11.1)
   pact-mock_service (= 3.11.0)
@@ -139,4 +136,4 @@ DEPENDENCIES
   webrick (= 1.8.1)
 
 BUNDLED WITH
-   2.4.0
+   2.4.12

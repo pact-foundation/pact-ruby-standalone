@@ -3,13 +3,13 @@
 
 | OS     | Ruby      | Architecture   | Supported |
 | -------| -------   | ------------   | --------- |
-| MacOS  | 3.2.2     | x86_64         | ✅        |
-| MacOS  | 3.2.2     | aarch64 (arm64)| ✅        |
-| Linux  | 3.2.2     | x86_64         | ✅        |
-| Linux  | 3.2.2     | aarch64 (arm64)| ✅        |
-| Windows| 3.2.2     | x86_64         | ✅        |
-| Windows| 3.2.2     | x86            | ✅        |
-| Windows| 3.2.2     | aarch64 (arm64)| 🚧        |
+| MacOS  | 3.1.2     | x86_64         | ✅        |
+| MacOS  | 3.1.2     | aarch64 (arm64)| ✅        |
+| Linux  | 3.1.2     | x86_64         | ✅        |
+| Linux  | 3.1.2     | aarch64 (arm64)| ✅        |
+| Windows| 3.1.2     | x86_64         | ✅        |
+| Windows| 3.1.2     | x86            | ✅        |
+| Windows| 3.1.2     | aarch64 (arm64)| 🚧        |
 
 
 ### One Line Install (MacOS/Linux - aarch64/x86_64)

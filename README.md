@@ -18,15 +18,15 @@ Download the appropriate package for your operating system from the [releases](h
 
 ## Supported Platforms
 
-Ruby is not required on the host platform, Ruby 3.2.2 is provided in the distributable.
+Ruby is not required on the host platform, Ruby 3.1.2 is provided in the distributable.
 
 
 | OS     | Ruby      | Architecture   | Supported |
 | -------| -------   | ------------   | --------- |
-| MacOS  | 3.2.2     | x86_64         | ✅        |
-| MacOS  | 3.2.2     | aarch64 (arm64)| ✅        |
-| Linux  | 3.2.2     | x86_64         | ✅        |
-| Linux  | 3.2.2     | aarch64 (arm64)| ✅        |
-| Windows| 3.2.2     | x86_64         | ✅        |
-| Windows| 3.2.2     | x86            | ✅        |
-| Windows| 3.2.2     | aarch64 (arm64)| 🚧        |
+| MacOS  | 3.1.2     | x86_64         | ✅        |
+| MacOS  | 3.1.2     | aarch64 (arm64)| ✅        |
+| Linux  | 3.1.2     | x86_64         | ✅        |
+| Linux  | 3.1.2     | aarch64 (arm64)| ✅        |
+| Windows| 3.1.2     | x86_64         | ✅        |
+| Windows| 3.1.2     | x86            | ✅        |
+| Windows| 3.1.2     | aarch64 (arm64)| 🚧        |

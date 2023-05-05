@@ -3,7 +3,9 @@ require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
-TRAVELING_RUBY_VERSION = "20230508-3.2.2"
+
+TRAVELING_RUBY_VERSION_REL_DATE = "20230504"
+TRAVELING_RUBY_VERSION = "#{TRAVELING_RUBY_VERSION_REL_DATE}-3.1.2"
 PLUGIN_CLI_VERSION = "0.1.0"
 
 desc "Package pact-ruby-standalone for OSX, Linux x86_64 and windows x86_64"
@@ -45,8 +47,8 @@ namespace :package do
   end
   desc "Install gems to local directory"
   task :bundle_install do
-    if RUBY_VERSION !~ /^3\.2\./
-      abort "You can only 'bundle install' using Ruby 3.2.2, because that's what Traveling Ruby uses."
+    if RUBY_VERSION !~ /^3\.1\./
+      abort "You can only 'bundle install' using Ruby 3.1.2, because that's what Traveling Ruby uses."
     end
     sh "rm -rf build/tmp"
     sh "mkdir -p build/tmp"
@@ -222,7 +224,7 @@ end
 
 def download_runtime(version, target)
   sh "cd build && curl -L -O --fail " +
-    "https://github.com/YOU54F/traveling-ruby/releases/download/rel-20230508/traveling-ruby-#{version}-#{target}.tar.gz"
+    "https://github.com/YOU54F/traveling-ruby/releases/download/rel-#{TRAVELING_RUBY_VERSION_REL_DATE}/traveling-ruby-#{version}-#{target}.tar.gz"
 end
 
 def install_plugin_cli(package_dir, package_target)
