@@ -20,10 +20,9 @@ STANDALONE_INSTALL_TASK_TEMPLATE: &STANDALONE_INSTALL_TASK_TEMPLATE
 
 ## This is a yak shave relating to https://github.com/you54f/pact-ruby-standalone/issues/102
 ## pact-plugin-cli is not compatible with current guidance for alpine aarch64 with official arm64v8/alpine 
-## This task is reused in TEST_TASK_TEMPLATE adding in the pact-plugin-cli so its tested for other combos
-TEST_ALPINE_ARM64_TASK_TEMPLATE: &TEST_ALPINE_ARM64_TASK_TEMPLATE
+## This task is reused in TEST_FULL_CLI_TASK_TEMPLATE adding in the pact-plugin-cli so its tested for other combos
+TEST_RUBY_CLI_TASK_TEMPLATE: &TEST_RUBY_CLI_TASK_TEMPLATE
   test_script: | # would rather avoid the commands here, but also want to keep the images clean so they can be easily used by users
-      uname -a 
       pact-broker --help
       pact-message --help
       pact-mock-service --help
@@ -31,9 +30,9 @@ TEST_ALPINE_ARM64_TASK_TEMPLATE: &TEST_ALPINE_ARM64_TASK_TEMPLATE
       pact-stub-service --help
       pactflow --help
 
-TEST_TASK_TEMPLATE: &TEST_TASK_TEMPLATE
+TEST_FULL_CLI_TASK_TEMPLATE: &TEST_FULL_CLI_TASK_TEMPLATE
   test_plugin_cli_script: pact-plugin-cli --help
-  <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
 
 DOCKER_ARGS_ARM64_TEMPLATE: &DOCKER_ARGS_ARM64_TEMPLATE
     docker_arguments:
@@ -107,7 +106,8 @@ macosx_arm64_task:
     BINARY_OS: osx
     BINARY_ARCH: arm64
   pre_req_script: 
-    - brew install ruby
+    - rbenv install 3.1.2
+    - rbnev global 3.1.2
     - ruby --version
   << : *BUILD_TEST_TASK_TEMPLATE
   binary_artifacts:
@@ -119,33 +119,33 @@ alpine_arm64_task:
   container:
     dockerfile: Dockerfile.alpine.arm64
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
-  <<: *TEST_ALPINE_ARM64_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
 ubuntu_arm64_task: 
   arm_container:
     dockerfile: Dockerfile.ubuntu
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
 debian_arm64_task: 
   arm_container:
     dockerfile: Dockerfile.debian.slim
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
 ## Test published standalone against x64 versions
 alpine_x64_task: 
   container:
     dockerfile: Dockerfile.alpine.x64
     <<: *DOCKER_ARGS_X64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
 ubuntu_x64_task: 
   container:
     dockerfile: Dockerfile.ubuntu
     <<: *DOCKER_ARGS_X64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
+  <<: *TEST_FULL_CLI_TASK_TEMPLATE
 debian_x64_task: 
   container:
     dockerfile: Dockerfile.debian.slim
     <<: *DOCKER_ARGS_X64_TEMPLATE
-  <<: *TEST_TASK_TEMPLATE
+  <<: *TEST_FULL_CLI_TASK_TEMPLATE
 
 ## The following task will fail, until the PR addressing https://github.com/you54f/pact-ruby-standalone/issues/56 is merged
 ## and released. Shown working in the builder_linux_task task
@@ -154,4 +154,4 @@ debian_x64_task:
 #     image: ruby:3.1.2
 #     <<: *DOCKER_ARGS_ARM64_TEMPLATE
 #   <<: *STANDALONE_INSTALL_TASK_TEMPLATE
-#   <<: *TEST_TASK_TEMPLATE
+#   <<: *TEST_FULL_CLI_TASK_TEMPLATE
