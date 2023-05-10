@@ -40,7 +40,20 @@ case $(uname -sm) in
     else
         os='osx-x86_64'
     fi
-
+    ;;
+   CYGWIN64*|MINGW64*|MSYS64*|MINGW64*)
+    if [[ "${tag#v}" < 2 ]]; then
+        os='win-32'
+    else
+        os='windows-x86_64'
+    fi
+    ;;
+   CYGWIN*|MINGW32*|MSYS*|MINGW*)
+    if [[ "${tag#v}" < 2 ]]; then
+        os='win-32'
+    else
+        os='windows-x86'
+    fi
     ;;
   *)
   echo "Sorry, you'll need to install the pact-ruby-standalone manually."
@@ -48,8 +61,16 @@ case $(uname -sm) in
     ;;
 esac
 
-
 filename="pact-${tag#v}-${os}.tar.gz"
 curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/${tag}/${filename}
-tar xzf ${filename}
-rm ${filename}
+
+case $(uname -sm) in
+   CYGWIN*|MINGW32*|MSYS*|MINGW*)
+    unzip ${filename}
+    ;;
+  *)
+    tar xzf ${filename}
+    ;;
+esac
+
+  rm ${filename}
