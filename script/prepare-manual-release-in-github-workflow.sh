@@ -15,7 +15,7 @@ tag="v${VERSION}"
 # echo "::set-output name=tag::${tag}"
 # echo "::set-output name=increment::${INCREMENT}"
 
-echo "version=${version}" >> $GITHUB_OUTPUT
+echo "version=${VERSION}" >> $GITHUB_OUTPUT
 echo "tag=${tag}" >> $GITHUB_OUTPUT
 echo "increment=${INCREMENT}" >> $GITHUB_OUTPUT
 
