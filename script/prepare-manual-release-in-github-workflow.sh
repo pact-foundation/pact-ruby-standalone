@@ -11,17 +11,21 @@ printf $VERSION > VERSION
 bundle exec rake generate_changelog
 tag="v${VERSION}"
 
-echo "::set-output name=version::${VERSION}"
-echo "::set-output name=tag::${tag}"
-echo "::set-output name=increment::${INCREMENT}"
+# echo "::set-output name=version::${VERSION}"
+# echo "::set-output name=tag::${tag}"
+# echo "::set-output name=increment::${INCREMENT}"
+
+echo "version=${version}" >> $GITHUB_OUTPUT
+echo "tag=${tag}" >> $GITHUB_OUTPUT
+echo "increment=${INCREMENT}" >> $GITHUB_OUTPUT
 
 bundle exec rake package
 pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; done; popd;
 cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
 
 bundle exec rake generate_release_notes[$tag]
-
-git add VERSION CHANGELOG.md
+cp build/README.md README.md
+git add VERSION CHANGELOG.md README.md
 git commit -m "chore(release): version ${VERSION}
 [ci-skip]"
 git tag -a ${tag} -m "chore(release): version ${VERSION}"
