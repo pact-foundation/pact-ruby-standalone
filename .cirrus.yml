@@ -113,7 +113,7 @@ macos_arm64_task:
       ./configure --prefix=/Users/$USER/.rbenv/versions/3.1.4
       make -j9
       make install
-    - rbnev global 3.1.4
+    - rbenv global 3.1.4
     - ruby --version
   << : *BUILD_TEST_TASK_TEMPLATE
   binary_artifacts:
