@@ -1,3 +1,12 @@
+<a name="v2.2.0"></a>
+### v2.2.0 (2023-04-05)
+
+
+#### Features
+
+* support win x86_64 with ruby 3.1.2	 ([61d27ac](/../../commit/61d27ac))
+
+
 <a name="v2.0.0"></a>
 ### v2.0.0 (2023-04-27)
 
