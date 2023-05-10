@@ -55,8 +55,8 @@ namespace :package do
     sh "cp packaging/Gemfile packaging/Gemfile.lock build/tmp/"
     sh "mkdir -p build/tmp/lib/pact/mock_service"
     # sh "cp lib/pact/mock_service/version.rb build/tmp/lib/pact/mock_service/version.rb"
-    Bundler.with_clean_env do
-      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform x64-mingw32 && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_DEPLOYMENT=true bundle install --path ../vendor"
+    Bundler.with_unbundled_env do
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform x64-mingw32 && bundle config set --local path ../vendor && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_DEPLOYMENT=true bundle install"
       generate_readme
     end
     sh "rm -rf build/tmp"
@@ -64,10 +64,10 @@ namespace :package do
   end
 
   task :generate_readme do
-    Bundler.with_clean_env do
+    Bundler.with_unbundled_env do
       sh "mkdir -p build/tmp"
       sh "cp packaging/Gemfile packaging/Gemfile.lock build/tmp/"
-      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_PATH=../vendor bundle install --without development"
       generate_readme
     end
   end
@@ -217,7 +217,7 @@ end
 def generate_readme
   template = File.absolute_path("packaging/README.md.template")
   script = File.absolute_path("packaging/generate_readme_contents.rb")
-  Bundler.with_clean_env do
+  Bundler.with_unbundled_env do
     sh "cd build/tmp && env VERSION=#{VERSION} bundle exec ruby #{script} #{template} > ../README.md"
   end
 end
