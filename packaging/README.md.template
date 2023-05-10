@@ -1,6 +1,56 @@
 # Pact standalone executables
 
-This package contains the Ruby implementations of the Pact Mock Service, Pact Provider Verifier and Pact Broker Client, packaged with Travelling Ruby so that they can be run from the command line without a Ruby installation.
+![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
+
+This package contains the Ruby implementations of the Pact Mock Service, Pact Provider Verifier and Pact Broker Client, packaged with Traveling Ruby so that they can be run from the command line without a Ruby installation.
+
+## Installation
+
+### Linux and MacOS
+
+    curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
+
+Install a fixed version
+
+    curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | tag=v1.92.0 bash
+
+### Windows
+
+Download and extract from the [release page][releases].
+
+## Usage
+
+Binaries will be extracted into `pact/bin`:
+
+```
+./pact/bin/
+├── pact
+├── pact-broker
+├── pactflow
+├── pact-message
+├── pact-mock-service
+├── pact-provider-verifier
+└── pact-stub-service
+```
+
+[releases]: https://github.com/pact-foundation/pact-ruby-standalone/releases
+
+## Supported Platforms
+
+| OS     | Ruby      | Architecture   | Supported |
+| -------| -------   | ------------   | --------- |
+| MacOS  | 3.1.4     | x86_64         | ✅        |
+| MacOS  | 3.1.4     | aarch64 (arm64)| ✅        |
+| Linux  | 3.1.4     | x86_64         | ✅        |
+| Linux  | 3.1.4     | aarch64 (arm64)| ✅        |
+| Windows| 3.1.4     | x86_64         | ✅        |
+| Windows| 3.1.4     | x86            | ✅        |
+| Windows| 3.1.4     | aarch64 (arm64)| 🚧        |
+
+
+## Troubleshooting
+
+### SSL
 
 To connect to a Pact Broker that uses custom SSL cerificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.
 
