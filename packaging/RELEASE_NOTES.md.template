@@ -3,13 +3,13 @@
 
 | OS     | Ruby      | Architecture   | Supported |
 | -------| -------   | ------------   | --------- |
-| MacOS  | 3.1.2     | x86_64         | ✅        |
-| MacOS  | 3.1.2     | aarch64 (arm64)| ✅        |
-| Linux  | 3.1.2     | x86_64         | ✅        |
-| Linux  | 3.1.2     | aarch64 (arm64)| ✅        |
-| Windows| 3.1.2     | x86_64         | ✅        |
-| Windows| 3.1.2     | x86            | ✅        |
-| Windows| 3.1.2     | aarch64 (arm64)| 🚧        |
+| MacOS  | 3.1.4     | x86_64         | ✅        |
+| MacOS  | 3.1.4     | aarch64 (arm64)| ✅        |
+| Linux  | 3.1.4     | x86_64         | ✅        |
+| Linux  | 3.1.4     | aarch64 (arm64)| ✅        |
+| Windows| 3.1.4     | x86_64         | ✅        |
+| Windows| 3.1.4     | x86            | ✅        |
+| Windows| 3.1.4     | aarch64 (arm64)| 🚧        |
 
 
 ### One Line Install (MacOS/Linux - aarch64/x86_64)
@@ -17,7 +17,7 @@
 note: Gets latest version, see individual platform notes for <PACKAGE_VERSION> release, if looking for an older version
 
 ```
-curl -fsSL https://raw.githubusercontent.com/you54f/pact-ruby-standalone/ruby_3.1.2_upgrade/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/you54f/pact-ruby-standalone/ruby_3.1.4_upgrade/install.sh | bash
 ```
 
 then

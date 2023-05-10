@@ -53,7 +53,7 @@ builder_linux_x64_task:
     BINARY_ARCH: x86_64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
   container:
-    image: ruby:3.1.2
+    image: ruby:3.1.4
   pre_req_script:
       apt update --yes && apt install --yes zip
   << : *BUILD_TEST_TASK_TEMPLATE
@@ -65,7 +65,7 @@ builder_linux_slim_x64_task:
     BINARY_ARCH: x86_64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
   container:
-    image: ruby:3.1.2-slim
+    image: ruby:3.1.4-slim
   pre_req_script:
       apt update --yes && apt install --yes zip curl
   << : *BUILD_TEST_TASK_TEMPLATE
@@ -78,7 +78,7 @@ builder_linux_arm64_task:
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
   arm_container:
-    image: ruby:3.1.2
+    image: ruby:3.1.4
   pre_req_script:
       apt update --yes && apt install --yes zip
   << : *BUILD_TEST_TASK_TEMPLATE
@@ -90,7 +90,7 @@ builder_linux_slim_arm64_task:
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
   arm_container:
-    image: ruby:3.1.2-slim
+    image: ruby:3.1.4-slim
   pre_req_script:
       apt update --yes && apt install --yes zip curl
   << : *BUILD_TEST_TASK_TEMPLATE
@@ -99,15 +99,21 @@ builder_linux_slim_arm64_task:
 
 # This task packages up the pact-ruby-standalone for all arches
 # using macOS and then tests out the arm64 package
-macosx_arm64_task: 
+macos_arm64_task: 
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
   env:
     BINARY_OS: osx
     BINARY_ARCH: arm64
   pre_req_script: 
-    - rbenv install 3.1.2
-    - rbnev global 3.1.2
+    - |
+      wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.4.tar.gz
+      tar xf ruby-3.1.4.tar.gz
+      cd ruby-3.1.4
+      ./configure --prefix=/Users/$USER/.rbenv/versions/3.1.4
+      make -j9
+      make install
+    - rbnev global 3.1.4
     - ruby --version
   << : *BUILD_TEST_TASK_TEMPLATE
   binary_artifacts:
@@ -116,7 +122,7 @@ macosx_arm64_task:
 
 ## Test published standalone against arm64 versions
 alpine_arm64_task: 
-  container:
+  arm_container:
     dockerfile: Dockerfile.alpine.arm64
     <<: *DOCKER_ARGS_ARM64_TEMPLATE
   <<: *TEST_RUBY_CLI_TASK_TEMPLATE
@@ -151,7 +157,7 @@ debian_x64_task:
 ## and released. Shown working in the builder_linux_task task
 # ruby_3_2_2_task:
 #   arm_container:
-#     image: ruby:3.1.2
+#     image: ruby:3.1.4
 #     <<: *DOCKER_ARGS_ARM64_TEMPLATE
 #   <<: *STANDALONE_INSTALL_TASK_TEMPLATE
 #   <<: *TEST_FULL_CLI_TASK_TEMPLATE
