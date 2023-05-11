@@ -56,13 +56,14 @@ namespace :package do
     sh "mkdir -p build/tmp/lib/pact/mock_service"
     # sh "cp lib/pact/mock_service/version.rb build/tmp/lib/pact/mock_service/version.rb"
     Bundler.with_unbundled_env do
-      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform x64-mingw32 && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_DEPLOYMENT=true bundle install --path ../vendor"
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform aarch64-linux x86_64-linux x86_64-darwin arm64-darwin x64-mingw-ucrt i386-mingw32 \
+                       && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_DEPLOYMENT=true bundle install --path ../vendor"
       generate_readme
     end
     sh "rm -rf build/tmp"
     sh "rm -rf build/vendor/*/*/cache/*"
   end
-
+  
   task :generate_readme do
     Bundler.with_unbundled_env do
       generate_readme

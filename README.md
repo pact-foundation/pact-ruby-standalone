@@ -47,10 +47,9 @@ Binaries will be extracted into `pact/bin`:
 | Windows| 3.1.4     | x86            | ✅        |
 | Windows| 3.1.4     | aarch64 (arm64)| 🚧        |
 
-
 ## Troubleshooting
 
-### SSL
+### SSL
 
 To connect to a Pact Broker that uses custom SSL cerificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.
 

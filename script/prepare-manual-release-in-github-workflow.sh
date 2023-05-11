@@ -11,10 +11,6 @@ printf $VERSION > VERSION
 bundle exec rake generate_changelog
 tag="v${VERSION}"
 
-# echo "::set-output name=version::${VERSION}"
-# echo "::set-output name=tag::${tag}"
-# echo "::set-output name=increment::${INCREMENT}"
-
 echo "version=${VERSION}" >> $GITHUB_OUTPUT
 echo "tag=${tag}" >> $GITHUB_OUTPUT
 echo "increment=${INCREMENT}" >> $GITHUB_OUTPUT
