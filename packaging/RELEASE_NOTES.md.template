@@ -3,7 +3,7 @@
 ### Linux and MacOS
 
 ```
-curl -fsSL https://raw.githubusercontent.com/you54f/pact-ruby-standalone/master/install.sh | tag=<PACKAGE_VERSION> bash
+curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | tag=<PACKAGE_VERSION> bash
 ```
 
 then
@@ -17,7 +17,7 @@ cd pact/bin
 ### MacOS x86_64
 
 ```
-curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -27,7 +27,7 @@ cd pact/bin
 ### MacOS arm64
 
 ```
-curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -37,7 +37,7 @@ cd pact/bin
 ### Linux x86_64
 
 ```
-curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -47,7 +47,7 @@ cd pact/bin
 ### Linux aarch64
 
 ```
-curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 cd pact/bin
 ./pact-mock-service --help start
@@ -57,7 +57,7 @@ cd pact/bin
 ### Windows x86_64
 
 ```
-curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86_64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86_64.tar.gz
 unzip pact-<PACKAGE_VERSION>-windows-x86_64.tar.gz
 cd pact\bin
 pact-mock-service.bat --help start
@@ -67,7 +67,7 @@ pact-provider-verifier.bat --help verify
 ### Windows x86
 
 ```
-curl -LO https://github.com/you54f/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86.tar.gz
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86.tar.gz
 unzip pact-<PACKAGE_VERSION>-windows-x86.tar.gz
 cd pact\bin
 pact-mock-service.bat --help start

@@ -1,31 +1,3 @@
-<a name="v2.2.1"></a>
-### v2.2.1 (2023-05-10)
-
-
-#### Features
-
-* give <3 to windows users in install script	 ([8fb4136](/../../commit/8fb4136))
-* ruby 3.1.2 upgrade	 ([b769212](/../../commit/b769212))
-* Ruby 3.2.2 / MacOS+Linux aarch64/arm64 support	 ([bd2530d](/../../commit/bd2530d))
-
-* **ci**
-  * test x-plat arm64/x86_64/x64 macOS/Linux/Win	 ([41ab2ac](/../../commit/41ab2ac))
-
-
-#### Bug Fixes
-
-* unset BUNDLE_APP_CONFIG to prevent Ruby contamination macOS/linux #56	 ([ab540b3](/../../commit/ab540b3))
-
-
-<a name="v2.2.0"></a>
-### v2.2.0 (2023-04-05)
-
-
-#### Features
-
-* support win x86_64 with ruby 3.1.2	 ([61d27ac](/../../commit/61d27ac))
-
-
 <a name="v2.0.0"></a>
 ### v2.0.0 (2023-04-27)
 
