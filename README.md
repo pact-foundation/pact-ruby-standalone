@@ -6,15 +6,30 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Installation
 
-See the [releases](https://github.com/pact-foundation/pact-ruby-standalone/releases) page for installation instructions.
+### Linux and MacOS
+
+    curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash
+
+### Windows
+
+
+Download and extract from the [release page][releases].
 
 ## Usage
 
-Download the appropriate package for your operating system from the [releases](https://github.com/pact-foundation/pact-ruby-standalone/releases) page and unzip it.
+Binaries will be extracted into `pact/bin`:
 
-    $ cd pact/bin
-    $ ./pact-mock-service --help start
-    $ ./pact-provider-verifier --help verify
+```
+./pact/bin/
+├── pact
+├── pact-broker
+├── pactflow
+├── pact-message
+├── pact-mock-service
+├── pact-provider-verifier
+├── pact-publish # replaced by `pact-broker publish`
+└── pact-stub-service
+```
 
 ## Supported Platforms
 
