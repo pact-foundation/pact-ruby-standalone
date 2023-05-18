@@ -1,3 +1,18 @@
+<a name="v2.0.1"></a>
+### v2.0.1 (2023-05-18)
+
+
+#### Features
+
+* **gems**
+  * update to pact-mock_service (3.11.2)	 ([7421bd4](/../../commit/7421bd4))
+
+
+#### Bug Fixes
+
+* unset BUNDLE_APP_CONFIG to prevent Ruby contamination macOS/linux #56	 ([ab540b3](/../../commit/ab540b3))
+
+
 <a name="v2.0.0"></a>
 ### v2.0.0 (2023-04-27)
 
