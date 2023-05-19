@@ -1,8 +1,8 @@
-# Pact standalone executables
+# Pact Ruby Standalone
 
-This package contains the Ruby implementations of the Pact Mock Service, Pact Provider Verifier and Pact Broker Client, packaged with Travelling Ruby so that they can be run from the command line without a Ruby installation.
+![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
 
-To connect to a Pact Broker that uses custom SSL cerificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.
+Creates a standalone pact command line executable using the ruby pact implementation and Traveling Ruby
 
 ## Package contents
 
@@ -15,6 +15,40 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
   * pact_broker-client gem <%= PactBroker::Client::VERSION %>
   * pact-message gem <%= Pact::Message::VERSION %>
 
+Binaries will be extracted into `pact/bin`:
+
+```
+./pact/bin/
+├── pact
+├── pact-broker
+├── pactflow
+├── pact-message
+├── pact-mock-service
+├── pact-provider-verifier
+└── pact-stub-service
+```
+
+## Installation
+
+See the [release page][releases].
+
+[releases]: https://github.com/pact-foundation/pact-ruby-standalone/releases
+
+## Supported Platforms
+
+Ruby is not required on the host platform, Ruby 3.2.2 is provided in the distributable.
+
+| OS     | Ruby      | Architecture   | Supported |
+| -------| -------   | ------------   | --------- |
+| MacOS  | 3.2.2     | x86_64         | ✅        |
+| MacOS  | 3.2.2     | aarch64 (arm64)| ✅        |
+| Linux  | 3.2.2     | x86_64         | ✅        |
+| Linux  | 3.2.2     | aarch64 (arm64)| ✅        |
+| Windows| 3.2.2     | x86_64         | ✅        |
+| Windows| 3.2.2     | x86            | ✅        |
+| Windows| 3.2.2     | aarch64 (arm64)| 🚧        |
+
+🚧 - Tested under emulation mode x86 / x86_64 in Windows on ARM
 
 ## Usage
 
@@ -84,3 +118,9 @@ To connect to a Pact Broker that uses custom SSL cerificates, set the environmen
 ```
 <%= pact_message_usage %>
 ```
+
+## Troubleshooting
+
+### SSL
+
+To connect to a Pact Broker that uses custom SSL certificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.

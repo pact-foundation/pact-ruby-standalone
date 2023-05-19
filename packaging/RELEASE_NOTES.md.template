@@ -1,81 +1,61 @@
+# Pact standalone executables
 
-## Installation
+This package contains the Ruby implementations of the Pact Mock Service, Pact Provider Verifier and Pact Broker Client, packaged with Traveling Ruby so that they can be run from the command line without a Ruby installation.
 
-| OS     | Ruby      | Architecture   | Supported |
-| -------| -------   | ------------   | --------- |
-| MacOS  | 3.2.2     | x86_64         | ✅        |
-| MacOS  | 3.2.2     | aarch64 (arm64)| ✅        |
-| Linux  | 3.2.2     | x86_64         | ✅        |
-| Linux  | 3.2.2     | aarch64 (arm64)| ✅        |
-| Windows| 3.2.2     | x86_64         | ✅        |
-| Windows| 3.2.2     | x86            | ✅        |
-| Windows| 3.2.2     | aarch64 (arm64)| 🚧        |
+## Installation of <PACKAGE_VERSION>
 
-
-### One Line Install (MacOS/Linux - aarch64/x86_64)
-
-note: Gets latest version, see individual platform notes for <PACKAGE_VERSION> release, if looking for an older version
+### Linux and MacOS
 
 ```
-curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/ruby_3.1.2_upgrade/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | tag=<PACKAGE_VERSION> bash
 ```
 
-then
+### MacOS
 
-```
-cd pact/bin
-./pact-mock-service --help start
-./pact-provider-verifier --help verify
-```
-
-### MacOS x86_64
+#### x86_64
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
-cd pact/bin
-./pact-mock-service --help start
-./pact-provider-verifier --help verify
 ```
 
-### MacOS arm64
+#### arm64
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
-cd pact/bin
-./pact-mock-service --help start
-./pact-provider-verifier --help verify
 ```
 
-### Linux x86_64
+### Linux
+
+#### x86_64
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
-cd pact/bin
-./pact-mock-service --help start
-./pact-provider-verifier --help verify
 ```
 
-### Linux aarch64
+### Linux
+
+#### arm64
 
 ```
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
-cd pact/bin
-./pact-mock-service --help start
-./pact-provider-verifier --help verify
 ```
 
 ### Windows
 
-Download package, unzip, then run:
-
-You can choose the x86_64 package for 64 bit machines, or the x86 package for 32 bit machines, or if you have issues with the 64 bit.
+#### x86_64
 
 ```
-$ cd pact
-$ .\bin\pact-mock-service.bat --help start
-$ .\bin\pact-provider-verifier.bat --help verify
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86_64.tar.gz
+unzip pact-<PACKAGE_VERSION>-windows-x86_64.tar.gz
+```
+
+#### x86
+
+```
+curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86.tar.gz
+unzip pact-<PACKAGE_VERSION>-windows-x86.tar.gz
 ```
