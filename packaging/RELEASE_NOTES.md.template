@@ -35,8 +35,6 @@ curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/downlo
 tar xzf pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 ```
 
-### Linux
-
 #### arm64
 
 ```
