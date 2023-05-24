@@ -1,59 +1,223 @@
+env:
+  PACT_VERSION: 2.0.1
+  tag: v2.0.1
+
+#####################################
+###    BUILD & TEST STANDALONE    ###
+#####################################
+# This task packages up the pact-ruby-standalone for all arches
+# it is used in tasks
+# - builder_linux_arm_task
+# - builder_macos_arm_task
 BUILD_TEST_TASK_TEMPLATE: &BUILD_TEST_TASK_TEMPLATE
   arch_check_script:
     - uname -am
   install_script: bundle install
   build_script: bundle exec rake package
-  test_script: chmod +x ./script/test.sh && ./script/test.sh
-
-linux_arm64_task: 
+  test_script: chmod +x ./script/unpack-and-test.sh && ./script/unpack-and-test.sh
+# BINARY_ env vars are set, so we only test our platform specific pact-ruby-standalone
+builder_linux_arm_task: 
   env:
     BINARY_OS: linux
     BINARY_ARCH: arm64
     PATH: "$HOME/.rbenv/bin:/root/.rbenv/shims:$PATH"
-  ## *******************************  
-  ## Fails on Ruby:3.2.2 based image - fine on ubuntu latest, but installing ruby 3.2.2 from source takes a good while (few minutes)
-  ## executing ./pact/bin/pactflow
-  ## /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:524:in `materialize': Could not find pact-1.63.0, pact-message-0.11.1, pact-mock_service-3.11.0, pact-provider-verifier-1.36.1, pact_broker-client-1.66.1, webrick-1.8.1, rack-2.2.7, pact-support-1.19.0, rack-test-2.1.0, rspec-3.12.0, term-ansicolor-1.7.1, thor-1.2)
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:197:in `specs'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/definition.rb:254:in `specs_for'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/runtime.rb:18:in `setup'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler.rb:171:in `setup'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/setup.rb:23:in `block in <top (required)>'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/ui/shell.rb:159:in `with_level'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/ui/shell.rb:111:in `silence'
-  ##   from /tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/bundler/setup.rb:23:in `<top (required)>'
-  ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require'
-  ##   from <internal:/tmp/cirrus-ci/working-dir/pkg/pact/lib/ruby/lib/ruby/3.2.0/rubygems/core_ext/kernel_require.rb>:85:in `require' 
-  ## *******************************  
-  # container:
-  #   image: ruby:3.2.2
-  #   architecture: arm64
-  # pre_req_script: |
-  #     apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
-  #     ruby --version
-  #     bundler --version
   arm_container:
-    image: ubuntu:latest
-    architecture: arm64  
-  install_ruby_from_source_script: |
-      apt update --yes && apt install --yes git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev zip
-      curl -fsSL https://github.com/rbenv/rbenv-installer/raw/HEAD/bin/rbenv-installer | bash
-      echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-      source ~/.bashrc
-      rbenv install 3.2.2
-      rbenv global 3.2.2
-      ruby --version
-      bundler --version
+    image: ruby:3.2.2-slim
+  pre_req_script:
+      apt update --yes && apt install --yes zip curl
   << : *BUILD_TEST_TASK_TEMPLATE
-
-macosx_arm64_task: 
+  binary_artifacts:
+    path: "pkg/*"
+builder_macos_arm_task: 
   macos_instance:
     image: ghcr.io/cirruslabs/macos-ventura-base:latest
   env:
     BINARY_OS: osx
     BINARY_ARCH: arm64
-  pre_req_script: 
-    - brew install ruby
-    - ruby --version
+  ## If you need to install Ruby from source
+  ## the image comes with 3.2.2 preinstalled
+  # install_ruby_script: 
+  #   - |
+  #     brew unlink openssl && brew link --force openssl
+  #     wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.2.2.tar.gz
+  #     tar xf ruby-3.2.2.tar.gz
+  #     cd ruby-3.2.2
+  #     ./configure --prefix=/Users/$USER/.rbenv/versions/3.2.2
+  #     make -j9
+  #     make install
+  #   - rbenv global 3.2.2
+  ruby_version_script: ruby --version
   << : *BUILD_TEST_TASK_TEMPLATE
+  binary_artifacts:
+    path: "pkg/*"
 
+
+#####################################
+###  TESTING PUBLISHED STANDALONE ###
+#####################################
+
+# Tests a specified version of the standalone against several types of Docker images
+# the tag version is set at the top of file tag: v2.0.1
+# 
+# It tests a combination of Dockerfiles
+# The Dockerfiles are provided for users to build their own images
+#
+# - alpine arm64
+# - ubuntu arm64
+# - debian arm64
+# - alpine x64
+# - ubuntu x64
+# - debian x64
+
+# It also tests a combination of common Docker images
+# - IMAGE: ruby:3.2.2-alpine
+# - IMAGE: node:20-alpine
+# - IMAGE: golang:1.20.2-alpine
+# - IMAGE: ruby:3.2.2-slim
+# - IMAGE: node:20-slim
+# - IMAGE: golang:1.20.2
+
+## This is a yak shave relating to https://github.com/pact-foundation/pact-ruby-standalone/issues/102
+## pact-plugin-cli is not compatible with current guidance for alpine aarch64 with official arm64v8/alpine 
+## This task is reused in TEST_FULL_CLI_TASK_TEMPLATE adding in the pact-plugin-cli so its tested for other combos
+TEST_RUBY_CLI_TASK_TEMPLATE: &TEST_RUBY_CLI_TASK_TEMPLATE
+  arch_check_script:
+    - uname -am
+  test_script: | # would rather avoid the commands here, but also want to keep the images clean so they can be easily used by users
+      pact-broker help
+      pact-message help
+      pact-mock-service help
+      pact-provider-verifier help
+      pact-stub-service help
+      pactflow help
+
+TEST_FULL_CLI_TASK_TEMPLATE: &TEST_FULL_CLI_TASK_TEMPLATE
+  test_plugin_cli_script: pact-plugin-cli help
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+
+DOCKER_ARGS_ARM64_TEMPLATE: &DOCKER_ARGS_ARM64_TEMPLATE
+    docker_arguments:
+      PACT_VERSION: $PACT_VERSION
+      TARGET_ARCH: arm64
+      TARGET_PLATFORM: linux
+
+DOCKER_ARGS_X64_TEMPLATE: &DOCKER_ARGS_X64_TEMPLATE
+    docker_arguments:
+      PACT_VERSION: $PACT_VERSION
+      TARGET_ARCH: x86_64
+      TARGET_PLATFORM: linux
+
+## Test published standalone against arm64 Dockerfiles provided for users
+alpine_arm64_task:  
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  arm_container:
+    dockerfile: Dockerfile.alpine.arm64
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+ubuntu_arm64_task:  
+  only_if: $CIRRUS_BRANCH == 'master'
+  arm_container:
+    dockerfile: Dockerfile.ubuntu
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+debian_arm64_task:  
+  only_if: $CIRRUS_BRANCH == 'master'
+  arm_container:
+    dockerfile: Dockerfile.debian.slim
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+## Test published standalone against x64 Dockerfiles provided for users
+alpine_x64_task:  
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  container:
+    dockerfile: Dockerfile.alpine.x64
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+ubuntu_x64_task:  
+  only_if: $CIRRUS_BRANCH == 'master'
+  container:
+    dockerfile: Dockerfile.ubuntu
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_FULL_CLI_TASK_TEMPLATE
+debian_x64_task:  
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  container:
+    dockerfile: Dockerfile.debian.slim
+    <<: *DOCKER_ARGS_X64_TEMPLATE
+  <<: *TEST_FULL_CLI_TASK_TEMPLATE
+
+STANDALONE_INSTALL_TASK_TEMPLATE: &STANDALONE_INSTALL_TASK_TEMPLATE
+  install_script: |
+    curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | bash \
+    && ln -s $PWD/pact/bin/* /usr/local/bin \
+    && ls pact/bin/ \
+    && ls /usr/local/bin
+## Test published standalone against common debian based images
+cli_test_debian_arm_task: 
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  env:
+    matrix:
+      - IMAGE: ruby:3.2.2-slim
+      - IMAGE: node:20-slim
+      - IMAGE: golang:1.20.2
+  arm_container:
+    image: $IMAGE
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  curl_script: apt update && apt install -y curl
+  <<: *STANDALONE_INSTALL_TASK_TEMPLATE
+  <<: *TEST_FULL_CLI_TASK_TEMPLATE
+
+## Test published standalone against common alpine based images
+cli_test_alpine_arm_task: 
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  env:
+    matrix:
+      - IMAGE: ruby:3.2.2-alpine
+      - IMAGE: node:20-alpine
+      - IMAGE: golang:1.20.2-alpine
+  arm_container:
+    image: $IMAGE
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  curl_script: apk add curl bash gcompat libc6-compat 
+  <<: *STANDALONE_INSTALL_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+
+## Test published standalone against common debian based images
+cli_test_debian_task: 
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  env:
+    matrix:
+      - IMAGE: ruby:3.2.2-slim
+      - IMAGE: node:20-slim
+      - IMAGE: golang:1.20.2
+  container:
+    image: $IMAGE
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  curl_script: apt update && apt install -y curl
+  <<: *STANDALONE_INSTALL_TASK_TEMPLATE
+  <<: *TEST_FULL_CLI_TASK_TEMPLATE
+
+## Test published standalone against common alpine based images
+cli_test_alpine_task: 
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  env:
+    matrix:
+      - IMAGE: ruby:3.2.2-alpine
+      - IMAGE: node:20-alpine
+      - IMAGE: golang:1.20.2-alpine
+  container:
+    image: $IMAGE
+    <<: *DOCKER_ARGS_ARM64_TEMPLATE
+  curl_script: apk add curl bash gcompat libc6-compat 
+  <<: *STANDALONE_INSTALL_TASK_TEMPLATE
+  <<: *TEST_RUBY_CLI_TASK_TEMPLATE
+
+
+## Test published standalone against MacOS arm64
+cli_test_macos_task: 
+  only_if: $CIRRUS_BRANCH == 'master' || $CIRRUS_PR != ''
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-ventura-base:latest
+  setup_script: sudo mkdir -p /usr/local/bin && sudo chown -R `whoami` /usr/local/*
+  << : *STANDALONE_INSTALL_TASK_TEMPLATE
+  << : *TEST_FULL_CLI_TASK_TEMPLATE
