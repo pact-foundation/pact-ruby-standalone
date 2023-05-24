@@ -3,8 +3,7 @@ require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
-TRAVELING_RUBY_VERSION_REL_DATE = "20230508"
-TRAVELING_RUBY_VERSION = "#{TRAVELING_RUBY_VERSION_REL_DATE}-3.2.2"
+TRAVELING_RUBY_VERSION = "20230508-3.2.2"
 PLUGIN_CLI_VERSION = "0.1.0"
 
 desc "Package pact-ruby-standalone for OSX, Linux x86_64 and windows x86_64"
@@ -54,17 +53,19 @@ namespace :package do
     sh "cp packaging/Gemfile packaging/Gemfile.lock build/tmp/"
     sh "mkdir -p build/tmp/lib/pact/mock_service"
     # sh "cp lib/pact/mock_service/version.rb build/tmp/lib/pact/mock_service/version.rb"
-    Bundler.with_unbundled_env do
-      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform aarch64-linux x86_64-linux x86_64-darwin arm64-darwin x64-mingw-ucrt i386-mingw32 \
-                       && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_DEPLOYMENT=true bundle install --path ../vendor"
+    Bundler.with_clean_env do
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle lock --add-platform x64-mingw32 && env BUNDLE_IGNORE_CONFIG=1 BUNDLE_DEPLOYMENT=true bundle install --path ../vendor"
       generate_readme
     end
     sh "rm -rf build/tmp"
     sh "rm -rf build/vendor/*/*/cache/*"
   end
-  
+
   task :generate_readme do
-    Bundler.with_unbundled_env do
+    Bundler.with_clean_env do
+      sh "mkdir -p build/tmp"
+      sh "cp packaging/Gemfile packaging/Gemfile.lock build/tmp/"
+      sh "cd build/tmp && env BUNDLE_IGNORE_CONFIG=1 bundle install --path ../vendor --without development"
       generate_readme
     end
   end
@@ -214,14 +215,14 @@ end
 def generate_readme
   template = File.absolute_path("packaging/README.md.template")
   script = File.absolute_path("packaging/generate_readme_contents.rb")
-  Bundler.with_unbundled_env do
+  Bundler.with_clean_env do
     sh "cd build/tmp && env VERSION=#{VERSION} bundle exec ruby #{script} #{template} > ../README.md"
   end
 end
 
 def download_runtime(version, target)
   sh "cd build && curl -L -O --fail " +
-    "https://github.com/YOU54F/traveling-ruby/releases/download/rel-#{TRAVELING_RUBY_VERSION_REL_DATE}/traveling-ruby-#{version}-#{target}.tar.gz"
+    "https://github.com/YOU54F/traveling-ruby/releases/download/rel-20230508/traveling-ruby-#{version}-#{target}.tar.gz"
 end
 
 def install_plugin_cli(package_dir, package_target)
