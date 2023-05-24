@@ -18,8 +18,8 @@ pushd pkg; for file in *.{zip,gz}; do sha1sum -b "$file" > "${file}.checksum"; d
 cat pkg/*.checksum > pkg/pact-`cat VERSION`.checksum
 
 bundle exec rake generate_release_notes[$tag]
-
-git add VERSION CHANGELOG.md
+cp build/README.md README.md
+git add VERSION CHANGELOG.md README.md
 git commit -m "chore(release): version ${version}
 [ci-skip]"
 git tag -a ${tag} -m "chore(release): version ${version}"

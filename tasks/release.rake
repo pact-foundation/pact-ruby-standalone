@@ -19,8 +19,8 @@ task :generate_release_notes, [:tag] do | t, args |
   release_notes_content = release_notes_template.gsub("<TAG_NAME>", tag)
   release_notes_content = release_notes_content.gsub("<PACKAGE_VERSION>", VERSION)
   File.open(RELEASE_NOTES_PATH, "w") do |file|
-    file << readme_content
     file << release_notes_content
+    file << readme_content
   end
 end
 
