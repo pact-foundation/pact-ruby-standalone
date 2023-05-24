@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/sh -e
 ## Tested with https://www.shellcheck.net/
 # Usage: (install latest)
 #   $ curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | sh
@@ -11,7 +11,7 @@
 #   $ wget -q https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh -O- | tag=v1.92.0 sh
 #
 
-if [[ -z "$tag" ]]; then
+if [ -z "$tag" ]; then
   tag=$(basename "$(curl -fs -o/dev/null -w "%{redirect_url}" https://github.com/pact-foundation/pact-ruby-standalone/releases/latest)")
   echo "Thanks for downloading the latest release of pact-ruby-standalone $tag."
   echo "-----"
@@ -32,7 +32,7 @@ case $(uname -sm) in
     os='linux-x86_64'
     ;;
   'Linux aarch64')
-    if [[ "$MAJOR_TAG" -lt 2 ]]; then
+    if [ "$MAJOR_TAG" -lt 2 ]; then
         echo "Sorry, you'll need to install the pact-ruby-standalone manually."
         exit 1
     else
@@ -40,14 +40,14 @@ case $(uname -sm) in
     fi
     ;;
   'Darwin arm64')
-    if [[ "$MAJOR_TAG" -lt 2 ]]; then
+    if [ "$MAJOR_TAG" -lt 2 ]; then
         os='osx'
     else
         os='osx-arm64'
     fi
     ;;
   'Darwin x86' | 'Darwin x86_64')
-    if [[ "$MAJOR_TAG" -lt 2 ]]; then
+    if [ "$MAJOR_TAG" -lt 2 ]; then
         os='osx'
     else
         os='osx-x86_64'
