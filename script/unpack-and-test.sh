@@ -50,14 +50,17 @@ if [ "$BINARY_OS" != "windows" ] ; then PATH_SEPERATOR=/ ; else PATH_SEPERATOR=\
 PATH_TO_BIN=.${PATH_SEPERATOR}pact${PATH_SEPERATOR}bin${PATH_SEPERATOR}
 
 tools=(
-  # pact 
+  # pact
   pact-broker
   pact-message
   pact-mock-service
-  pact-plugin-cli
   pact-provider-verifier
   pact-stub-service
   pactflow
+#   pact-plugin-cli
+#   pact-stub-server
+#   pact_verifier_cli
+#   pact_mock_server_cli
 )
 
 for tool in ${tools[@]}; do
@@ -65,7 +68,7 @@ for tool in ${tools[@]}; do
   if [ "$BINARY_OS" != "windows" ] ; then echo "no bat file ext needed for $(uname -a)" ; else FILE_EXT=.bat; fi
   if [ "$BINARY_OS" = "windows" ] && [ "$tool" = "pact-plugin-cli" ] ; then  FILE_EXT=.exe ; else echo "no exe file ext needed for $(uname -a)"; fi
   echo executing ${PATH_TO_BIN}${tool}${FILE_EXT} 
-  if [ "$BINARY_ARCH" = "x86" ] && [ "$tool" = "pact-plugin-cli" ] ; then  echo "skipping for x86" ; else ${PATH_TO_BIN}${tool}${FILE_EXT} help; fi
+  if [ "$BINARY_ARCH" = "x86" ] && [ "$tool" = "pact-plugin-cli" ] ; then  echo "skipping for x86" ; else ${PATH_TO_BIN}${tool}${FILE_EXT} --help; fi
 done
 
 

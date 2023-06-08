@@ -5,8 +5,16 @@ PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
 TRAVELING_RUBY_VERSION = "20230605-3.2.2"
 TRAVELING_RUBY_PKG_DATE = TRAVELING_RUBY_VERSION.split("-").first
+TRAVELING_RB_VERSION = TRAVELING_RUBY_VERSION.split("-").last
+RUBY_COMPAT_VERSION = TRAVELING_RB_VERSION.split(".").first(2).join(".") + ".0"
+RUBY_MAJOR_VERSION = TRAVELING_RB_VERSION.split(".").first.to_i
+RUBY_MINOR_VERSION = TRAVELING_RB_VERSION.split(".")[1].to_i
 PLUGIN_CLI_VERSION = "0.1.0"
-
+MOCK_SERVER_CLI_VERSION = "1.0.0"
+VERIFIER_CLI_VERSION = "0.10.6"
+STUB_SERVER_CLI_VERSION = "0.5.3"
+# NATIVE_GEMS=[ 'ffi-1.15.5' ] 
+NATIVE_GEMS=[ ] 
 desc "Package pact-ruby-standalone for OSX, Linux x86_64 and windows x86_64"
 task :package => ['package:linux:x86_64','package:linux:arm64', 'package:osx:x86_64', 'package:osx:arm64','package:windows:x86_64','package:windows:x86']
 
@@ -46,8 +54,8 @@ namespace :package do
   end
   desc "Install gems to local directory"
   task :bundle_install do
-    if RUBY_VERSION !~ /^3\.2\./
-      abort "You can only 'bundle install' using Ruby 3.2.2, because that's what Traveling Ruby uses."
+    if RUBY_VERSION !~ /^#{RUBY_MAJOR_VERSION}\.#{RUBY_MINOR_VERSION}\./
+      abort "You can only 'bundle install' using Ruby #{RUBY_VERSION}, because that's what Traveling Ruby uses."
     end
     sh "rm -rf build/tmp"
     sh "mkdir -p build/tmp"
@@ -108,7 +116,7 @@ def create_package(version, source_target, package_target, os_type)
   # sh "cp -pR lib #{package_dir}/lib/app"
   sh "mkdir #{package_dir}/lib/ruby"
   sh "tar -xzf build/traveling-ruby-#{version}-#{source_target}.tar.gz -C #{package_dir}/lib/ruby"
-  # From https://curl.se/docs/caextract.html
+  # From https://curl.se/docs/caextract.html # Updated 08/06/23
   sh "cp packaging/cacert.pem #{package_dir}/lib/ruby/lib/ca-bundle.crt"
 
   case os_type
@@ -128,7 +136,52 @@ def create_package(version, source_target, package_target, os_type)
   sh "cp packaging/bundler-config #{package_dir}/lib/vendor/.bundle/config"
 
   remove_unnecessary_files package_dir
-  install_plugin_cli package_dir, package_target
+  # ❯ du -sh pkg/*
+  # 37M    pkg/pact
+#   9.0M    pkg/pact-2.0.2-linux-arm64.tar.gz
+#   10M    pkg/pact-2.0.2-linux-x86_64.tar.gz
+#  9.0M    pkg/pact-2.0.2-osx-arm64.tar.gz
+#   10M    pkg/pact-2.0.2-osx-x86_64.tar.gz
+#   11M    pkg/pact-2.0.2-windows-x86.zip
+#   12M    pkg/pact-2.0.2-windows-x86_64.zip
+
+  # remove_possibly_necessary_files package_dir, package_target
+  # ❯ du -sh pkg/*
+  #  28M    pkg/pact
+  # 7.0M    pkg/pact-2.0.2-linux-arm64.tar.gz
+  # 7.1M    pkg/pact-2.0.2-linux-x86_64.tar.gz
+  # 7.0M    pkg/pact-2.0.2-osx-arm64.tar.gz
+  # 7.0M    pkg/pact-2.0.2-osx-x86_64.tar.gz
+  # 9.3M    pkg/pact-2.0.2-windows-x86.zip
+  # 9.8M    pkg/pact-2.0.2-windows-x86_64.zip
+
+  ## File sizes after adding extensions
+  download_and_unpack_ext package_dir, package_target, NATIVE_GEMS
+  # ❯ du -sh pkg/*
+  # 19M    pkg/pact-2.0.2-linux-arm64.tar.gz
+  # 19M    pkg/pact-2.0.2-linux-x86_64.tar.gz
+  # 19M    pkg/pact-2.0.2-osx-arm64.tar.gz
+  # 19M    pkg/pact-2.0.2-osx-x86_64.tar.gz
+  # 21M    pkg/pact-2.0.2-windows-x86.zip
+  # 21M    pkg/pact-2.0.2-windows-x86_64.zip
+
+  ## Install rust based tools.
+  
+  # install_plugin_cli package_dir, package_target
+  # install_mock_server_cli package_dir, package_target
+  # install_verifier_cli package_dir, package_target
+  # install_stub_server_cli package_dir, package_target
+  
+  ## File sizes post install.
+  ##
+  # ❯ du -sh pkg/*
+  ## 49M    pkg/pact-2.0.2-linux-arm64.tar.gz
+  ## 50M    pkg/pact-2.0.2-linux-x86_64.tar.gz
+  ## 42M    pkg/pact-2.0.2-osx-arm64.tar.gz
+  ## 43M    pkg/pact-2.0.2-osx-x86_64.tar.gz
+  ## 21M    pkg/pact-2.0.2-windows-x86.zip
+  ## 42M    pkg/pact-2.0.2-windows-x86_64.zip
+ 
 
   if !ENV['DIR_ONLY']
     sh "mkdir -p pkg"
@@ -211,6 +264,55 @@ def remove_unnecessary_files package_dir
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/windows*"
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_16*"
   # sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/utf_32*"
+
+end
+
+def remove_possibly_necessary_files(package_dir, package_target)
+  unless package_target.include? 'windows'
+    sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/site_ruby/#{RUBY_COMPAT_VERSION}/bundler"
+    sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/#{RUBY_COMPAT_VERSION}/bundler"
+    sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/#{RUBY_COMPAT_VERSION}/rubygems"
+    sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans"
+  end
+  if package_target.include? 'windows'
+    # sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/site_ruby/#{RUBY_COMPAT_VERSION}/bundler"
+    # sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/#{RUBY_COMPAT_VERSION}/rubygems"
+    sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/gems/#{RUBY_COMPAT_VERSION}/gems"
+    # sh "rm -rf #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans"
+  end
+
+  # unless package_target.include? 'windows'
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/cp949*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/euc_*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/shift_jis*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/koi8_*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/emacs*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/gb*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/big5*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/jap*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/emo*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/chi*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/ko*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/esc*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/cesu*"
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/ebc*"
+  # end
+  unless package_target.include? 'osx'
+    sh "rm -f #{package_dir}/lib/ruby/lib/ruby/*/*/enc/trans/utf_mac*"
+  end
+end
+
+def download_and_unpack_ext(package_dir, package_target, native_gems)
+  # no native gems for windows, so we exclude packing them here
+  unless package_target.include? 'windows'
+    native_gems.each { |native_gem| 
+    sh "cd #{package_dir}/lib/vendor/ruby && \
+      curl -L -O --fail https://github.com/YOU54F/traveling-ruby/releases/download/rel-#{TRAVELING_RUBY_PKG_DATE}/traveling-ruby-gems-#{TRAVELING_RUBY_VERSION}-#{package_target}-#{native_gem}.tar.gz && \
+    ls && pwd && \
+    tar xzf traveling-ruby-gems-#{TRAVELING_RUBY_VERSION}-#{package_target}-#{native_gem}.tar.gz && \
+    tar xzf traveling-ruby-gems-#{TRAVELING_RUBY_VERSION}-#{package_target}-#{native_gem}.tar.gz && \
+    rm traveling-ruby-gems-#{TRAVELING_RUBY_VERSION}-#{package_target}-#{native_gem}.tar.gz" }
+    end
 end
 
 def generate_readme
@@ -248,5 +350,80 @@ def install_plugin_cli(package_dir, package_target)
     sh "curl -L -o #{package_dir}/bin/pact-plugin-cli.exe.gz https://github.com/pact-foundation/pact-plugins/releases/download/pact-plugin-cli-v#{PLUGIN_CLI_VERSION}/pact-plugin-cli-windows-x86_64.exe.gz"
     sh "gunzip -N -f #{package_dir}/bin/pact-plugin-cli.exe.gz"
     sh "chmod +x #{package_dir}/bin/pact-plugin-cli.exe"
+  end
+end
+
+def install_mock_server_cli(package_dir, package_target)
+  case package_target
+  when "linux-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact_mock_server_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_mock_server_cli-v#{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-linux-x86_64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_mock_server_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_mock_server_cli"
+  when "linux-arm64"
+    sh "curl -L -o #{package_dir}/bin/pact_mock_server_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_mock_server_cli-v#{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-linux-aarch64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_mock_server_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_mock_server_cli"
+  when "osx-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact_mock_server_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_mock_server_cli-v#{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-osx-x86_64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_mock_server_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_mock_server_cli"
+  when "osx-arm64"
+    # No aarch64 release available yet, see https://github.com/pact-foundation/pact-reference/issues/289
+      sh "curl -L -o #{package_dir}/bin/pact_mock_server_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_mock_server_cli-v#{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-osx-x86_64.gz"
+    # sh "curl -L -o #{package_dir}/bin/pact_mock_server_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_mock_server_cli-v#{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-osx-aarch64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_mock_server_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_mock_server_cli"
+  when "windows-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact_mock_server_cli.exe.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_mock_server_cli-v#{MOCK_SERVER_CLI_VERSION}/pact_mock_server_cli-windows-x86_64.exe.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_mock_server_cli.exe.gz"
+    sh "chmod +x #{package_dir}/bin/pact_mock_server_cli.exe"
+  end
+end
+def install_verifier_cli(package_dir, package_target)
+  case package_target
+  when "linux-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact_verifier_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v#{VERIFIER_CLI_VERSION}/pact_verifier_cli-linux-x86_64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_verifier_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_verifier_cli"
+  when "linux-arm64"
+    sh "curl -L -o #{package_dir}/bin/pact_verifier_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v#{VERIFIER_CLI_VERSION}/pact_verifier_cli-linux-aarch64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_verifier_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_verifier_cli"
+  when "osx-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact_verifier_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v#{VERIFIER_CLI_VERSION}/pact_verifier_cli-osx-x86_64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_verifier_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_verifier_cli"
+  when "osx-arm64"
+    sh "curl -L -o #{package_dir}/bin/pact_verifier_cli.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v#{VERIFIER_CLI_VERSION}/pact_verifier_cli-osx-aarch64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_verifier_cli.gz"
+    sh "chmod +x #{package_dir}/bin/pact_verifier_cli"
+  when "windows-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact_verifier_cli.exe.gz https://github.com/pact-foundation/pact-reference/releases/download/pact_verifier_cli-v#{VERIFIER_CLI_VERSION}/pact_verifier_cli-windows-x86_64.exe.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact_verifier_cli.exe.gz"
+    sh "chmod +x #{package_dir}/bin/pact_verifier_cli.exe"
+  end
+end
+def install_stub_server_cli(package_dir, package_target)
+  case package_target
+  when "linux-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact-stub-server.gz https://github.com/pact-foundation/pact-stub-server/releases/download/v#{STUB_SERVER_CLI_VERSION}/pact-stub-server-linux-x86_64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact-stub-server.gz"
+    sh "chmod +x #{package_dir}/bin/pact-stub-server"
+  when "linux-arm64"
+    sh "curl -L -o #{package_dir}/bin/pact-stub-server.gz https://github.com/pact-foundation/pact-stub-server/releases/download/v#{STUB_SERVER_CLI_VERSION}/pact-stub-server-linux-aarch64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact-stub-server.gz"
+    sh "chmod +x #{package_dir}/bin/pact-stub-server"
+  when "osx-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact-stub-server.gz https://github.com/pact-foundation/pact-stub-server/releases/download/v#{STUB_SERVER_CLI_VERSION}/pact-stub-server-osx-x86_64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact-stub-server.gz"
+    sh "chmod +x #{package_dir}/bin/pact-stub-server"
+  when "osx-arm64"
+    sh "curl -L -o #{package_dir}/bin/pact-stub-server.gz https://github.com/pact-foundation/pact-stub-server/releases/download/v#{STUB_SERVER_CLI_VERSION}/pact-stub-server-osx-aarch64.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact-stub-server.gz"
+    sh "chmod +x #{package_dir}/bin/pact-stub-server"
+  when "windows-x86_64"
+    sh "curl -L -o #{package_dir}/bin/pact-stub-server.exe.gz https://github.com/pact-foundation/pact-stub-server/releases/download/v#{STUB_SERVER_CLI_VERSION}/pact-stub-server-windows-x86_64.exe.gz"
+    sh "gunzip -N -f #{package_dir}/bin/pact-stub-server.exe.gz"
+    sh "chmod +x #{package_dir}/bin/pact-stub-server.exe"
   end
 end
