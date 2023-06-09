@@ -1,0 +1,450 @@
+{
+    "consumer": {
+      "name": "v2-consumer-pact-js-v9"
+    },
+    "provider": {
+      "name": "v2-provider"
+    },
+    "interactions": [
+      {
+        "description": "A request for get all v2 matchers",
+        "providerState": "Server is V2",
+        "request": {
+          "method": "GET",
+          "path": "/matchers/v2"
+        },
+        "response": {
+          "status": 200,
+          "headers": {
+          },
+          "body": {
+            "term": "myawesomeword",
+            "validateExample": true,
+            "somethingLike": "myspecialvalue",
+            "eachLikeNull": [
+              null
+            ],
+            "eachLikeObject": [
+              {
+                "a": 1
+              }
+            ],
+            "eachLikeArray": [
+              [
+                1,
+                2,
+                3
+              ]
+            ],
+            "eachLikeValue": [
+              "test"
+            ],
+            "eachLikeWithMatchers": [
+              {
+                "id": 10
+              }
+            ],
+            "eachLikeTerm": [
+              {
+                "colour": "red"
+              }
+            ],
+            "eachLikeNested": [
+              [
+                "blue"
+              ]
+            ],
+            "eachLikeComplexStructure": [
+              [
+                {
+                  "colour": "red",
+                  "size": 10,
+                  "tag": [
+                    [
+                      "jumper",
+                      "shirt"
+                    ],
+                    [
+                      "jumper",
+                      "shirt"
+                    ]
+                  ]
+                }
+              ]
+            ],
+            "eachLikeOptionsMinOne": [
+              {
+                "a": 1
+              }
+            ],
+            "eachLikeOptionsMinThree": [
+              {
+                "a": 1
+              },
+              {
+                "a": 1
+              },
+              {
+                "a": 1
+              }
+            ],
+            "email": "hello@pact.io",
+            "emailA": "hello@world.com",
+            "emailB": "hello@world.com.au",
+            "emailC": "hello@a.co",
+            "uuid": "ce118b6e-d8e1-11e7-9296-cec278b6b50a",
+            "uuidPattern": "ce118b6e-d8e1-11e7-9296-cec278b6b50a",
+            "ipv4Address": "127.0.0.13",
+            "ipv4AddressPattern": "127.0.0.1",
+            "ipv6Address": "::ffff:192.0.2.128",
+            "ipv6AddressPattern": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "ipv6AddressLoopback": "::1",
+            "hexadecimal": "3F",
+            "hexadecimalPattern": "6F",
+            "boolean": true,
+            "booleanTrue": true,
+            "booleanFalse": false,
+            "string": "iloveorange",
+            "stringPattern": "test",
+            "decimal": 13.01,
+            "decimalPattern": 10.1,
+            "integer": 13,
+            "integerPattern": 10.1,
+            "rfc3339Timestamp": "Mon, 31 Oct 2016 15:21:41 -0400",
+            "rfc3339TimestampPattern": "Mon, 31 Oct 2016 15:21:41 -0400",
+            "iso8601Time": "T22:44:30.652Z",
+            "iso8601TimePattern": "T22:44:30.652Z",
+            "iso8601Date": "2013-02-01",
+            "iso8601DatePattern": "2017-12-05",
+            "iso8601DateTime": "2015-08-06T16:53:10+01:00",
+            "iso8601DateTimePattern": "2015-08-06T16:53:10+01:00",
+            "iso8601DateTimeWithMillis": "2015-08-06T16:53:10.123+01:00",
+            "iso8601DateTimeWithMillisA": "2020-12-10T09:01:29.1Z",
+            "iso8601DateTimeWithMillisB": "2020-12-10T09:01:29.06Z",
+            "iso8601DateTimeWithMillisC": "2015-08-06T16:53:10.537357Z",
+            "iso8601DateTimeWithMillisD": "2015-08-06T16:53:10.123+01:00"
+          },
+          "matchingRules": {
+            "$.body.term": {
+              "match": "regex",
+              "regex": "\\w+"
+            },
+            "$.body.somethingLike": {
+              "match": "type"
+            },
+            "$.body.eachLikeNull": {
+              "min": 1
+            },
+            "$.body.eachLikeNull[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeObject": {
+              "min": 1
+            },
+            "$.body.eachLikeObject[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeArray": {
+              "min": 1
+            },
+            "$.body.eachLikeArray[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeValue": {
+              "min": 1
+            },
+            "$.body.eachLikeValue[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeWithMatchers": {
+              "min": 1
+            },
+            "$.body.eachLikeWithMatchers[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeWithMatchers[*].id": {
+              "match": "type"
+            },
+            "$.body.eachLikeTerm": {
+              "min": 1
+            },
+            "$.body.eachLikeTerm[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeTerm[*].colour": {
+              "match": "regex",
+              "regex": "red|green"
+            },
+            "$.body.eachLikeNested": {
+              "min": 1
+            },
+            "$.body.eachLikeNested[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeNested[*]": {
+              "min": 1
+            },
+            "$.body.eachLikeNested[*][*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeComplexStructure": {
+              "min": 1
+            },
+            "$.body.eachLikeComplexStructure[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeComplexStructure[*]": {
+              "min": 1
+            },
+            "$.body.eachLikeComplexStructure[*][*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeComplexStructure[*][*].colour": {
+              "match": "regex",
+              "regex": "red|green|blue"
+            },
+            "$.body.eachLikeComplexStructure[*][*].size": {
+              "match": "type"
+            },
+            "$.body.eachLikeComplexStructure[*][*].tag": {
+              "min": 2
+            },
+            "$.body.eachLikeComplexStructure[*][*].tag[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeComplexStructure[*][*].tag[*][0]": {
+              "match": "type"
+            },
+            "$.body.eachLikeComplexStructure[*][*].tag[*][1]": {
+              "match": "type"
+            },
+            "$.body.eachLikeOptionsMinOne": {
+              "min": 1
+            },
+            "$.body.eachLikeOptionsMinOne[*].*": {
+              "match": "type"
+            },
+            "$.body.eachLikeOptionsMinThree": {
+              "min": 3
+            },
+            "$.body.eachLikeOptionsMinThree[*].*": {
+              "match": "type"
+            },
+            "$.body.email": {
+              "match": "regex",
+              "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+            },
+            "$.body.emailA": {
+              "match": "regex",
+              "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+            },
+            "$.body.emailB": {
+              "match": "regex",
+              "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+            },
+            "$.body.emailC": {
+              "match": "regex",
+              "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$"
+            },
+            "$.body.uuid": {
+              "match": "regex",
+              "regex": "^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$"
+            },
+            "$.body.uuidPattern": {
+              "match": "regex",
+              "regex": "^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$"
+            },
+            "$.body.ipv4Address": {
+              "match": "regex",
+              "regex": "^(\\d{1,3}\\.)+\\d{1,3}$"
+            },
+            "$.body.ipv4AddressPattern": {
+              "match": "regex",
+              "regex": "^(\\d{1,3}\\.)+\\d{1,3}$"
+            },
+            "$.body.ipv6Address": {
+              "match": "regex",
+              "regex": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$"
+            },
+            "$.body.ipv6AddressPattern": {
+              "match": "regex",
+              "regex": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$"
+            },
+            "$.body.ipv6AddressLoopback": {
+              "match": "regex",
+              "regex": "^(([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9]))$"
+            },
+            "$.body.hexadecimal": {
+              "match": "regex",
+              "regex": "^[0-9a-fA-F]+$"
+            },
+            "$.body.hexadecimalPattern": {
+              "match": "regex",
+              "regex": "^[0-9a-fA-F]+$"
+            },
+            "$.body.boolean": {
+              "match": "type"
+            },
+            "$.body.booleanTrue": {
+              "match": "type"
+            },
+            "$.body.booleanFalse": {
+              "match": "type"
+            },
+            "$.body.string": {
+              "match": "type"
+            },
+            "$.body.stringPattern": {
+              "match": "type"
+            },
+            "$.body.decimal": {
+              "match": "type"
+            },
+            "$.body.decimalPattern": {
+              "match": "type"
+            },
+            "$.body.integer": {
+              "match": "type"
+            },
+            "$.body.integerPattern": {
+              "match": "type"
+            },
+            "$.body.rfc3339Timestamp": {
+              "match": "regex",
+              "regex": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\\s\\d{2}\\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s(\\+|-)\\d{4}$"
+            },
+            "$.body.rfc3339TimestampPattern": {
+              "match": "regex",
+              "regex": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\\s\\d{2}\\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\\s\\d{4}\\s\\d{2}:\\d{2}:\\d{2}\\s(\\+|-)\\d{4}$"
+            },
+            "$.body.iso8601Time": {
+              "match": "regex",
+              "regex": "^(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?$"
+            },
+            "$.body.iso8601TimePattern": {
+              "match": "regex",
+              "regex": "^(T\\d\\d:\\d\\d(:\\d\\d)?(\\.\\d+)?(([+-]\\d\\d:\\d\\d)|Z)?)?$"
+            },
+            "$.body.iso8601Date": {
+              "match": "regex",
+              "regex": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))?)$"
+            },
+            "$.body.iso8601DatePattern": {
+              "match": "regex",
+              "regex": "^([\\+-]?\\d{4}(?!\\d{2}\\b))((-?)((0[1-9]|1[0-2])(\\3([12]\\d|0[1-9]|3[01]))?|W([0-4]\\d|5[0-2])(-?[1-7])?|(00[1-9]|0[1-9]\\d|[12]\\d{2}|3([0-5]\\d|6[1-6])))?)$"
+            },
+            "$.body.iso8601DateTime": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z)$"
+            },
+            "$.body.iso8601DateTimePattern": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d([+-][0-2]\\d:[0-5]\\d|Z)$"
+            },
+            "$.body.iso8601DateTimeWithMillis": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\.\\d+([+-][0-2]\\d(:?[0-5]\\d)?|Z)$"
+            },
+            "$.body.iso8601DateTimeWithMillisA": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\.\\d+([+-][0-2]\\d(:?[0-5]\\d)?|Z)$"
+            },
+            "$.body.iso8601DateTimeWithMillisB": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\.\\d+([+-][0-2]\\d(:?[0-5]\\d)?|Z)$"
+            },
+            "$.body.iso8601DateTimeWithMillisC": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\.\\d+([+-][0-2]\\d(:?[0-5]\\d)?|Z)$"
+            },
+            "$.body.iso8601DateTimeWithMillisD": {
+              "match": "regex",
+              "regex": "^\\d{4}-[01]\\d-[0-3]\\dT[0-2]\\d:[0-5]\\d:[0-5]\\d\\.\\d+([+-][0-2]\\d(:?[0-5]\\d)?|Z)$"
+            }
+          }
+        }
+      },
+      {
+        "description": "A request for get some v2 matchers",
+        "providerState": "Server is V2",
+        "request": {
+          "method": "GET",
+          "path": "/matchers/v2"
+        },
+        "response": {
+          "status": 200,
+          "headers": {
+          },
+          "body": {
+            "stringMatcher": {
+              "awesomeSetting": "a string"
+            },
+            "anotherStringMatcher": {
+              "nestedSetting": {
+                "anotherStringMatcherSubSetting": true
+              },
+              "anotherSetting": "this"
+            },
+            "arrayMatcher": {
+              "lotsOfValues": [
+                "useful",
+                "useful",
+                "useful"
+              ]
+            },
+            "arrayOfMatchers": {
+              "lotsOfValues": [
+                {
+                  "foo": "bar",
+                  "baz": "bat"
+                },
+                {
+                  "foo": "bar",
+                  "baz": "bat"
+                },
+                {
+                  "foo": "bar",
+                  "baz": "bat"
+                }
+              ]
+            }
+          },
+          "matchingRules": {
+            "$.body": {
+              "match": "type"
+            },
+            "$.body.stringMatcher.awesomeSetting": {
+              "match": "type"
+            },
+            "$.body.anotherStringMatcher.nestedSetting.anotherStringMatcherSubSetting": {
+              "match": "type"
+            },
+            "$.body.anotherStringMatcher.anotherSetting": {
+              "match": "regex",
+              "regex": "this|that"
+            },
+            "$.body.arrayMatcher.lotsOfValues": {
+              "min": 3
+            },
+            "$.body.arrayMatcher.lotsOfValues[*].*": {
+              "match": "type"
+            },
+            "$.body.arrayOfMatchers.lotsOfValues": {
+              "min": 3
+            },
+            "$.body.arrayOfMatchers.lotsOfValues[*].*": {
+              "match": "type"
+            },
+            "$.body.arrayOfMatchers.lotsOfValues[*].baz": {
+              "match": "type"
+            }
+          }
+        }
+      }
+    ],
+    "metadata": {
+      "pactSpecification": {
+        "version": "2.0.0"
+      }
+    }
+  }

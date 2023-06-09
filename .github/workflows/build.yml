@@ -1,14 +1,56 @@
 name: Build
 
-on: [push, pull_request]
+on: 
+  push:
+  pull_request:
+  workflow_dispatch:
+    # inputs aren't available on push, so we set them explicitly in separate steps
+      inputs:
+        PACKAGE_PACT_RUST_TOOLS:
+          description: create package with all pact rust based tools
+          required: false
+          default: ''
+        PACKAGE_PACT_FFI:
+          description: create package with pact_ffi libs and pact-ffi (ruby package)
+          required: false
+          default: ''
+          type: string
+        TRIM_PACKAGE_FULL:
+          description: trim package with reckless abandon (may break things - requires testing)
+          required: false
+          default: ''
+          type: string
+
+env:
+  PACKAGE_PACT_RUST_TOOLS: ${{ github.event.inputs.PACKAGE_PACT_RUST_TOOLS }}
+  PACKAGE_PACT_FFI: ${{ github.event.inputs.PACKAGE_PACT_FFI }}
+  TRIM_PACKAGE_FULL: ${{ github.event.inputs.TRIM_PACKAGE_FULL }}
 
 jobs:
+
+  setup:
+    name: 🏗️ setup
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "PACKAGE_PACT_RUST_TOOLS=${PACKAGE_PACT_RUST_TOOLS:-""}" >> $GITHUB_ENV 
+      - run: echo "PACKAGE_PACT_FFI=${PACKAGE_PACT_FFI:-""}" >> $GITHUB_ENV 
+      - run: echo "TRIM_PACKAGE_FULL=${TRIM_PACKAGE_FULL:-""}" >> $GITHUB_ENV 
+    outputs:
+      PACKAGE_PACT_RUST_TOOLS: ${{ env.PACKAGE_PACT_RUST_TOOLS }}
+      PACKAGE_PACT_FFI: ${{ env.PACKAGE_PACT_FFI }}
+      TRIM_PACKAGE_FULL: ${{ env.TRIM_PACKAGE_FULL }}
+
   build:
+    needs: setup
     strategy:
       fail-fast: false
       matrix:
         os: ["ubuntu-latest"]
     runs-on: ${{ matrix.os }}
+    env:
+      PACKAGE_PACT_RUST_TOOLS: ${{ needs.setup.outputs.PACKAGE_PACT_RUST_TOOLS }}
+      PACKAGE_PACT_FFI: ${{ needs.setup.outputs.PACKAGE_PACT_FFI }}
+      TRIM_PACKAGE_FULL: ${{ needs.setup.outputs.TRIM_PACKAGE_FULL }}
     steps:
     - uses: actions/checkout@v3
     - uses: ruby/setup-ruby@v1
@@ -29,12 +71,16 @@ jobs:
     defaults:
       run:
         shell: bash
-    needs: [build]
+    needs: [setup,build]
     strategy:
       fail-fast: false
       matrix:
         os: ["windows-latest","ubuntu-latest","macos-latest"]
     runs-on: ${{ matrix.os }}
+    env:
+      PACKAGE_PACT_RUST_TOOLS: ${{ needs.setup.outputs.PACKAGE_PACT_RUST_TOOLS }}
+      PACKAGE_PACT_FFI: ${{ needs.setup.outputs.PACKAGE_PACT_FFI }}
+      TRIM_PACKAGE_FULL: ${{ needs.setup.outputs.TRIM_PACKAGE_FULL }}
     steps:
     - uses: actions/checkout@v3
     - name: Download all workflow run artifacts

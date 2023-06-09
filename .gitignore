@@ -31,4 +31,7 @@ build
 
 vendor/bundle/
 pact
+pact-cli/
+pact-slim/
+pact-rust/
 .DS_Store
