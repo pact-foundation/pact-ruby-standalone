@@ -50,8 +50,12 @@ rm -rf pact
 FILE_NAME="*-$BINARY_OS-$BINARY_ARCH$FILE_EXT"
 echo "FILE_NAME = $FILE_NAME"
 FOUND_FILE=$(find . -name "$FILE_NAME")
-TOOL_NAME=$(find . -name "$FOUND_FILE" | sed 's/-.*$//'| sed 's/.\///')
+echo "FOUND_FILE = $FOUND_FILE"
+TOOL_NAME=$(echo "$FOUND_FILE" | sed 's/.\///' |sed -e 's/\([^\.]*\).*/\1/;s/-[0-9]*$//' )
+echo "TOOL_NAME = $TOOL_NAME"
 if [ "$BINARY_OS" != "windows" ]; then tar xvf "$FOUND_FILE"; else unzip "$FOUND_FILE"; fi
 if [ "$BINARY_OS" != "windows" ] ; then PATH_SEPERATOR=/ ; else PATH_SEPERATOR=\\; fi
-PATH_TO_BIN=.${PATH_SEPERATOR}${TOOL_NAME}${PATH_SEPERATOR}bin${PATH_SEPERATOR}
-TOOL_NAME=$TOOL_NAME PATH_TO_BIN=$PATH_TO_BIN ../script/test.sh
+export PATH_TO_BIN=.${PATH_SEPERATOR}${TOOL_NAME}${PATH_SEPERATOR}bin${PATH_SEPERATOR}
+echo "PATH_TO_BIN = $PATH_TO_BIN"
+echo "calling PATH_TO_BIN=$PATH_TO_BIN ../script/test.sh"
+PATH_TO_BIN=$PATH_TO_BIN ../script/test.sh

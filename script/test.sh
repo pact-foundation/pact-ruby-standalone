@@ -7,7 +7,7 @@ BINARY_OS=${BINARY_OS:-}
 BINARY_ARCH=${BINARY_ARCH:-}
 FILE_EXT=${FILE_EXT:-}
 PATH_TO_BIN=${PATH_TO_BIN:-}
-
+echo "PATH_TO_BIN = $PATH_TO_BIN"
 if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then 
     case ${detected_os} in
     'Darwin arm64')
