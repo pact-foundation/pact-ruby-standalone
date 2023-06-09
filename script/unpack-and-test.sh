@@ -6,7 +6,6 @@ echo detected_os = $detected_os
 BINARY_OS=${BINARY_OS:-}
 BINARY_ARCH=${BINARY_ARCH:-}
 FILE_EXT=${FILE_EXT:-".tar.gz"}
-PACKAGE_NAME=${PACKAGE_NAME:-'pact'}
 
 if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then 
     case ${detected_os} in
@@ -54,5 +53,5 @@ FOUND_FILE=$(find . -name "$FILE_NAME")
 TOOL_NAME=$(find . -name "$FOUND_FILE" | sed 's/-.*$//'| sed 's/.\///')
 if [ "$BINARY_OS" != "windows" ]; then tar xvf "$FOUND_FILE"; else unzip "$FOUND_FILE"; fi
 if [ "$BINARY_OS" != "windows" ] ; then PATH_SEPERATOR=/ ; else PATH_SEPERATOR=\\; fi
-PATH_TO_BIN=.${PATH_SEPERATOR}${PACKAGE_NAME}${PATH_SEPERATOR}bin${PATH_SEPERATOR}
+PATH_TO_BIN=.${PATH_SEPERATOR}${TOOL_NAME}${PATH_SEPERATOR}bin${PATH_SEPERATOR}
 TOOL_NAME=$TOOL_NAME PATH_TO_BIN=$PATH_TO_BIN ../script/test.sh
