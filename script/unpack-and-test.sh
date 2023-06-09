@@ -5,7 +5,7 @@ detected_os=$(uname -sm)
 echo detected_os = $detected_os
 BINARY_OS=${BINARY_OS:-}
 BINARY_ARCH=${BINARY_ARCH:-}
-FILE_EXT=${FILE_EXT:-}
+FILE_EXT=${FILE_EXT:-".tar.gz"}
 PACKAGE_NAME=${PACKAGE_NAME:-'pact'}
 
 if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then 
@@ -29,10 +29,12 @@ if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then
     "Windows"* | "MINGW64"*)
         BINARY_OS=windows
         BINARY_ARCH=x86_64
+        FILE_EXT=".zip"
         ;;
     "Windows"* | "MINGW"*)
         BINARY_OS=windows
         BINARY_ARCH=x86
+        FILE_EXT=".zip"
         ;;
       *)
       echo "Sorry, os not determined"
@@ -44,10 +46,13 @@ fi
 
 cd pkg
 rm -rf pact
-ls
+# ls
 
-if [ "$BINARY_OS" != "windows" ]; then tar xvf *$BINARY_OS-$BINARY_ARCH.tar.gz; else unzip *$BINARY_OS-$BINARY_ARCH.zip; fi
+FILE_NAME="*-$BINARY_OS-$BINARY_ARCH$FILE_EXT"
+echo "FILE_NAME = $FILE_NAME"
+FOUND_FILE=$(find . -name "$FILE_NAME")
+TOOL_NAME=$(find . -name "$FOUND_FILE" | sed 's/-.*$//'| sed 's/.\///')
+if [ "$BINARY_OS" != "windows" ]; then tar xvf "$FOUND_FILE"; else unzip "$FOUND_FILE"; fi
 if [ "$BINARY_OS" != "windows" ] ; then PATH_SEPERATOR=/ ; else PATH_SEPERATOR=\\; fi
 PATH_TO_BIN=.${PATH_SEPERATOR}${PACKAGE_NAME}${PATH_SEPERATOR}bin${PATH_SEPERATOR}
-
-PATH_TO_BIN=$PATH_TO_BIN ../script/test.sh
+TOOL_NAME=$TOOL_NAME PATH_TO_BIN=$PATH_TO_BIN ../script/test.sh
