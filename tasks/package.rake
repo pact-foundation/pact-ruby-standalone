@@ -2,9 +2,9 @@
 require 'bundler/setup'
 
 PACKAGE_NAME = 'pact'
-PACKAGE_NAME = "#{PACKAGE_NAME}-slim" if ENV['TRIM_PACKAGE_FULL']
+PACKAGE_NAME = "#{PACKAGE_NAME}-slim" if ENV['TRIM_PACKAGE_FULL'] == 'true'
 
-if ENV['PACKAGE_PACT_FFI'] && ENV['PACKAGE_PACT_RUST_TOOLS']
+if ENV['PACKAGE_PACT_FFI'] == 'true' && ENV['PACKAGE_PACT_RUST_TOOLS'] == 'true'
   PACKAGE_NAME = "#{PACKAGE_NAME}-cli"
 elsif ENV['PACKAGE_PACT_FFI']
   PACKAGE_NAME = "#{PACKAGE_NAME}-ffi"
@@ -146,7 +146,7 @@ def create_package(version, source_target, package_target, os_type)
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
   sh "cp packaging/bundler-config #{package_dir}/lib/vendor/.bundle/config"
 
-  if ENV['PACKAGE_PACT_FFI'] && !(package_target.include? 'windows')
+  if ENV['PACKAGE_PACT_FFI'] == 'true' && !(package_target.include? 'windows')
     os = package_target.split('-').first
     arch = package_target.split('-').last
     arch = 'aarch64' if arch == 'arm64' && os == 'linux'
@@ -185,7 +185,7 @@ def create_package(version, source_target, package_target, os_type)
 
   remove_possibly_necessary_files package_dir, package_target if ENV['TRIM_PACKAGE_FULL']
 
-  if ENV['PACKAGE_PACT_RUST_TOOLS']
+  if ENV['PACKAGE_PACT_RUST_TOOLS'] == 'true'
     install_plugin_cli package_dir, package_target
     install_mock_server_cli package_dir, package_target
     install_verifier_cli package_dir, package_target
