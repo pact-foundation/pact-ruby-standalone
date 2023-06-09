@@ -87,6 +87,9 @@ jobs:
       uses: actions/download-artifact@v3
     - name: test ${{ matrix.os }} package
       run: ./script/unpack-and-test.sh
+    - run: rm -rf pkg/pact*/
+      name: clean x86_64 package before testing x86
+      if: runner.os == 'Windows'
     - name: test x86 package
       if: ${{ runner.os == 'Windows'}}
       run: ./script/unpack-and-test.sh
