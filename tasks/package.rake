@@ -6,9 +6,9 @@ PACKAGE_NAME = "#{PACKAGE_NAME}-slim" if ENV['TRIM_PACKAGE_FULL'] == 'true'
 
 if ENV['PACKAGE_PACT_FFI'] == 'true' && ENV['PACKAGE_PACT_RUST_TOOLS'] == 'true'
   PACKAGE_NAME = "#{PACKAGE_NAME}-cli"
-elsif ENV['PACKAGE_PACT_FFI']
+elsif ENV['PACKAGE_PACT_FFI'] == 'true'
   PACKAGE_NAME = "#{PACKAGE_NAME}-ffi"
-elsif ENV['PACKAGE_PACT_RUST_TOOLS']
+elsif ENV['PACKAGE_PACT_RUST_TOOLS'] == 'true'
   PACKAGE_NAME = "#{PACKAGE_NAME}-rust"
 end
 
@@ -183,7 +183,7 @@ def create_package(version, source_target, package_target, os_type)
 
   remove_unnecessary_files package_dir
 
-  remove_possibly_necessary_files package_dir, package_target if ENV['TRIM_PACKAGE_FULL']
+  remove_possibly_necessary_files package_dir, package_target if ENV['TRIM_PACKAGE_FULL'] == 'true'
 
   if ENV['PACKAGE_PACT_RUST_TOOLS'] == 'true'
     install_plugin_cli package_dir, package_target
