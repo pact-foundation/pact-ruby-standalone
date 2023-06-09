@@ -65,10 +65,10 @@ test_cmd="help"
 for tool in ${tools[@]}; do
   echo testing $tool
   if [ "$BINARY_OS" != "windows" ] ; then echo "no bat file ext needed for $(uname -a)" ; else FILE_EXT=.bat; fi
-  if [ "$BINARY_OS" = "windows" ] && [ "$tool" = "pact-plugin-cli" ] ; then  FILE_EXT=.exe ; else echo "no exe file ext needed for $(uname -a)"; fi
+  if [ "$BINARY_OS" = "windows" ] && ([ "$tool" = "pact-plugin-cli" ] || [ "$tool" = "pact-stub-server" ] || [ "$tool" = "pact_verifier_cli" ] || [ "$tool" = "pact_mock_server_cli" ]) ; then  FILE_EXT=.exe ; else echo "no exe file ext needed for $(uname -a)"; fi
   if [ "$tool" = "pact_verifier_cli" ] ; then  test_cmd="--help" ; fi
   echo executing ${tool}${FILE_EXT} 
-  if [ "$BINARY_ARCH" = "x86" ] && [ "$tool" = "pact-plugin-cli" ] ; then  echo "skipping for x86" ; else ${PATH_TO_BIN}${tool}${FILE_EXT} ${test_cmd}; fi
+  if [ "$BINARY_ARCH" = "x86" ] && ([ "$tool" = "pact-plugin-cli" ] || [ "$tool" = "pact-stub-server" ] || [ "$tool" = "pact_verifier_cli" ] || [ "$tool" = "pact_mock_server_cli" ]) ; then  echo "skipping for x86" ; else ${PATH_TO_BIN}${tool}${FILE_EXT} ${test_cmd}; fi
 done
 
 
