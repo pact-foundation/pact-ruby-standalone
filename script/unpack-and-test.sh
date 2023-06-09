@@ -28,12 +28,10 @@ if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then
     "Windows"* | "MINGW64"*)
         BINARY_OS=windows
         BINARY_ARCH=x86_64
-        FILE_EXT=".zip"
         ;;
     "Windows"* | "MINGW"*)
         BINARY_OS=windows
         BINARY_ARCH=x86
-        FILE_EXT=".zip"
         ;;
       *)
       echo "Sorry, os not determined"
@@ -42,6 +40,9 @@ if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then
     esac;
 fi
 
+if [[ "$BINARY_OS" == "windows" ]]; then
+    FILE_EXT=".zip"
+fi
 
 cd pkg
 rm -rf pact
