@@ -28,6 +28,16 @@ Binaries will be extracted into `pact/bin`:
 └── pact-stub-service
 ```
 
+### Windows Users
+
+Please append `.bat` to any of the provided binaries
+
+eg.
+
+```ps1
+  .\pact\bin\pact-broker.bat
+```
+
 ## Installation
 
 See the [release page][releases].
