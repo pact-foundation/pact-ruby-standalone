@@ -1,3 +1,19 @@
+<a name="v2.0.3"></a>
+### v2.0.3 (2023-07-10)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client (1.68.0)	 ([562d8a9](/../../commit/562d8a9))
+
+
+#### Bug Fixes
+
+* **docs**
+  * correct windows filename to end in .zip in release notes	 ([308a296](/../../commit/308a296))
+
+
 <a name="v2.0.1"></a>
 ### v2.0.1 (2023-05-18)
 

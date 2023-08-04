@@ -117,5 +117,5 @@ else
 echo "Add the following to your path to make ${PROJECT_NAME} available:"
 echo "--- Linux/MacOS/Windows Bash Users --------"
 echo ""
-echo "  PATH=:$PACT_CLI_BIN_PATH:\${PATH}"
+echo "  PATH=$PACT_CLI_BIN_PATH:\${PATH}"
 fi

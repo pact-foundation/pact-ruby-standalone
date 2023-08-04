@@ -6,13 +6,13 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.2) of the Pact standalone executables package contains:
+This version (2.0.3) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
   * pact-support gem 1.19.0
   * pact-provider-verifier gem 1.36.1
-  * pact_broker-client gem 1.66.1
+  * pact_broker-client gem 1.68.0
   * pact-message gem 0.11.1
 
 Binaries will be extracted into `pact/bin`:
@@ -26,6 +26,16 @@ Binaries will be extracted into `pact/bin`:
 ├── pact-mock-service
 ├── pact-provider-verifier
 └── pact-stub-service
+```
+
+### Windows Users
+
+Please append `.bat` to any of the provided binaries
+
+eg.
+
+```ps1
+  .\pact\bin\pact-broker.bat
 ```
 
 ## Installation
@@ -311,6 +321,14 @@ Description:
   $ pact-broker can-i-deploy --pacticipant Foo 173153ae0 \ --pacticipant Bar
   --latest main
 
+  ##### Polling
+
+  If the verification process takes a long time and there are results missing
+  when the can-i-deploy command runs in your CI/CD pipeline, you can configure
+  the command to poll and wait for the missing results to arrive. The arguments
+  to specify are `--retry-while-unknown TIMES` and `--retry-interval SECONDS`,
+  set to appropriate values for your pipeline.
+
 ```
 
 <a name="pact"></a>
@@ -347,7 +365,7 @@ Options:
   -k, [--broker-token=BROKER_TOKEN]                                            # Pact Broker bearer token
   -v, [--verbose], [--no-verbose]                                              # Verbose output. Default: false
 
-Publish provider contract to Pactflow
+Publish provider contract to PactFlow
 
 ```
 
