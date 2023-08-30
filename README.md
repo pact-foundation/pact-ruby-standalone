@@ -6,13 +6,13 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.3) of the Pact standalone executables package contains:
+This version (2.0.4) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
   * pact-support gem 1.19.0
   * pact-provider-verifier gem 1.36.1
-  * pact_broker-client gem 1.68.0
+  * pact_broker-client gem 1.70.0
   * pact-message gem 0.11.1
 
 Binaries will be extracted into `pact/bin`:
@@ -249,10 +249,11 @@ Usage:
 Options:
   -a, --pacticipant=PACTICIPANT            # The pacticipant name. Use once for each pacticipant being checked.
   -e, [--version=VERSION]                  # The pacticipant version. Must be entered after the --pacticipant that it relates to.
-      [--ignore=IGNORE]                    # The pacticipant name to ignore. Use once for each pacticipant being ignored. A specific version can be ignored by also specifying a --version after the pacticipant name option. The environment variable PACT_BROKER_CAN_I_DEPLOY_IGNORE may also be used to specify a pacticipant name to ignore, with commas to separate multiple pacticipant names if necessary.
+      [--ignore=IGNORE]                    # The pacticipant name to ignore. Use once for each pacticipant being ignored. A specific version can be ignored by also specifying a --version after the pacticipant name option.
   -l, [--latest=[TAG]]                     # Use the latest pacticipant version. Optionally specify a TAG to use the latest version with the specified tag.
+      [--branch=BRANCH]                    # The branch of the version for which you want to check the verification results.
+      [--main-branch], [--no-main-branch]  # Use the latest version of the configured main branch of the pacticipant as the version for which you want to check the verification results
       [--to-environment=ENVIRONMENT]       # The environment into which the pacticipant(s) are to be deployed
-      [--branch=BRANCH]                    # The branch of the version for which you want to check the verification results
       [--to=TAG]                           # The tag that represents the branch or environment of the integrated applications for which you want to check the verification result status.
   -o, [--output=OUTPUT]                    # json or table
                                            # Default: table
