@@ -6,13 +6,13 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.4) of the Pact standalone executables package contains:
+This version (2.0.5) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
   * pact-support gem 1.19.0
   * pact-provider-verifier gem 1.36.1
-  * pact_broker-client gem 1.70.0
+  * pact_broker-client gem 1.71.0
   * pact-message gem 0.11.1
 
 Binaries will be extracted into `pact/bin`:
@@ -249,7 +249,7 @@ Usage:
 Options:
   -a, --pacticipant=PACTICIPANT            # The pacticipant name. Use once for each pacticipant being checked.
   -e, [--version=VERSION]                  # The pacticipant version. Must be entered after the --pacticipant that it relates to.
-      [--ignore=IGNORE]                    # The pacticipant name to ignore. Use once for each pacticipant being ignored. A specific version can be ignored by also specifying a --version after the pacticipant name option.
+      [--ignore=PACTICIPANT]               # The pacticipant name to ignore. Use once for each pacticipant being ignored. A specific version can be ignored by also specifying a --version after the pacticipant name option. The environment variable PACT_BROKER_CAN_I_DEPLOY_IGNORE may also be used to specify a pacticipant name to ignore, with commas to separate multiple pacticipant names if necessary.
   -l, [--latest=[TAG]]                     # Use the latest pacticipant version. Optionally specify a TAG to use the latest version with the specified tag.
       [--branch=BRANCH]                    # The branch of the version for which you want to check the verification results.
       [--main-branch], [--no-main-branch]  # Use the latest version of the configured main branch of the pacticipant as the version for which you want to check the verification results
@@ -358,6 +358,7 @@ Options:
       [--verification-results-format=VERIFICATION_RESULTS_FORMAT]              # The format of the verification output eg. junit, text
       [--verifier=VERIFIER]                                                    # The tool used to verify the provider contract
       [--verifier-version=VERIFIER_VERSION]                                    # The version of the tool used to verify the provider contract
+      [--build-url=BUILD_URL]                                                  # The build URL that created the provider contract
   -o, [--output=OUTPUT]                                                        # json or text
                                                                                # Default: text
   -b, --broker-base-url=BROKER_BASE_URL                                        # The base URL of the Pact Broker
