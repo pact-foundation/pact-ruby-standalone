@@ -6,12 +6,12 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.6) of the Pact standalone executables package contains:
+This version (2.0.7) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
   * pact-support gem 1.19.0
-  * pact-provider-verifier gem 1.36.1
+  * pact-provider-verifier gem 1.38.0
   * pact_broker-client gem 1.72.0
   * pact-message gem 0.11.1
 

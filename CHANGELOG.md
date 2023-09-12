@@ -1,3 +1,13 @@
+<a name="v2.0.7"></a>
+### v2.0.7 (2023-09-12)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier (1.38.0)	 ([108d513](/../../commit/108d513))
+
+
 <a name="v2.0.6"></a>
 ### v2.0.6 (2023-09-11)
 
