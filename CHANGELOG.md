@@ -1,3 +1,13 @@
+<a name="v2.0.8"></a>
+### v2.0.8 (2023-10-13)
+
+
+#### Features
+
+* **gems**
+  * update to pact_broker-client (1.73.0)	 ([d5b41b3](/../../commit/d5b41b3))
+
+
 <a name="v2.0.7"></a>
 ### v2.0.7 (2023-09-12)
 
