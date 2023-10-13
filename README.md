@@ -406,3 +406,7 @@ Commands:
 ### SSL
 
 To connect to a Pact Broker that uses custom SSL certificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.
+
+#### Using x509 Certificates
+
+To connect to a Pact Broker that uses x509 certificates for client authentication, set the environment variable `$X509_CLIENT_CERT_FILE` to the path of the client's x509 certificate and `$X509_CLIENT_KEY_FILE` to the path of the client's private key.
