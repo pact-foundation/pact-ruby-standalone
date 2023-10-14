@@ -6,13 +6,13 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.8) of the Pact standalone executables package contains:
+This version (2.0.9) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
   * pact-support gem 1.19.0
   * pact-provider-verifier gem 1.38.0
-  * pact_broker-client gem 1.73.0
+  * pact_broker-client gem 1.74.0
   * pact-message gem 0.11.1
 
 Binaries will be extracted into `pact/bin`:
@@ -217,12 +217,12 @@ To connect to a Pact Broker that uses custom SSL cerificates, set the environmen
 
 ```
 Usage:
-  pact-broker publish PACT_DIRS_OR_FILES ... -a, --consumer-app-version=CONSUMER_APP_VERSION -b, --broker-base-url=BROKER_BASE_URL
+  pact-broker publish PACT_DIRS_OR_FILES ... -b, --broker-base-url=BROKER_BASE_URL
 
 Options:
-  -a, --consumer-app-version=CONSUMER_APP_VERSION                                # The consumer application version
+  -a, [--consumer-app-version=CONSUMER_APP_VERSION]                              # The consumer application version
   -h, [--branch=BRANCH]                                                          # Repository branch of the consumer version
-      [--auto-detect-version-properties], [--no-auto-detect-version-properties]  # Automatically detect the repository branch from known CI environment variables or git CLI. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps.
+  -r, [--auto-detect-version-properties], [--no-auto-detect-version-properties]  # Automatically detect the repository commit, branch and build URL from known CI environment variables or git CLI. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps.
   -t, [--tag=TAG]                                                                # Tag name for consumer version. Can be specified multiple times.
   -g, [--tag-with-git-branch], [--no-tag-with-git-branch]                        # Tag consumer version with the name of the current git branch. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps. Default: false
       [--build-url=BUILD_URL]                                                    # The build URL that created the pact
@@ -406,7 +406,3 @@ Commands:
 ### SSL
 
 To connect to a Pact Broker that uses custom SSL certificates, set the environment variable `$SSL_CERT_FILE` or `$SSL_CERT_DIR` to a path that contains the appropriate certificate.
-
-#### Using x509 Certificates
-
-To connect to a Pact Broker that uses x509 certificates for client authentication, set the environment variable `$X509_CLIENT_CERT_FILE` to the path of the client's x509 certificate and `$X509_CLIENT_KEY_FILE` to the path of the client's private key.
