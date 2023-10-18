@@ -1,3 +1,13 @@
+<a name="v2.0.10"></a>
+### v2.0.10 (2023-10-18)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support (1.20.0)	 ([7c632ff](/../../commit/7c632ff))
+
+
 <a name="v2.0.9"></a>
 ### v2.0.9 (2023-10-14)
 

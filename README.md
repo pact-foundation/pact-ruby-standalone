@@ -6,11 +6,11 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.9) of the Pact standalone executables package contains:
+This version (2.0.10) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
-  * pact-support gem 1.19.0
+  * pact-support gem 1.20.0
   * pact-provider-verifier gem 1.38.0
   * pact_broker-client gem 1.74.0
   * pact-message gem 0.11.1
@@ -76,7 +76,7 @@ Commands:
   pact-mock-service service               # Start a mock service. If the cons...
   pact-mock-service start                 # Start a mock service. If the cons...
   pact-mock-service stop -p, --port=PORT  # Stop a Pact mock service
-  pact-mock-service version               # Show the pact-mock-service gem ve...
+  pact-mock-service version               # Show the pact-mock-service gem version
 
 Usage:
   pact-mock-service service
@@ -97,6 +97,7 @@ Options:
                                                                  # Default: DEBUG
   -o, [--cors=CORS]                                              # Support browser security in tests by responding to OPTIONS requests and adding CORS headers to mocked responses
       [--ssl], [--no-ssl]                                        # Use a self-signed SSL cert to run the service over HTTPS
+                                                                 # Default: false
       [--sslcert=SSLCERT]                                        # Specify the path to the SSL cert to use when running the service over HTTPS
       [--sslkey=SSLKEY]                                          # Specify the path to the SSL key to use when running the service over HTTPS
 
@@ -123,6 +124,7 @@ Options:
                                            # Default: DEBUG
   -o, [--cors=CORS]                        # Support browser security in tests by responding to OPTIONS requests and adding CORS headers to mocked responses
       [--ssl], [--no-ssl]                  # Use a self-signed SSL cert to run the service over HTTPS
+                                           # Default: false
       [--sslcert=SSLCERT]                  # Specify the path to the SSL cert to use when running the service over HTTPS
       [--sslkey=SSLKEY]                    # Specify the path to the SSL key to use when running the service over HTTPS
 
@@ -161,9 +163,12 @@ Options:
       [--provider-version-tag=TAG]                                           # Tag to apply to the provider application version. May be specified multiple times.
       [--provider-version-branch=BRANCH]                                     # The name of the branch the provider version belongs to.
   -g, [--tag-with-git-branch], [--no-tag-with-git-branch]                    # Tag provider version with the name of the current git branch. Default: false
+                                                                             # Default: false
   -a, [--provider-app-version=PROVIDER_APP_VERSION]                          # Provider application version, required when publishing verification results
   -r, [--publish-verification-results], [--no-publish-verification-results]  # Publish verification results to the broker. This can also be enabled by setting the environment variable PACT_BROKER_PUBLISH_VERIFICATION_RESULTS=true
+                                                                             # Default: false
       [--enable-pending], [--no-enable-pending]                              # Allow pacts which are in pending state to be verified without causing the overall task to fail. For more information, see https://pact.io/pending
+                                                                             # Default: false
       [--custom-provider-header=CUSTOM_PROVIDER_HEADER]                      # Header to add to provider state set up and pact verification requests. eg 'Authorization: Basic cGFjdDpwYWN0'. May be specified multiple times.
       [--custom-middleware=FILE]                                             # Ruby file containing a class implementing Pact::ProviderVerifier::CustomMiddleware. This allows the response to be modified before replaying. Use with caution!
   -v, [--verbose=VERBOSE]                                                    # Verbose output. Can also be set by setting the environment variable VERBOSE=true.
@@ -175,6 +180,7 @@ Options:
       [--log-level=LOG_LEVEL]                                                # The log level
                                                                              # Default: debug
       [--fail-if-no-pacts-found], [--no-fail-if-no-pacts-found]              # If specified, will fail when no pacts are found
+                                                                             # Default: false
 
 Description:
   The parameters used when fetching pacts dynamically from a Pact Broker are:
@@ -223,10 +229,13 @@ Options:
   -a, [--consumer-app-version=CONSUMER_APP_VERSION]                              # The consumer application version
   -h, [--branch=BRANCH]                                                          # Repository branch of the consumer version
   -r, [--auto-detect-version-properties], [--no-auto-detect-version-properties]  # Automatically detect the repository commit, branch and build URL from known CI environment variables or git CLI. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps.
+                                                                                 # Default: false
   -t, [--tag=TAG]                                                                # Tag name for consumer version. Can be specified multiple times.
   -g, [--tag-with-git-branch], [--no-tag-with-git-branch]                        # Tag consumer version with the name of the current git branch. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps. Default: false
+                                                                                 # Default: false
       [--build-url=BUILD_URL]                                                    # The build URL that created the pact
       [--merge], [--no-merge]                                                    # If a pact already exists for this consumer version and provider, merge the contents. Useful when running Pact tests concurrently on different build nodes.
+                                                                                 # Default: false
   -o, [--output=OUTPUT]                                                          # json or text
                                                                                  # Default: text
   -b, --broker-base-url=BROKER_BASE_URL                                          # The base URL of the Pact Broker
@@ -234,6 +243,7 @@ Options:
   -p, [--broker-password=BROKER_PASSWORD]                                        # Pact Broker basic auth password
   -k, [--broker-token=BROKER_TOKEN]                                              # Pact Broker bearer token
   -v, [--verbose], [--no-verbose]                                                # Verbose output. Default: false
+                                                                                 # Default: false
 
 Publish pacts to a Pact Broker.
 
@@ -253,6 +263,7 @@ Options:
   -l, [--latest=[TAG]]                     # Use the latest pacticipant version. Optionally specify a TAG to use the latest version with the specified tag.
       [--branch=BRANCH]                    # The branch of the version for which you want to check the verification results.
       [--main-branch], [--no-main-branch]  # Use the latest version of the configured main branch of the pacticipant as the version for which you want to check the verification results
+                                           # Default: false
       [--to-environment=ENVIRONMENT]       # The environment into which the pacticipant(s) are to be deployed
       [--to=TAG]                           # The tag that represents the branch or environment of the integrated applications for which you want to check the verification result status.
   -o, [--output=OUTPUT]                    # json or table
@@ -262,11 +273,13 @@ Options:
       [--retry-interval=SECONDS]           # The time between retries in seconds. Use in conjuction with --retry-while-unknown
                                            # Default: 10
       [--dry-run], [--no-dry-run]          # When dry-run is enabled, always exit process with a success code. Can also be enabled by setting the environment variable PACT_BROKER_CAN_I_DEPLOY_DRY_RUN=true. This mode is useful when setting up your CI/CD pipeline for the first time, or in a 'break glass' situation where you need to knowingly deploy what Pact considers a breaking change. For the second scenario, it is recommended to use the environment variable and just set it for the build required to deploy that particular version, so you don't accidentally leave the dry run mode enabled.
+                                           # Default: false
   -b, --broker-base-url=BROKER_BASE_URL    # The base URL of the Pact Broker
   -u, [--broker-username=BROKER_USERNAME]  # Pact Broker basic auth username
   -p, [--broker-password=BROKER_PASSWORD]  # Pact Broker basic auth password
   -k, [--broker-token=BROKER_TOKEN]        # Pact Broker bearer token
   -v, [--verbose], [--no-verbose]          # Verbose output. Default: false
+                                           # Default: false
 
 Description:
   Returns exit code 0 or 1, indicating whether or not the specified application
@@ -366,6 +379,7 @@ Options:
   -p, [--broker-password=BROKER_PASSWORD]                                      # Pact Broker basic auth password
   -k, [--broker-token=BROKER_TOKEN]                                            # Pact Broker bearer token
   -v, [--verbose], [--no-verbose]                                              # Verbose output. Default: false
+                                                                               # Default: false
 
 Publish provider contract to PactFlow
 
