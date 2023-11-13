@@ -6,13 +6,13 @@ Creates a standalone pact command line executable using the ruby pact implementa
 
 ## Package contents
 
-This version (2.0.10) of the Pact standalone executables package contains:
+This version (2.0.11) of the Pact standalone executables package contains:
 
   * pact gem 1.63.0
   * pact-mock_service gem 3.11.2
   * pact-support gem 1.20.0
   * pact-provider-verifier gem 1.38.0
-  * pact_broker-client gem 1.74.0
+  * pact_broker-client gem 1.75.0
   * pact-message gem 0.11.1
 
 Binaries will be extracted into `pact/bin`:
@@ -231,7 +231,7 @@ Options:
   -r, [--auto-detect-version-properties], [--no-auto-detect-version-properties]  # Automatically detect the repository commit, branch and build URL from known CI environment variables or git CLI. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps.
                                                                                  # Default: false
   -t, [--tag=TAG]                                                                # Tag name for consumer version. Can be specified multiple times.
-  -g, [--tag-with-git-branch], [--no-tag-with-git-branch]                        # Tag consumer version with the name of the current git branch. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps. Default: false
+  -g, [--tag-with-git-branch], [--no-tag-with-git-branch]                        # Tag consumer version with the name of the current git branch. Supports Buildkite, Circle CI, Travis CI, GitHub Actions, Jenkins, Hudson, AppVeyor, GitLab, CodeShip, Bitbucket and Azure DevOps.
                                                                                  # Default: false
       [--build-url=BUILD_URL]                                                    # The build URL that created the pact
       [--merge], [--no-merge]                                                    # If a pact already exists for this consumer version and provider, merge the contents. Useful when running Pact tests concurrently on different build nodes.
@@ -242,7 +242,7 @@ Options:
   -u, [--broker-username=BROKER_USERNAME]                                        # Pact Broker basic auth username
   -p, [--broker-password=BROKER_PASSWORD]                                        # Pact Broker basic auth password
   -k, [--broker-token=BROKER_TOKEN]                                              # Pact Broker bearer token
-  -v, [--verbose], [--no-verbose]                                                # Verbose output. Default: false
+  -v, [--verbose], [--no-verbose]                                                # Verbose output.
                                                                                  # Default: false
 
 Publish pacts to a Pact Broker.
@@ -278,7 +278,7 @@ Options:
   -u, [--broker-username=BROKER_USERNAME]  # Pact Broker basic auth username
   -p, [--broker-password=BROKER_PASSWORD]  # Pact Broker basic auth password
   -k, [--broker-token=BROKER_TOKEN]        # Pact Broker bearer token
-  -v, [--verbose], [--no-verbose]          # Verbose output. Default: false
+  -v, [--verbose], [--no-verbose]          # Verbose output.
                                            # Default: false
 
 Description:
@@ -378,7 +378,7 @@ Options:
   -u, [--broker-username=BROKER_USERNAME]                                      # Pact Broker basic auth username
   -p, [--broker-password=BROKER_PASSWORD]                                      # Pact Broker basic auth password
   -k, [--broker-token=BROKER_TOKEN]                                            # Pact Broker bearer token
-  -v, [--verbose], [--no-verbose]                                              # Verbose output. Default: false
+  -v, [--verbose], [--no-verbose]                                              # Verbose output.
                                                                                # Default: false
 
 Publish provider contract to PactFlow
