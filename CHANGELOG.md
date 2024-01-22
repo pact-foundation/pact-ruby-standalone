@@ -1,3 +1,15 @@
+<a name="v2.1.0"></a>
+### v2.1.0 (2024-01-22)
+
+
+#### Features
+
+* remove unused gemfile.lock files	 ([d03a452](/../../commit/d03a452))
+
+* **gems**
+  * update to pact (1.64.0)	 ([aa849da](/../../commit/aa849da))
+
+
 <a name="v2.0.12"></a>
 ### v2.0.12 (2023-12-07)
 
