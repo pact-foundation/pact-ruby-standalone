@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:3.2.2-alpine
+FROM --platform=linux/amd64 ruby:3.3.0-alpine
 
 # Installation path
 ENV HOME=/app
@@ -9,6 +9,6 @@ RUN set -ex && \
   chmod g+w $HOME && \
   apk add --update --no-cache make gcc libc-dev
 
-RUN gem install bundler -v "~> 2.4"
+RUN gem install bundler -v "~> 2.5"
 COPY packaging/Gemfile packaging/Gemfile.lock $HOME/
 RUN bundle install --no-cache
