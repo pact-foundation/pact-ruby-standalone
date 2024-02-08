@@ -54,15 +54,15 @@ Script is designed to run on Linux, but can be run on macOS or windows.
 For windows x86_64
 
     cd windows
-    bash -c 'mkdir -p cache output/3.3.0'
-    bash -c './build-ruby -a x86 -r 3.3.0 cache output/3.3.0'
-    bash -c './package -r traveling-ruby-20230428-3.3.0-x86-windows.tar.gz output/3.3.0'
+    bash -c 'mkdir -p cache output/3.2.2'
+    bash -c './build-ruby -a x86 -r 3.2.2 cache output/3.2.2'
+    bash -c './package -r traveling-ruby-20230428-3.2.2-x86-windows.tar.gz output/3.2.2'
 
 For windows x86
 
-    bash -c 'mkdir -p cache output/3.3.0'
-    bash -c './build-ruby -a x86_64 -r 3.3.0 cache output/3.3.0'
-    bash -c './package -r traveling-ruby-20230428-3.3.0-x86_64-windows.tar.gz output/3.3.0'
+    bash -c 'mkdir -p cache output/3.2.2'
+    bash -c './build-ruby -a x86_64 -r 3.2.2 cache output/3.2.2'
+    bash -c './package -r traveling-ruby-20230428-3.2.2-x86_64-windows.tar.gz output/3.2.2'
 
 ### Building the pact-ruby-standalone packages
 
@@ -118,10 +118,10 @@ Build only selected platforms
 2. Copy your built `traveling-ruby` package into the `build` folder
 3. Ensure the version number in `tasks/package.rake` matches your package name
    1. eg
-      1. `traveling-ruby-20230508-3.3.0-linux-arm64.tar.gz`
+      1. `traveling-ruby-20230508-3.2.2-linux-arm64.tar.gz`
 
     ```ruby
-    TRAVELING_RUBY_VERSION = "20230508-3.3.0"
+    TRAVELING_RUBY_VERSION = "20230508-3.2.2"
     ```
 
 4. Run `bundle exec rake package` as before
@@ -130,13 +130,13 @@ Build only selected platforms
 
 | OS     | Ruby      | Architecture | Supported |
 | -------| ------- | ------------ | --------- |
-| OSX    | 3.3.0     | x86_64       | ✅         |
-| OSX    | 3.3.0     | aarch64 (arm)| ✅         |
-| Linux  | 3.3.0   | x86_64       | ✅         |
-| Linux  | 3.3.0   | aarch64 (arm)| ✅          |
-| Windows| 3.3.0 | x86_64       | ✅        |
-| Windows| 3.3.0 | x86       | ✅        |
-| Windows| 3.3.0 | aarch64 (via x86 emulation) |  ✅        |
+| OSX    | 3.2.2     | x86_64       | ✅         |
+| OSX    | 3.2.2     | aarch64 (arm)| ✅         |
+| Linux  | 3.2.2   | x86_64       | ✅         |
+| Linux  | 3.2.2   | aarch64 (arm)| ✅          |
+| Windows| 3.2.2 | x86_64       | ✅        |
+| Windows| 3.2.2 | x86       | ✅        |
+| Windows| 3.2.2 | aarch64 (via x86 emulation) |  ✅        |
 
 ## Testing
 
