@@ -1,3 +1,12 @@
+<a name="v2.3.0"></a>
+### v2.3.0 (2024-02-08)
+
+
+#### Features
+
+* use sh for wrapper scripts	 ([74a6be3](/../../commit/74a6be3))
+
+
 <a name="v2.1.0"></a>
 ### v2.1.0 (2024-01-22)
 
