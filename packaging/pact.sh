@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 SOURCE="$0"
@@ -16,7 +16,7 @@ RDIR="$( dirname "$SOURCE" )"
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 # Figure out where this script is located.
-LIBDIR="`cd \"$DIR\" && cd ../lib && pwd`"
+LIBDIR="$(cd "$DIR" && cd ../lib && pwd)"
 
 # Tell Bundler where the Gemfile and gems are.
 export BUNDLE_GEMFILE="$LIBDIR/vendor/Gemfile"
