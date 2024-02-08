@@ -28,12 +28,13 @@ jobs:
   test:
     defaults:
       run:
-        shell: sh
+        shell: ${{ matrix.shell }}
     needs: [build]
     strategy:
       fail-fast: false
       matrix:
         os: ["windows-latest","ubuntu-latest","macos-latest"]
+        shell: ["sh","bash"]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
