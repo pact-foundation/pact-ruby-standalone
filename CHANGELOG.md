@@ -1,3 +1,12 @@
+<a name="v2.4.1"></a>
+### v2.4.1 (2024-02-12)
+
+
+#### Bug Fixes
+
+* drop traveling-ruby to 3.2.3 due to segfaults on alpine	 ([960313f](/../../commit/960313f))
+
+
 <a name="v2.3.0"></a>
 ### v2.3.0 (2024-02-08)
 
