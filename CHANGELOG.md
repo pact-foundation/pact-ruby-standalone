@@ -1,3 +1,13 @@
+<a name="v2.4.2"></a>
+### v2.4.2 (2024-02-27)
+
+
+#### Features
+
+* **deps**
+  * update rack 2.2.8.1 - update rpec 3.13.1 - thor 1.3.1	 ([3e3e6ca](/../../commit/3e3e6ca))
+
+
 <a name="v2.4.1"></a>
 ### v2.4.1 (2024-02-12)
 
