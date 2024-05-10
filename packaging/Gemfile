@@ -7,4 +7,8 @@ gem "pact-provider-verifier", "1.38.0"
 gem "pact_broker-client", "1.75.1"
 gem "webrick", "1.8.1"
 gem 'rack', '>= 2.2.6'
+# see https://stdgems.org/ for versions to lock to
+# we require gem locking for gems with native extensions
+# due to lack of windows support
 gem "json", "2.6.3"
+gem "bigdecimal", "3.1.3"
