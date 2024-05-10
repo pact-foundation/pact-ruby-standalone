@@ -3,9 +3,9 @@ require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
-TRAVELING_RUBY_VERSION = "20240205-3.2.3"
+TRAVELING_RUBY_VERSION = "20240427-3.2.4"
 TRAVELING_RUBY_PKG_DATE = TRAVELING_RUBY_VERSION.split("-").first
-PLUGIN_CLI_VERSION = "0.1.0"
+PLUGIN_CLI_VERSION = "0.1.2"
 
 desc "Package pact-ruby-standalone for OSX, Linux x86_64 and windows x86_64"
 task :package => ['package:linux:x86_64','package:linux:arm64', 'package:osx:x86_64', 'package:osx:arm64','package:windows:x86_64','package:windows:x86']
@@ -47,7 +47,7 @@ namespace :package do
   desc "Install gems to local directory"
   task :bundle_install do
     if RUBY_VERSION !~ /^3\.2\./
-      abort "You can only 'bundle install' using Ruby 3.2.3, because that's what Traveling Ruby uses."
+      abort "You can only 'bundle install' using Ruby 3.2.4, because that's what Traveling Ruby uses."
     end
     sh "rm -rf build/tmp"
     sh "mkdir -p build/tmp"
