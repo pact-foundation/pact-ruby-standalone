@@ -1,3 +1,12 @@
+<a name="v2.4.4"></a>
+### v2.4.4 (2024-05-10)
+
+
+#### Bug Fixes
+
+* pin bigdecimal to 3.1.5 as per ruby std gems	 ([dc0d352](/../../commit/dc0d352))
+
+
 <a name="v2.4.3"></a>
 ### v2.4.3 (2024-05-13)
 
