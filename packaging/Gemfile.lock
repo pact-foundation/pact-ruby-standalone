@@ -2,7 +2,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     awesome_print (1.9.2)
-    bigdecimal (3.1.8)
+    bigdecimal (3.1.5)
     csv (3.3.0)
     diff-lcs (1.5.1)
     dig_rb (1.0.1)
@@ -19,7 +19,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    json (2.6.3)
+    json (2.7.1)
     mini_mime (1.1.5)
     multi_xml (0.7.1)
       bigdecimal (~> 3.1)
@@ -121,7 +121,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  json (= 2.6.3)
+  bigdecimal (= 3.1.5)
+  json (= 2.7.1)
   pact (= 1.64.0)
   pact-message (= 0.11.1)
   pact-mock_service (= 3.11.2)
@@ -131,4 +132,4 @@ DEPENDENCIES
   webrick (= 1.8.1)
 
 BUNDLED WITH
-   2.5.3
+   2.5.9
