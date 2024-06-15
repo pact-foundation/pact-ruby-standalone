@@ -163,6 +163,10 @@ def remove_unnecessary_files package_dir
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/*.txt"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/*.md"
   sh "rm -f #{package_dir}/lib/vendor/ruby/*/gems/*/*.rdoc"
+  
+  # Issue 134 - Remove rdoc gemspec
+  sh "find #{package_dir}/lib -name 'rdoc*gemspec' | xargs rm -f"
+
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/doc"
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/docs"
   sh "rm -rf #{package_dir}/lib/vendor/ruby/*/gems/*/example"
