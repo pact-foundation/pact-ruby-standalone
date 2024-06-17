@@ -2,13 +2,14 @@ GEM
   remote: http://rubygems.org/
   specs:
     awesome_print (1.9.2)
+    base64 (0.2.0)
     bigdecimal (3.1.5)
     csv (3.3.0)
     diff-lcs (1.5.1)
     dig_rb (1.0.1)
     expgen (0.1.1)
       parslet
-    faraday (2.9.0)
+    faraday (2.9.1)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
@@ -60,7 +61,8 @@ GEM
       diff-lcs (~> 1.5)
       expgen (~> 0.1)
       rainbow (~> 3.1.1)
-    pact_broker-client (1.75.2)
+    pact_broker-client (1.75.3)
+      base64 (~> 0.2)
       dig_rb (~> 1.0)
       httparty (>= 0.21.0, < 1.0.0)
       rake (~> 13.0)
@@ -84,7 +86,7 @@ GEM
       rspec-mocks (~> 3.13.0)
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.0)
+    rspec-expectations (3.13.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-mocks (3.13.1)
@@ -127,7 +129,7 @@ DEPENDENCIES
   pact-message (= 0.11.1)
   pact-mock_service (= 3.11.2)
   pact-provider-verifier (= 1.38.0)
-  pact_broker-client (= 1.75.2)
+  pact_broker-client (= 1.75.3)
   rack (>= 2.2.6)
   webrick (= 1.8.1)
 
