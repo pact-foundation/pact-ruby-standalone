@@ -69,7 +69,7 @@ jobs:
     needs: release
     strategy:
       matrix:
-        repository: [pact-foundation/pact-node, pact-foundation/homebrew-pact-ruby-standalone]
+        repository: [pact-foundation/pact-js-cli, pact-foundation/homebrew-pact-ruby-standalone]
     runs-on: ubuntu-latest
     steps:
       - name: Notify ${{ matrix.repository }} of gem release

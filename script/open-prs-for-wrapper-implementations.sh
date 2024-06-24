@@ -2,8 +2,8 @@
 
 VERSION=$(cat VERSION)
 
-if [ -e ../pact-node/script/create-pr-to-update-pact-ruby-standalone.sh ]; then
-  pushd ../pact-node
+if [ -e ../pact-js-cli/script/create-pr-to-update-pact-ruby-standalone.sh ]; then
+  pushd ../pact-js-cli
   script/create-pr-to-update-pact-ruby-standalone.sh $VERSION
 fi
 
