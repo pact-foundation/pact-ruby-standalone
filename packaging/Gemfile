@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem "pact", "1.64.0"
 gem "pact-message", "0.11.1"
 gem "pact-mock_service", "3.11.2"
-gem "pact-provider-verifier", "1.38.0"
+gem "pact-provider-verifier", "1.38.1"
 gem "pact_broker-client", "1.75.4"
 gem "webrick", "1.8.1"
 gem 'rack', '>= 2.2.6'
