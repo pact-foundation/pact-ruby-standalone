@@ -1,3 +1,13 @@
+<a name="v2.4.8"></a>
+### v2.4.8 (2024-08-07)
+
+
+#### Features
+
+* **gems**
+  * update to pact-provider-verifier (1.38.1)	 ([e46fa9c](/../../commit/e46fa9c))
+
+
 <a name="v2.4.7"></a>
 ### v2.4.7 (2024-07-30)
 
