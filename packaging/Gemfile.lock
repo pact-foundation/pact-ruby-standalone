@@ -28,7 +28,7 @@ GEM
       bigdecimal (~> 3.1)
     net-http (0.4.1)
       uri
-    pact (1.64.0)
+    pact (1.65.0)
       pact-mock_service (~> 3.0, >= 3.3.1)
       pact-support (~> 1.16, >= 1.16.9)
       rack-test (>= 0.6.3, < 3.0.0)
@@ -127,7 +127,7 @@ PLATFORMS
 DEPENDENCIES
   bigdecimal (= 3.1.5)
   json (= 2.7.1)
-  pact (= 1.64.0)
+  pact (= 1.65.0)
   pact-message (= 0.11.1)
   pact-mock_service (= 3.11.2)
   pact-provider-verifier (= 1.38.1)
