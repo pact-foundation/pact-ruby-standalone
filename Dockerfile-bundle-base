@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ruby:3.3.3-alpine
+FROM --platform=linux/amd64 ruby:3.3.4-alpine
 
 # Installation path
 ENV HOME=/app
