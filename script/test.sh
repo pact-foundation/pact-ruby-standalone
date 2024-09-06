@@ -29,10 +29,6 @@ if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then
         BINARY_OS=windows
         BINARY_ARCH=x86_64
         ;;
-    "Windows"* | "MINGW"*)
-        BINARY_OS=windows
-        BINARY_ARCH=x86
-        ;;
       *)
       echo "Sorry, os not determined"
       exit 1
@@ -40,24 +36,29 @@ if [ "$BINARY_OS" == "" ] || [ "$BINARY_ARCH" == "" ] ; then
     esac;
 fi
 
+if [ "$BINARY_OS" != "windows" ] ; then PATH_SEPERATOR=/ ; else PATH_SEPERATOR=\\; fi
+PATH_TO_BIN=.${PATH_SEPERATOR}pkg${PATH_SEPERATOR}pact${PATH_SEPERATOR}bin${PATH_SEPERATOR}
 
 tools=(
-  # pact 
+  pact
   pact-broker
   pact-message
   pact-mock-service
-  pact-plugin-cli
   pact-provider-verifier
   pact-stub-service
   pactflow
+  pact-plugin-cli
+  pact-stub-server
+  pact_verifier_cli
+  pact_mock_server_cli
 )
 
+test_cmd=""
 for tool in ${tools[@]}; do
   echo testing $tool
-  if [ "$BINARY_OS" != "windows" ] ; then echo "no bat file ext needed for $(uname -a)" ; else FILE_EXT=.bat; fi
-  if [ "$BINARY_OS" = "windows" ] && [ "$tool" = "pact-plugin-cli" ] ; then  FILE_EXT=.exe ; else echo "no exe file ext needed for $(uname -a)"; fi
+  if [ "$BINARY_OS" = "windows" ] ; then FILE_EXT=.bat; fi
+  if [ "$BINARY_OS" = "windows" ] && ([ "$tool" = "pact-plugin-cli" ] || [ "$tool" = "pact-stub-server" ] || [ "$tool" = "pact_verifier_cli" ] || [ "$tool" = "pact_mock_server_cli" ]) ; then  FILE_EXT=.exe ; fi
+  if [ "$tool" = "pact_verifier_cli" ] || [ "$tool" = "pact-mock-service" ]; then  test_cmd="--help" ; fi
   echo executing ${tool}${FILE_EXT} 
-  if [ "$BINARY_ARCH" = "x86" ] && [ "$tool" = "pact-plugin-cli" ] ; then  echo "skipping for x86" ; else ${tool}${FILE_EXT} help; fi
+  ${PATH_TO_BIN}${tool}${FILE_EXT} ${test_cmd};
 done
-
-
