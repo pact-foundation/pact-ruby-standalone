@@ -50,11 +50,3 @@ tar xzf pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86_64.zip
 unzip pact-<PACKAGE_VERSION>-windows-x86_64.zip
 ```
-
-#### x86
-
-```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86.zip
-unzip pact-<PACKAGE_VERSION>-windows-x86.zip
-```
-
