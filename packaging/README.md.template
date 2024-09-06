@@ -2,7 +2,10 @@
 
 ![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
 
-Creates a standalone pact command line executable using the ruby pact implementation and Traveling Ruby
+Creates a standalone pact command line executable containing
+
+- The rust pact implementation via cargo executables
+- The ruby pact implementation via Traveling Ruby
 
 ## Package contents
 
@@ -14,6 +17,10 @@ This version (<%= ENV.fetch('VERSION') %>) of the Pact standalone executables pa
   * pact-provider-verifier gem <%= Pact::ProviderVerifier::VERSION %>
   * pact_broker-client gem <%= PactBroker::Client::VERSION %>
   * pact-message gem <%= Pact::Message::VERSION %>
+  * [pact_mock_server_cli](https://github.com/pact-foundation/pact-core-mock-server/tree/main/pact_mock_server_cli)
+  * [pact-stub-server](https://github.com/pact-foundation/pact-stub-server)
+  * [pact_verifier_cli](https://github.com/pact-foundation/pact-reference/tree/master/rust/pact_verifier_cli)
+  * [pact-plugin-cli](https://github.com/pact-foundation/pact-plugins/tree/main/cli)
 
 Binaries will be extracted into `pact/bin`:
 
@@ -25,17 +32,29 @@ Binaries will be extracted into `pact/bin`:
 ├── pact-message
 ├── pact-mock-service
 ├── pact-provider-verifier
-└── pact-stub-service
+├── pact-stub-service
+├── pact_mock_server_cli (rust)
+├── pact-stub-server (rust)
+├── pact_verifier_cli (rust)
+└── pact-plugin-cli (rust)
 ```
 
 ### Windows Users
 
-Please append `.bat` to any of the provided binaries
+Please append `.bat` to any of the provided ruby-based binaries
 
 eg.
 
 ```ps1
   .\pact\bin\pact-broker.bat
+```
+
+Please append `.exe` to any of the provided rust based binaries
+
+eg.
+
+```ps1
+  .\pact\bin\pact_mock_server_cli.exe
 ```
 
 ## Installation
@@ -55,10 +74,9 @@ Ruby is not required on the host platform, Ruby 3.3.3 is provided in the distrib
 | Linux  | 3.3.3     | x86_64         | ✅        |
 | Linux  | 3.3.3     | aarch64 (arm64)| ✅        |
 | Windows| 3.3.3     | x86_64         | ✅        |
-| Windows| 3.3.3     | x86            | ✅        |
 | Windows| 3.3.3     | aarch64 (arm64)| 🚧        |
 
-🚧 - Tested under emulation mode x86 / x86_64 in Windows on ARM
+🚧 - Tested under emulation mode x86_64 in Windows on ARM
 
 ## Usage
 
