@@ -106,7 +106,7 @@ GEM
       bigdecimal
       sync
     uri (0.13.1)
-    webrick (1.8.1)
+    webrick (1.8.2)
 
 PLATFORMS
   aarch64-linux
@@ -133,7 +133,7 @@ DEPENDENCIES
   pact-provider-verifier (= 1.38.1)
   pact_broker-client (= 1.76.1)
   rack (>= 2.2.6)
-  webrick (= 1.8.1)
+  webrick (= 1.8.2)
 
 BUNDLED WITH
    2.5.9
