@@ -1,3 +1,18 @@
+<a name="v2.4.13"></a>
+### v2.4.13 (2024-09-26)
+
+
+#### Features
+
+* **gems**
+  * update to pact (1.65.2)	 ([dde96f2](/../../commit/dde96f2))
+
+
+#### Bug Fixes
+
+* Dockerfile-bundle-base to reduce vulnerabilities	 ([868ee2e](/../../commit/868ee2e))
+
+
 <a name="v2.4.12"></a>
 ### v2.4.12 (2024-08-21)
 
