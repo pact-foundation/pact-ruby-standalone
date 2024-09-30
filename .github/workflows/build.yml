@@ -11,9 +11,9 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
-    - uses: ruby/setup-ruby@v1.180.0
+    - uses: ruby/setup-ruby@v1.194.0
       with:
-        ruby-version: 3.3.3
+        ruby-version: 3.3.5
     - name: Set up environment
       run: bundle install
     - name: Build
