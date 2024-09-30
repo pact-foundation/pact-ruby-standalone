@@ -3,7 +3,7 @@ require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
-TRAVELING_RUBY_VERSION = "20240615-3.3.3"
+TRAVELING_RUBY_VERSION = "20240904-3.3.5"
 TRAVELING_RUBY_PKG_DATE = TRAVELING_RUBY_VERSION.split("-").first
 PLUGIN_CLI_VERSION = "0.1.2"
 
@@ -47,7 +47,7 @@ namespace :package do
   desc "Install gems to local directory"
   task :bundle_install do
     if RUBY_VERSION !~ /^3\.3\./
-      abort "You can only 'bundle install' using Ruby 3.3.3, because that's what Traveling Ruby uses."
+      abort "You can only 'bundle install' using Ruby 3.3.5, because that's what Traveling Ruby uses."
     end
     sh "rm -rf build/tmp"
     sh "mkdir -p build/tmp"
