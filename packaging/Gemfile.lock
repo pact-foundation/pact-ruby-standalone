@@ -17,6 +17,7 @@ GEM
       net-http (>= 0.5.0)
     faraday-retry (2.2.1)
       faraday (~> 2.0)
+    fiddle (1.1.5)
     find_a_port (1.0.1)
     httparty (0.22.0)
       csv
@@ -143,6 +144,7 @@ PLATFORMS
 
 DEPENDENCIES
   bigdecimal (= 3.1.5)
+  fiddle
   json (= 2.7.1)
   pact (= 1.66.0)
   pact-message (= 0.11.1)
