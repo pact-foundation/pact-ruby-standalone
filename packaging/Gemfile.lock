@@ -1,5 +1,5 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     awesome_print (1.9.2)
     base64 (0.2.0)
@@ -118,7 +118,7 @@ GEM
       bigdecimal
       sync
     uri (1.0.2)
-    webrick (1.8.2)
+    webrick (1.9.0)
 
 PLATFORMS
   aarch64-linux
@@ -144,8 +144,7 @@ DEPENDENCIES
   pact-mock_service (= 3.11.2)
   pact-provider-verifier (= 1.38.1)
   pact_broker-client (= 1.77.0)
-  rack (>= 2.2.6)
-  webrick (= 1.8.2)
+  webrick (= 1.9.0)
 
 BUNDLED WITH
    2.5.18
