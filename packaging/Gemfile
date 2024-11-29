@@ -1,12 +1,11 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem "pact", "1.66.0"
 gem "pact-message", "0.11.1"
-gem "pact-mock_service", "3.11.2"
-gem "pact-provider-verifier", "1.38.1"
+gem "pact-mock_service", "3.12.3"
+gem "pact-provider-verifier", "1.39.0"
 gem "pact_broker-client", "1.77.0"
-gem "webrick", "1.8.2"
-gem 'rack', '>= 2.2.6'
+gem "webrick", "1.9.0"
 # see https://stdgems.org/ for versions to lock to
 # we require gem locking for gems with native extensions
 # due to lack of windows support
