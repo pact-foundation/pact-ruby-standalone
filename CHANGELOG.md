@@ -1,3 +1,19 @@
+<a name="v2.4.18"></a>
+### v2.4.18 (2024-11-29)
+
+
+#### Features
+
+* **deps**
+  * update to rack 3	 ([0b4bf7e](/../../commit/0b4bf7e))
+
+
+#### Bug Fixes
+
+* **deps**
+  * update pact-mock_service / pact-provider-verifier	 ([9e773f4](/../../commit/9e773f4))
+
+
 <a name="v2.4.17"></a>
 ### v2.4.17 (2024-11-29)
 
