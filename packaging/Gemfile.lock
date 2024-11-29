@@ -62,7 +62,7 @@ GEM
       rack-reverse-proxy
       rspec (~> 3.5)
       rspec_junit_formatter (~> 0.3)
-    pact-support (1.21.0)
+    pact-support (1.21.1)
       awesome_print (~> 1.9)
       diff-lcs (~> 1.5)
       expgen (~> 0.1)
