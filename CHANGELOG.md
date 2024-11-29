@@ -1,3 +1,15 @@
+<a name="v2.4.17"></a>
+### v2.4.17 (2024-11-29)
+
+
+#### Features
+
+* **gems**
+  * update to pact (1.66.0)	 ([623912b](/../../commit/623912b))
+  * update to pact-support (1.21.1)	 ([c16d698](/../../commit/c16d698))
+  * update to pact-support (1.21.0)	 ([51f9a30](/../../commit/51f9a30))
+
+
 <a name="v2.4.16"></a>
 ### v2.4.16 (2024-10-24)
 
