@@ -1,3 +1,13 @@
+<a name="v2.4.19"></a>
+### v2.4.19 (2024-11-30)
+
+
+#### Bug Fixes
+
+* **deps**
+  * use rack-reverse-proxy pact-foundation fork - update to rack-test 2.1.0	 ([5ec14d2](/../../commit/5ec14d2))
+
+
 <a name="v2.4.18"></a>
 ### v2.4.18 (2024-11-29)
 
