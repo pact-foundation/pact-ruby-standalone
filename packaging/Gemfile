@@ -9,7 +9,7 @@ gem "webrick", "1.9.0"
 # see https://stdgems.org/ for versions to lock to
 # we require gem locking for gems with native extensions
 # due to lack of windows support
-gem "json", "2.7.1"
+gem "json", "2.7.2"
 gem "bigdecimal", "3.1.5"
 gem 'rack-reverse-proxy', git: 'https://github.com/pact-foundation/rack-reverse-proxy.git',
                           branch: 'feat/rack_2_and_3_compat'
