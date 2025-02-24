@@ -1,3 +1,13 @@
+<a name="v2.4.22"></a>
+### v2.4.22 (2025-02-24)
+
+
+#### Bug Fixes
+
+* **deps**
+  * update pact-provider-verifier to 1.39.1	 ([85367c5](/../../commit/85367c5))
+
+
 <a name="v2.4.21"></a>
 ### v2.4.21 (2025-01-20)
 
