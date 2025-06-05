@@ -84,7 +84,7 @@ GEM
       term-ansicolor (~> 1.7)
       thor (>= 0.20, < 2.0)
     parslet (2.0.0)
-    rack (3.1.12)
+    rack (3.1.16)
     rack-proxy (0.7.7)
       rack
     rack-reverse-proxy-pact (1.0.2)
