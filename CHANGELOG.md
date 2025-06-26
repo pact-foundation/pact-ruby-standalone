@@ -1,3 +1,13 @@
+<a name="v2.4.26"></a>
+### v2.4.26 (2025-06-26)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([96adfce](/../../commit/96adfce))
+
+
 <a name="v2.4.22"></a>
 ### v2.4.22 (2025-02-24)
 
