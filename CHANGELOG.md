@@ -1,3 +1,81 @@
+<a name="v2.4.26"></a>
+### v2.4.26 (2025-06-26)
+
+
+#### Features
+
+* **gems**
+  * update non-pact gems	 ([96adfce](/../../commit/96adfce))
+
+
+<a name="v2.4.22"></a>
+### v2.4.22 (2025-02-24)
+
+
+#### Bug Fixes
+
+* **deps**
+  * update pact-provider-verifier to 1.39.1	 ([85367c5](/../../commit/85367c5))
+
+
+<a name="v2.4.21"></a>
+### v2.4.21 (2025-01-20)
+
+
+#### Features
+
+* **gems**
+  * update to pact (1.66.1)	 ([9b77078](/../../commit/9b77078))
+
+
+<a name="v2.4.20"></a>
+### v2.4.20 (2024-12-05)
+
+
+#### Features
+
+* **gems**
+  * update to pact-support (1.21.2)	 ([9a342e8](/../../commit/9a342e8))
+
+
+<a name="v2.4.19"></a>
+### v2.4.19 (2024-11-30)
+
+
+#### Bug Fixes
+
+* **deps**
+  * use rack-reverse-proxy pact-foundation fork - update to rack-test 2.1.0	 ([5ec14d2](/../../commit/5ec14d2))
+
+
+<a name="v2.4.18"></a>
+### v2.4.18 (2024-11-29)
+
+
+#### Features
+
+* **deps**
+  * update to rack 3	 ([0b4bf7e](/../../commit/0b4bf7e))
+
+
+#### Bug Fixes
+
+* **deps**
+  * update pact-mock_service / pact-provider-verifier	 ([9e773f4](/../../commit/9e773f4))
+
+
+<a name="v2.4.17"></a>
+### v2.4.17 (2024-11-29)
+
+
+#### Features
+
+* **gems**
+  * update to pact (1.66.0)	 ([623912b](/../../commit/623912b))
+  * update to pact-support (1.21.1)	 ([c16d698](/../../commit/c16d698))
+  * update to pact-support (1.21.0)	 ([51f9a30](/../../commit/51f9a30))
+
+
 <a name="v2.4.16"></a>
 ### v2.4.16 (2024-10-24)
 
