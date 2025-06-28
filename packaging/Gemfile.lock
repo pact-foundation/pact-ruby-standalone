@@ -3,7 +3,7 @@ GEM
   specs:
     awesome_print (1.9.2)
     base64 (0.3.0)
-    bigdecimal (3.1.5)
+    bigdecimal (3.2.2)
     csv (3.3.5)
     diff-lcs (1.6.2)
     dig_rb (1.0.1)
@@ -143,7 +143,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bigdecimal (= 3.1.5)
+  bigdecimal (= 3.2.2)
   json (= 2.7.1)
   pact (= 1.66.1)
   pact-message (= 0.11.1)
