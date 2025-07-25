@@ -1,3 +1,12 @@
+<a name="v2.5.0"></a>
+### v2.5.0 (2025-07-25)
+
+
+#### Features
+
+* update pact entrypoint to list/execute all binaries	 ([7e18b6d](/../../commit/7e18b6d))
+
+
 <a name="v2.4.26"></a>
 ### v2.4.26 (2025-06-26)
 

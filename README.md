@@ -9,7 +9,7 @@ Creates a standalone pact command line executable containing
 
 ## Package contents
 
-This version (2.4.26) of the Pact standalone executables package contains:
+This version (2.5.0) of the Pact standalone executables package contains:
 
   * pact gem 1.66.1
   * pact-mock_service gem 3.12.3
@@ -85,14 +85,14 @@ Ruby is not required on the host platform, Ruby 3.3.5 is provided in the distrib
 
 ```
 Commands:
-  pact-mock-service control               # Run a Pact mock service control server.
-  pact-mock-service control-restart       # Start a Pact mock service control server.
-  pact-mock-service control-start         # Start a Pact mock service control server.
-  pact-mock-service control-stop          # Stop a Pact mock service control server.
-  pact-mock-service help [COMMAND]        # Describe available commands or one specific command
-  pact-mock-service restart               # Start or restart a mock service. If the consumer, provider and pact-dir options are provided, the pact will be writt...
-  pact-mock-service service               # Start a mock service. If the consumer, provider and pact-dir options are provided, the pact will be written automati...
-  pact-mock-service start                 # Start a mock service. If the consumer, provider and pact-dir options are provided, the pact will be written automati...
+  pact-mock-service control               # Run a Pact mock service control s...
+  pact-mock-service control-restart       # Start a Pact mock service control...
+  pact-mock-service control-start         # Start a Pact mock service control...
+  pact-mock-service control-stop          # Stop a Pact mock service control ...
+  pact-mock-service help [COMMAND]        # Describe available commands or on...
+  pact-mock-service restart               # Start or restart a mock service. ...
+  pact-mock-service service               # Start a mock service. If the cons...
+  pact-mock-service start                 # Start a mock service. If the cons...
   pact-mock-service stop -p, --port=PORT  # Stop a Pact mock service
   pact-mock-service version               # Show the pact-mock-service gem version
 
@@ -147,11 +147,16 @@ Options:
       [--sslkey=SSLKEY]                    # Specify the path to the SSL key to use when running the service over HTTPS
 
 Description:
-  Start a stub service with the given pact file(s) or directories. Pact URIs may be local file or directory paths, or HTTP. Include any basic auth details in the
-  URL using the format https://USERNAME:PASSWORD@URI. Where multiple matching interactions are found, the interactions will be sorted by response status, and the
-  first one will be returned. This may lead to some non-deterministic behaviour. If you are having problems with this, please raise it on the pact-dev google
-  group, and we can discuss some potential enhancements. Note that only versions 1 and 2 of the pact specification are currently fully supported. Pacts using the
-  v3 format may be used, however, any matching features added in v3 will currently be ignored.
+  Start a stub service with the given pact file(s) or directories. Pact URIs
+  may be local file or directory paths, or HTTP. Include any basic auth details
+  in the URL using the format https://USERNAME:PASSWORD@URI. Where multiple
+  matching interactions are found, the interactions will be sorted by response
+  status, and the first one will be returned. This may lead to some
+  non-deterministic behaviour. If you are having problems with this, please
+  raise it on the pact-dev google group, and we can discuss some potential
+  enhancements. Note that only versions 1 and 2 of the pact specification are
+  currently fully supported. Pacts using the v3 format may be used, however,
+  any matching features added in v3 will currently be ignored.
 
 ```
 
@@ -205,19 +210,24 @@ Description:
   --enable-pending
   --include-wip-pacts-since
   
-  To verify a pact at a known URL (eg. when a verification is triggered by a 'contract
-  content changed' webhook), pass in the pact URL(s) as the first argument(s) to the command, and do NOT set any of the other parameters apart from the base URL
-  and credentials.
+  To
+  verify a pact at a known URL (eg. when a verification is triggered by a
+  'contract content changed' webhook), pass in the pact URL(s) as the first
+  argument(s) to the command, and do NOT set any of the other parameters apart
+  from the base URL and credentials.
   
-  To publish verification results for either of the above scenarios, set:
+  To publish verification results for either of the above
+  scenarios, set:
   
   --publish-verification-results (REQUIRED)
   --provider-app-version (REQUIRED)
   --provider-version-tag or --tag-with-git-branch
   
   
-  Selectors: These are specified using JSON strings. The keys are 'tag' (the name of the consumer version tag), 'latest' (true|false),
-  'consumer', and 'fallbackTag'. For example '{\"tag\": \"master\", \"latest\": true}'. For a detailed explanation of selectors, see https://pact.io/selectors#consumer-version-selectors
+  Selectors: These are specified using JSON strings.
+  The keys are 'tag' (the name of the consumer version tag), 'latest'
+  (true|false), 'consumer', and 'fallbackTag'. For example '{\"tag\":
+  \"master\", \"latest\": true}'. For a detailed explanation of selectors, see https://pact.io/selectors#consumer-version-selectors
 
 ```
 
@@ -290,44 +300,66 @@ Options:
                                                                  # Default: false
 
 Description:
-  Returns exit code 0 or 1, indicating whether or not the specified application (pacticipant) has a successful verification result with each of the application
-  versions that are already deployed to a particular environment. Prints out the relevant pact/verification details, indicating any missing or failed verification
-  results.
+  Returns exit code 0 or 1, indicating whether or not the specified application
+  (pacticipant) has a successful verification result with each of the
+  application versions that are already deployed to a particular environment.
+  Prints out the relevant pact/verification details, indicating any missing or
+  failed verification results.
 
-  The can-i-deploy tool was originally written to support specifying versions and dependencies using tags. This usage has now been superseded by first class
-  support for environments, deployments and releases. For documentation on how to use can-i-deploy with tags, please see
+  The can-i-deploy tool was originally written to support specifying versions
+  and dependencies using tags. This usage has now been superseded by first
+  class support for environments, deployments and releases. For documentation
+  on how to use can-i-deploy with tags, please see
   https://docs.pact.io/pact_broker/client_cli/can_i_deploy_usage_with_tags/
 
-  Before `can-i-deploy` can be used, the relevant environment resources must first be created in the Pact Broker using the `create-environment` command. The
-  "test" and "production" environments will have been seeded for you. You can check the existing environments by running `pact-broker list-environments`. See
-  https://docs.pact.io/pact_broker/client_cli/readme#environments for more information.
+  Before `can-i-deploy` can be used, the relevant environment resources must
+  first be created in the Pact Broker using the `create-environment` command.
+  The "test" and "production" environments will have been seeded for you. You
+  can check the existing environments by running `pact-broker
+  list-environments`. See
+  https://docs.pact.io/pact_broker/client_cli/readme#environments for more
+  information.
 
-  $ pact-broker create-environment --name "uat" --display-name "UAT" --no-production
+  $ pact-broker create-environment --name "uat" --display-name "UAT"
+  --no-production
 
-  After an application is deployed or released, its deployment must be recorded using the `record-deployment` or `record-release` commands. See
-  https://docs.pact.io/pact_broker/recording_deployments_and_releases/ for more information.
+  After an application is deployed or released, its deployment must be recorded
+  using the `record-deployment` or `record-release` commands. See
+  https://docs.pact.io/pact_broker/recording_deployments_and_releases/ for more
+  information.
 
-  $ pact-broker record-deployment --pacticipant Foo --version 173153ae0 --environment uat
+  $ pact-broker record-deployment --pacticipant Foo --version 173153ae0
+  --environment uat
 
-  Before an application is deployed or released to an environment, the can-i-deploy command must be run to check that the application version is safe to deploy
-  with the versions of each integrated application that are already in that environment.
+  Before an application is deployed or released to an environment, the
+  can-i-deploy command must be run to check that the application version is
+  safe to deploy with the versions of each integrated application that are
+  already in that environment.
 
-  $ pact-broker can-i-deploy --pacticipant PACTICIPANT --version VERSION --to-environment ENVIRONMENT
+  $ pact-broker can-i-deploy --pacticipant PACTICIPANT --version VERSION
+  --to-environment ENVIRONMENT
 
-  Example: can I deploy version 173153ae0 of application Foo to the test environment?
+  Example: can I deploy version 173153ae0 of application Foo to the test
+  environment?
 
-  $ pact-broker can-i-deploy --pacticipant Foo --version 173153ae0 --to-environment test
+  $ pact-broker can-i-deploy --pacticipant Foo --version 173153ae0
+  --to-environment test
 
-  Can-i-deploy can also be used to check if arbitrary versions have a successful verification. When asking "Can I deploy this application version with the latest
-  version from the main branch of another application" it functions as a "can I merge" check.
+  Can-i-deploy can also be used to check if arbitrary versions have a
+  successful verification. When asking "Can I deploy this application version
+  with the latest version from the main branch of another application" it
+  functions as a "can I merge" check.
 
-  $ pact-broker can-i-deploy --pacticipant Foo 173153ae0 \ --pacticipant Bar --latest main
+  $ pact-broker can-i-deploy --pacticipant Foo 173153ae0 \ --pacticipant Bar
+  --latest main
 
   ##### Polling
 
-  If the verification process takes a long time and there are results missing when the can-i-deploy command runs in your CI/CD pipeline, you can configure the
-  command to poll and wait for the missing results to arrive. The arguments to specify are `--retry-while-unknown TIMES` and `--retry-interval SECONDS`, set to
-  appropriate values for your pipeline.
+  If the verification process takes a long time and there are results missing
+  when the can-i-deploy command runs in your CI/CD pipeline, you can configure
+  the command to poll and wait for the missing results to arrive. The arguments
+  to specify are `--retry-while-unknown TIMES` and `--retry-interval SECONDS`,
+  set to appropriate values for your pipeline.
 
 ```
 
@@ -393,10 +425,10 @@ Generate Pact documentation in markdown
 
 ```
 Commands:
-  pact-message help [COMMAND]                                                                   # Describe available commands or one specific command
-  pact-message reify                                                                            # Take a JSON document with embedded pact matchers and return a ...
-  pact-message update MESSAGE_JSON --consumer=CONSUMER --pact-dir=PACT_DIR --provider=PROVIDER  # Update/create a pact. If MESSAGE_JSON is omitted or '-', it is...
-  pact-message version                                                                          # Show the pact-message gem version
+  pact-message help [COMMAND]                                                ...
+  pact-message reify                                                         ...
+  pact-message update MESSAGE_JSON --consumer=CONSUMER --pact-dir=PACT_DIR --...
+  pact-message version                                                       ...
 
 
 ```
