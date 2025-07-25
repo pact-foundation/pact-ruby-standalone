@@ -3,7 +3,7 @@ require 'bundler/setup'
 
 PACKAGE_NAME = "pact"
 VERSION = File.read('VERSION').strip
-TRAVELING_RUBY_VERSION = "20240904-3.3.5"
+TRAVELING_RUBY_VERSION = "20250625-3.3.9"
 TRAVELING_RUBY_PKG_DATE = TRAVELING_RUBY_VERSION.split("-").first
 TRAVELING_RB_VERSION = TRAVELING_RUBY_VERSION.split("-").last
 RUBY_COMPAT_VERSION = TRAVELING_RB_VERSION.split(".").first(2).join(".") + ".0"
@@ -126,6 +126,11 @@ def create_package(version, source_target, package_target, os_type)
   sh "mkdir #{package_dir}/lib/vendor/.bundle"
   sh "cp packaging/bundler-config #{package_dir}/lib/vendor/.bundle/config"
 
+  if package_target.include? 'windows'
+    sh "sed -i.bak '37s/^/#/' #{package_dir}/lib/ruby/lib/ruby/#{RUBY_COMPAT_VERSION}/bundler/stub_specification.rb"
+  else
+    sh "sed -i.bak '41s/^/#/' #{package_dir}/lib/ruby/lib/ruby/site_ruby/#{RUBY_COMPAT_VERSION}/bundler/stub_specification.rb"
+  end
   remove_unnecessary_files package_dir
   install_plugin_cli package_dir, package_target
   install_mock_server_cli package_dir, package_target
