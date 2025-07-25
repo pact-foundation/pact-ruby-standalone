@@ -11,4 +11,4 @@ gem "webrick", "1.9.1"
 # due to lack of windows support
 gem "json", "2.7.1"
 gem "bigdecimal", "3.1.5"
-gem "fiddle", "1.1.2"
+gem "fiddle", "1.1.8"
