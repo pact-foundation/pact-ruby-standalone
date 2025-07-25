@@ -65,16 +65,16 @@ See the [release page][releases].
 
 ## Supported Platforms
 
-Ruby is not required on the host platform, Ruby 3.3.5 is provided in the distributable.
+Ruby is not required on the host platform, Ruby 3.3.9 is provided in the distributable.
 
 | OS     | Ruby      | Architecture   | Supported |
 | -------| -------   | ------------   | --------- |
-| MacOS  | 3.3.5     | x86_64         | ✅        |
-| MacOS  | 3.3.5     | aarch64 (arm64)| ✅        |
-| Linux  | 3.3.5     | x86_64         | ✅        |
-| Linux  | 3.3.5     | aarch64 (arm64)| ✅        |
-| Windows| 3.3.5     | x86_64         | ✅        |
-| Windows| 3.3.5     | aarch64 (arm64)| 🚧        |
+| MacOS  | 3.3.9     | x86_64         | ✅        |
+| MacOS  | 3.3.9     | aarch64 (arm64)| ✅        |
+| Linux  | 3.3.9     | x86_64         | ✅        |
+| Linux  | 3.3.9     | aarch64 (arm64)| ✅        |
+| Windows| 3.3.9     | x86_64         | ✅        |
+| Windows| 3.3.9     | aarch64 (arm64)| 🚧        |
 
 🚧 - Tested under emulation mode x86_64 in Windows on ARM
 
