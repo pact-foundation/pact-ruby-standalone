@@ -8,7 +8,7 @@ ARG TARGET_ARCH=${TARGET_ARCH:-arm64}
 ARG PACT_CLI_VERSION=${PACT_CLI_VERSION:-2.0.1}
 
 RUN apt update --yes && apt install wget --yes
-RUN wget -q https://github.com/pact-foundation/pact-ruby-standalone/releases/download/v${PACT_CLI_VERSION}/pact-${PACT_CLI_VERSION}-linux-${TARGET_ARCH}.tar.gz \
+RUN wget -q https://github.com/pact-foundation/pact-standalone/releases/download/v${PACT_CLI_VERSION}/pact-${PACT_CLI_VERSION}-linux-${TARGET_ARCH}.tar.gz \
      && tar xzf pact-${PACT_CLI_VERSION}-linux-${TARGET_ARCH}.tar.gz \
      && rm -rf pact-${PACT_CLI_VERSION}-linux-${TARGET_ARCH}.tar.gz \
      && ln -s /pact/bin/* /usr/local/bin

@@ -7,7 +7,7 @@ This package contains the Ruby implementations of the Pact Mock Service, Pact Pr
 ### Linux and MacOS
 
 ```
-curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalone/master/install.sh | PACT_CLI_VERSION=v<PACKAGE_VERSION> bash
+curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-standalone/master/install.sh | PACT_CLI_VERSION=v<PACKAGE_VERSION> bash
 ```
 
 ### MacOS
@@ -15,14 +15,14 @@ curl -fsSL https://raw.githubusercontent.com/pact-foundation/pact-ruby-standalon
 #### x86_64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-x86_64.tar.gz
 ```
 
 #### arm64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 ```
 
@@ -31,14 +31,14 @@ tar xzf pact-<PACKAGE_VERSION>-osx-arm64.tar.gz
 #### x86_64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-x86_64.tar.gz
 ```
 
 #### arm64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
+curl -LO https://github.com/pact-foundation/pact-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 tar xzf pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 ```
 
@@ -47,6 +47,6 @@ tar xzf pact-<PACKAGE_VERSION>-linux-arm64.tar.gz
 #### x86_64
 
 ```
-curl -LO https://github.com/pact-foundation/pact-ruby-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86_64.zip
+curl -LO https://github.com/pact-foundation/pact-standalone/releases/download/<TAG_NAME>/pact-<PACKAGE_VERSION>-windows-x86_64.zip
 unzip pact-<PACKAGE_VERSION>-windows-x86_64.zip
 ```

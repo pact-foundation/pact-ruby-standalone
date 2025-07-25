@@ -1,6 +1,6 @@
 # Pact Standalone
 
-![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
+![Build](https://github.com/pact-foundation/pact-standalone/workflows/Build/badge.svg)
 
 Creates a standalone pact command line executable containing
 
@@ -61,7 +61,7 @@ eg.
 
 See the [release page][releases].
 
-[releases]: https://github.com/pact-foundation/pact-ruby-standalone/releases
+[releases]: https://github.com/pact-foundation/pact-standalone/releases
 
 ## Supported Platforms
 

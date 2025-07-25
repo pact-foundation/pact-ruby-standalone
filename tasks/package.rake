@@ -14,35 +14,35 @@ MOCK_SERVER_CLI_VERSION = "1.0.6" # https://github.com/pact-foundation/pact-core
 VERIFIER_CLI_VERSION = "1.2.0" # https://github.com/pact-foundation/pact-reference/releases
 STUB_SERVER_CLI_VERSION = "0.6.2" # https://github.com/pact-foundation/pact-stub-server/releases
 
-desc "Package pact-ruby-standalone for OSX, Linux x86_64 and windows x86_64"
+desc "Package pact-standalone for OSX, Linux x86_64 and windows x86_64"
 task :package => ['package:linux:x86_64','package:linux:arm64', 'package:osx:x86_64', 'package:osx:arm64','package:windows:x86_64']
 
 namespace :package do
   namespace :linux do
-    desc "Package pact-ruby-standalone for Linux x86_64"
+    desc "Package pact-standalone for Linux x86_64"
     task :x86_64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-x86_64.tar.gz"] do
       create_package(TRAVELING_RUBY_VERSION, "linux-x86_64", "linux-x86_64", :unix)
     end
 
-    desc "Package pact-ruby-standalone for Linux arm64"
+    desc "Package pact-standalone for Linux arm64"
     task :arm64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-linux-arm64.tar.gz"] do
       create_package(TRAVELING_RUBY_VERSION, "linux-arm64", "linux-arm64", :unix)
     end
   end
 
   namespace :osx do
-  desc "Package pact-ruby-standalone for OS X x86_64"
+  desc "Package pact-standalone for OS X x86_64"
   task :x86_64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx-x86_64.tar.gz"] do
     create_package(TRAVELING_RUBY_VERSION, "osx-x86_64", "osx-x86_64", :unix)
     end
 
-  desc "Package pact-ruby-standalone for OS X arm64"
+  desc "Package pact-standalone for OS X arm64"
   task :arm64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-osx-arm64.tar.gz"] do
     create_package(TRAVELING_RUBY_VERSION, "osx-arm64", "osx-arm64", :unix)
     end
   end
   namespace :windows do
-    desc "Package pact-ruby-standalone for windows x86_64"
+    desc "Package pact-standalone for windows x86_64"
     task :x86_64 => [:bundle_install, "build/traveling-ruby-#{TRAVELING_RUBY_VERSION}-windows-x86_64.tar.gz"] do
       create_package(TRAVELING_RUBY_VERSION, "windows-x86_64", "windows-x86_64", :windows)
     end
