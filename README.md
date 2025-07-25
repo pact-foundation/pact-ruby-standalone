@@ -1,4 +1,4 @@
-# Pact Ruby Standalone
+# Pact Standalone
 
 ![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
 
@@ -381,9 +381,9 @@ Usage:
 
 Options:
   [--pact-dir=PACT_DIR]  # Directory containing the pacts
-                         # Default: /Users/yousaf.nabi/dev/pact-foundation/pact-ruby-standalone/build/tmp/spec/pacts
+                         # Default: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/tmp/spec/pacts
   [--doc-dir=DOC_DIR]    # Documentation directory
-                         # Default: /Users/yousaf.nabi/dev/pact-foundation/pact-ruby-standalone/build/tmp/doc/pacts
+                         # Default: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/tmp/doc/pacts
 
 Generate Pact documentation in markdown
 
