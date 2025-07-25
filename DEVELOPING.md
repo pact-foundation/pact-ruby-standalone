@@ -1,6 +1,6 @@
 ## Packaging
 
-pact-ruby-standalone is packaged with `traveling-ruby`
+pact-standalone is packaged with `traveling-ruby`
 
 ### Building the `traveling-ruby` runtime
 
@@ -64,7 +64,7 @@ For windows x86
     bash -c './build-ruby -a x86_64 -r 3.3.5 cache output/3.3.5'
     bash -c './package -r traveling-ruby-20230428-3.3.5-x86_64-windows.tar.gz output/3.3.5'
 
-### Building the pact-ruby-standalone packages
+### Building the pact-standalone packages
 
 The following steps are the same, whether you are using the published traveling-ruby binaries, or you have built your own
 
@@ -72,7 +72,7 @@ Setup your gems
 
     bundle install
 
-Build all the pact-ruby-standalone packages
+Build all the pact-standalone packages
 
     bundle exec rake package
 

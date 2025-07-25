@@ -1,8 +1,8 @@
 #!/bin/bash
 
-IMAGE=pact-ruby-standalone-bundle-base
-RELEASE_IMAGE=pact-ruby-standalone-release-base
-PACKAGE_IMAGE=pact-ruby-standalone-package-base
+IMAGE=pact-standalone-bundle-base
+RELEASE_IMAGE=pact-standalone-release-base
+PACKAGE_IMAGE=pact-standalone-package-base
 
 function docker-build-bundle-base() {
   docker build . -f Dockerfile-bundle-base -t ${IMAGE}

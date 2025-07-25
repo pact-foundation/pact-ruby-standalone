@@ -1,6 +1,6 @@
 # Pact Standalone
 
-![Build](https://github.com/pact-foundation/pact-ruby-standalone/workflows/Build/badge.svg)
+![Build](https://github.com/pact-foundation/pact-standalone/workflows/Build/badge.svg)
 
 Creates a standalone pact command line executable containing
 
@@ -61,7 +61,7 @@ eg.
 
 See the [release page][releases].
 
-[releases]: https://github.com/pact-foundation/pact-ruby-standalone/releases
+[releases]: https://github.com/pact-foundation/pact-standalone/releases
 
 ## Supported Platforms
 
@@ -381,9 +381,9 @@ Usage:
 
 Options:
   [--pact-dir=PACT_DIR]  # Directory containing the pacts
-                         # Default: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/tmp/spec/pacts
+                         # Default: /home/runner/work/pact-standalone/pact-standalone/build/tmp/spec/pacts
   [--doc-dir=DOC_DIR]    # Documentation directory
-                         # Default: /home/runner/work/pact-ruby-standalone/pact-ruby-standalone/build/tmp/doc/pacts
+                         # Default: /home/runner/work/pact-standalone/pact-standalone/build/tmp/doc/pacts
 
 Generate Pact documentation in markdown
 
