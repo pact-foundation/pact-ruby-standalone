@@ -47,7 +47,7 @@ jobs:
     needs: release
     strategy:
       matrix:
-        repository: [pact-foundation/pact-js-cli, pact-foundation/homebrew-pact-ruby-standalone]
+        repository: [pact-foundation/pact-js-cli, pact-foundation/homebrew-pact-standalone]
     runs-on: ubuntu-latest
     steps:
       - name: Notify ${{ matrix.repository }} of gem release
@@ -55,7 +55,7 @@ jobs:
         with:
           token: ${{ secrets.GHTOKENFORRELEASEDISPATCH }}
           repository: ${{ matrix.repository }}
-          event-type: pact-ruby-standalone-released
+          event-type: pact-standalone-released
           client-payload: |
               {
                 "version": "${{ needs.release.outputs.version }}",
