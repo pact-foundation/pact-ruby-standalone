@@ -136,6 +136,7 @@ def create_package(version, source_target, package_target, os_type)
   install_mock_server_cli package_dir, package_target
   install_verifier_cli package_dir, package_target
   install_stub_server_cli package_dir, package_target
+  install_pactflow_ai_cli package_dir, package_target
 
   if !ENV['DIR_ONLY']
     sh "mkdir -p pkg"
@@ -338,4 +339,20 @@ def install_stub_server_cli(package_dir, package_target)
     sh "gunzip -N -f #{package_dir}/bin/pact-stub-server.exe.gz"
     sh "chmod +x #{package_dir}/bin/pact-stub-server.exe"
   end
+end
+
+def install_pactflow_ai_cli(package_dir, package_target)
+  case package_target
+  when "linux-x86_64"
+    rust_target="x86_64-unknown-linux-gnu"
+  when "linux-arm64"
+    rust_target="aarch64-unknown-linux-gnu"
+  when "osx-x86_64"
+    rust_target="x86_64-apple-darwin"
+  when "osx-arm64"
+    rust_target="aarch64-apple-darwin"
+  when "windows-x86_64"
+    rust_target="x86_64-pc-windows-msvc"
+  end
+  sh "curl https://download.pactflow.io/ai/get.sh | PACTFLOW_AI_NO_MODIFY_PATH=1 PACTFLOW_AI_DEFAULT_HOST=#{rust_target} PACTFLOW_AI_DESTINATION=#{package_dir}/bin PACTFLOW_AI_YES=1 sh"
 end

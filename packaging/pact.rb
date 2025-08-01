@@ -73,20 +73,30 @@ when 'stub-server'
     exit_status = Process.wait2(io.pid)[1].exitstatus
     exit(exit_status)
   end
+when 'pactflow-ai'
+  ARGV.shift
+  IO.popen([File.expand_path("../../bin/pactflow-ai", __dir__), *ARGV], err: [:child, :out]) do |io|
+    while (line = io.gets)
+      $stdout.write(line)
+    end
+    exit_status = Process.wait2(io.pid)[1].exitstatus
+    exit(exit_status)
+  end
 else
   puts "available commands:"
   puts "__________________"
   puts "#{FILENAME} help"
+  puts "#{FILENAME} broker"
+  puts "#{FILENAME} mock-server"
   puts "#{FILENAME} pact"
+  puts "#{FILENAME} pact-broker"
   puts "#{FILENAME} pactflow"
+  puts "#{FILENAME} pactflow-ai"
+  puts "#{FILENAME} plugin"
   puts "#{FILENAME} stub-server"
   puts "#{FILENAME} verifier"
-  puts "#{FILENAME} mock-server"
-  puts "#{FILENAME} message"
-  puts "#{FILENAME} broker"
-  puts "#{FILENAME} pact-broker"
-  puts "#{FILENAME} plugin"
+  puts "#{FILENAME} message (legacy)"
+  puts "#{FILENAME} mock-service (legacy)"
   puts "#{FILENAME} stub-service (legacy)"
   puts "#{FILENAME} provider-verifier (legacy)"
-  puts "#{FILENAME} mock-service (legacy)"
 end
