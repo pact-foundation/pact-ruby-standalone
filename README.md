@@ -21,6 +21,7 @@ This version (2.5.2) of the Pact standalone executables package contains:
   * [pact-stub-server](https://github.com/pact-foundation/pact-stub-server)
   * [pact_verifier_cli](https://github.com/pact-foundation/pact-reference/tree/master/rust/pact_verifier_cli)
   * [pact-plugin-cli](https://github.com/pact-foundation/pact-plugins/tree/main/cli)
+  * [pactflow-ai](https://docs.pactflow.io/docs/ai/)
 
 Binaries will be extracted into `pact/bin`:
 
@@ -33,6 +34,7 @@ Binaries will be extracted into `pact/bin`:
 ├── pact-stub-server
 ├── pact_verifier_cli
 ├── pact-plugin-cli
+├── pactflow-ai
 ├── pact-message (legacy)
 ├── pact-mock-service (legacy)
 ├── pact-provider-verifier (legacy)
